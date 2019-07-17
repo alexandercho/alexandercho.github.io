@@ -67,7 +67,6 @@ header nav ul li a.active {
   }
 
   header img{
-    color: #fff;
     height: calc(100vh - 50px);
     max-height: 50px;
     max-width: 50px;
