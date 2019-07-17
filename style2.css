@@ -65,6 +65,12 @@ header nav ul li a.active {
     right: -100%;
     transition: 0.5s;
   }
+  header img{
+    color: #fff;
+    height: 50px;
+    float: left;
+    padding: 5px;
+  }
   header nav.active{
     right: 0%;
   }
