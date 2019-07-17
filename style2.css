@@ -68,7 +68,8 @@ header nav ul li a.active {
 
   header img{
     color: #fff;
-    height: 50px;
+    max-height: 50px;
+    max-width: 50px;
     float: left;
     padding: 5px;
   }
