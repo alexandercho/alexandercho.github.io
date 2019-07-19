@@ -139,7 +139,7 @@ header nav ul li a.active {
 .grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 10vw 100vw;
+  grid-template-rows: 15vw 100vw;
   margin: 0px 30px;
   grid-column-gap: 15px;
 }
