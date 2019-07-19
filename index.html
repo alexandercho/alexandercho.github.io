@@ -46,9 +46,39 @@
           <div class="grid-title">
             <h1>About</h1>
           </div>
+
           <div class="grid-pics">
-            <img src="images/berkeley.jpg">
+            <div id="carouselExampleIndicators" class="carousel slide carousel-fade"
+            data-ride="carousel" style="max-height:250px;max-width:500px;">
+              <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              </ol>
+
+              <div class="carousel-inner" >
+                <div class="carousel-item active">
+                  <img class="d-block w-100" src="images/sf.jpg" alt="First slide"
+                  style="object-fit:cover;height:30vw;border-radius: 25px;">
+                </div>
+                <div class="carousel-item">
+                  <img class="d-block w-100" src="images/oakland.jpg" alt="Second slide"
+                  style="object-fit:cover;height:30vw;border-radius: 25px;">
+                </div>
+              </div>
+
+              <a class="carousel-control-prev" href="#carouselExampleIndicators"
+              role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleIndicators"
+              role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
           </div>
+
           <div class="grid-text">
             <h2>Current</h2>
             <p>I am currently based in the San Francisco Bay Area
@@ -73,32 +103,7 @@
 
       </div>
     -->
-      <!-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="max-height:250px;max-width:500px;">
-        <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img class="d-block w-100" src="images/sf.jpg" alt="First slide">
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100" src="images/berkeley.jpg" alt="Second slide">
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100" src="images/oakland.jpg" alt="Third slide">
-          </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
+      <!--
     -->
 
 
