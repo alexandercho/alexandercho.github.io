@@ -11,13 +11,14 @@ header {
   padding: 0px 5px;
   width: 100%;
   box-sizing: border-box;
-  background: #262626;
+  background: #2D2D2B;
 }
 header img{
   color: #fff;
   height: 50px;
-  float: left;
   padding: 5px;
+  position: absolute;
+  left: 2%;
 }
 header nav {
   float: right;
@@ -26,6 +27,7 @@ header nav ul {
   margin: 0;
   padding: 0;
   display: flex;
+  background: #2D2D2B;
 }
 header nav ul li {
   list-style: none;
@@ -33,27 +35,27 @@ header nav ul li {
 header nav ul li a {
   height: 50px;
   line-height: 50px;
-  padding: 0px 20px;
+  padding: 0px 10px;
   color: #FFF;
   text-decoration: none;
+  font-size: 1.5vw;
 }
 header nav ul li a:hover {
   color: #FFF;
-  background: #21966f3;
+  background: #2D2D2B;
 }
 header nav ul li a.active {
   color: #FFF;
-  background: #21966f3;
+  background: #2D2D2B;
 }
 .menu-toggle {
   color: #FFF;
-  float: right;
+  float: left;
   line-height: 50px;
   font-size: 24px;
   cursor: pointer;
   display: none;
 }
-
 @media (max-width: 991px){
   header {
     padding: 0px 20px;
@@ -66,7 +68,7 @@ header nav ul li a.active {
     position: absolute;
     width: 25%;
     height: calc(100vh - 50px);
-    background: #333;
+    background: #2D2D2B;
     top: 50px;
     left: -100%;
     transition: 0.5s;
@@ -78,7 +80,9 @@ header nav ul li a.active {
     max-width: 50px;
     float: left;
     padding: 5px;
+    left: 50%;
   }
+
   header nav.active{
     left: 0px;
   }
@@ -86,8 +90,13 @@ header nav ul li a.active {
     display: block;
     text-align: center;
   }
-  header nav ul a {
-    border-bottom: 1px solid rgba(0,0,0,0.2);
+  header nav ul li a {
+    height: 50px;
+    line-height: 50px;
+    padding: 0px 10px;
+    color: #FFF;
+    text-decoration: none;
+    font-size: 3vw;
   }
 }
 
@@ -108,14 +117,10 @@ header nav ul li a.active {
 }
 
 .section {
-  align-items: center;
   display: block;
-  text-align: center;
   margin-top: 20px;
-  justify-content: center;
 }
 .section h1 {
- overflow: hidden;
  text-align: center;
  font-size: 6vw;
  margin-bottom: 30px;
@@ -140,9 +145,9 @@ header nav ul li a.active {
 
 .grid-container {
   display: grid;
-  grid-template-columns: 2fr 3fr;
+  grid-template-columns: 2.5fr 3fr;
   grid-template-rows: 40vw;
-  margin: 0px 30px;
+  margin: 0px 20px;
   grid-column-gap: 15px;
 }
 .grid-pics {
@@ -159,6 +164,7 @@ header nav ul li a.active {
 }
 .grid-text > h2 {
   font-size: 3.5vw;
+  text-align: center;
 }
 .contact {
   display: flex;
@@ -169,4 +175,55 @@ header nav ul li a.active {
 .contact a > img{
   width: 10vw;
   height: 10vw;
+}
+
+.stack {
+  width:100%;
+  float: left;
+  padding-left:50px;
+  text-align: left;
+  margin-bottom: 5vw;
+}
+
+.skill {
+  margin-top: 5vw;
+  display: grid;
+  grid-template-columns: 25vw 100vw;
+  grid-template-rows: 10vw;
+  float: left;
+  justify-content: center;
+
+}
+
+.skill-pic {
+  grid-column: 1 / 2;
+  width: 20vw;
+  padding-left: 5vw;
+  align-self: center;
+}
+.skill-pic img {
+  width: 10vw;
+  align: left;
+}
+
+.skill-text {
+  float: left;
+  grid-column: 2 / 3;
+  width: 40vw;
+  align-self: center;
+}
+.skill-text h4 {
+  font-size: 4vw;
+}
+
+#carouselExampleFade {
+  width: 75vw;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+.proj {
+  width: 75vw;
+  height: 50vw;
+  border-radius: 50px;
 }
