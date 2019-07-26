@@ -68,7 +68,6 @@ header nav ul {
 }
 header nav ul li {
   list-style: none;
-  margin: 7vw 0vw;
 }
 header nav ul li a {
   height: 50px;
@@ -130,6 +129,10 @@ header nav ul li a.active {
   header nav ul {
     display: block;
     text-align: center;
+
+  }
+  header nav ul li {
+    margin: 6vw 0vw;
   }
   header nav ul li a {
     height: 50px;
