@@ -49,6 +49,7 @@ header {
   width: 100%;
   box-sizing: border-box;
   background: #2D2D2B;
+  z-index: 99;
 }
 header img{
   color: #fff;
