@@ -19,13 +19,11 @@
   color:#3E3E3B;
 }
 
-html,body
-{
-    width: 100%;
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-    overflow-x: hidden;
+html,body {
+  background-color:  #EBECED;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
 }
 nav {
   font-family: 'Open Sans';
@@ -42,13 +40,14 @@ nav {
 
 /*Reactive Navbar & Sidebar*/
 header {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   padding: 0px 5px;
   width: 100%;
   box-sizing: border-box;
   background: #2D2D2B;
+  z-index: 9999;
 }
 header img{
   color: #fff;
@@ -72,10 +71,11 @@ header nav ul li {
 header nav ul li a {
   height: 50px;
   line-height: 50px;
-  padding: 0px 10px;
+  padding: 0px 20px;
   color: #FFF;
   text-decoration: none;
   font-size: 1.5vw;
+  font-family: 'Open Sans';
 
 }
 header nav ul li a:hover {
@@ -111,7 +111,6 @@ header nav ul li a.active {
     padding: 5px;
     left: calc(100vw /2 - 25px);
   }
-
   header nav {
     position: absolute;
     width: 25%;
@@ -124,6 +123,7 @@ header nav ul li a.active {
 
   header nav.active{
     left: 0px;
+    z-index: 9999;
   }
 
   header nav ul {
@@ -166,35 +166,39 @@ header nav ul li a.active {
 
 }
 
+.goldenGate {
+  width: 100%;
+}
+
 .banner {
   margin-top: 50px;
   width: 100vw;
-  height: calc(100vw * 9 /16 - 50px);
+  height: calc(75vw * 9 /16 - 50px);
   background-image: url("images/campanile.jpg");
-  position: relative;
   background-size: cover;
   filter: saturate(2) hue-rotate(180deg);
+  z-index: -99;
 }
 .banner h1 {
   font-family: 'Josefin Sans';
-  top: 35%;
-  left: 30px;
-  font-size: 5vw;
-  text-align: center;
-  position: absolute;
+  font-size: 8vw;
   font-weight: bold;
+
+  width: 100%;
+  text-align: center;
+  top: 25%;
+  position: absolute;
 }
 
 .section {
   display: block;
-  margin-top: 20px;
   font-family: 'Open Sans';
-  padding: 0px 30px;
+  padding: 0px ;
 }
 .section h1 {
  text-align: center;
  font-size: 6vw;
- margin-bottom: 30px;
+ margin: 0px;
  font-family: 'Josefin Sans';
  font-weight: bold;
 }
@@ -220,7 +224,6 @@ header nav ul li a.active {
   display: grid;
   grid-template-columns: 2.5fr 3fr;
   grid-template-rows: 40vw;
-  margin: 0px 20px;
   grid-column-gap: 30px;
 
 }
@@ -241,6 +244,7 @@ header nav ul li a.active {
   text-align: center;
   font-weight: bold;
 }
+
 .contact {
   display: flex;
   justify-content:space-between;
