@@ -97,8 +97,8 @@ header nav ul li a.active {
 @media (max-width: 991px){
   header {
     padding: 0px 20px;
-    z-index: 9999;
     position: fixed;
+
   }
   .menu-toggle {
     display: block;
@@ -113,7 +113,7 @@ header nav ul li a.active {
   }
   header nav {
     position: absolute;
-    width: 25%;
+    width: 80%;
     height: calc(100vh - 50px);
     background: #2D2D2B;
     top: 50px;
@@ -141,49 +141,48 @@ header nav ul li a.active {
     text-decoration: none;
     font-size: 3vw;
   }
+}
 
-  .overlay {
-    display: none;
-    position: absolute;
-    /* full screen */
-    width: 100%;
-    left: -100%;
-    height: 100vh;
-    /* transparent black */
-    background: rgba(0, 0, 0, 0.7);
-    /* middle layer, i.e. appears below the sidebar */
-    z-index: -1;
-    /* animate the transition */
-    transition:0.5s;
-  }
-  /* display .overlay when it has the .active class */
-  .overlay.active {
-      display: block;
-      left: 0;
-  }
-
-
+.overlay {
+  display: none;
+  position: absolute;
+  /* full screen */
+  width: 100%;
+  left: -100%;
+  height: 100vh;
+  /* transparent black */
+  background: rgba(0, 0, 0, 0.7);
+  /* middle layer, i.e. appears below the sidebar */
+  z-index: 1;
+  /* animate the transition */
+  transition:0.5s;
+}
+/* display .overlay when it has the .active class */
+.overlay.active {
+  display: block;
+  left: 0;
 }
 
 .banner {
-  margin-top: 50px;
   width: 100vw;
   height: calc(100vw * 9 /16 - 50px);
   background-image: url("images/campanile.jpg");
   background-size: cover;
   filter: saturate(2) hue-rotate(180deg);
-  overflow: hidden;
-  z-index: -99;
+  margin-top: 50px;
+
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .banner h1 {
   font-family: 'Josefin Sans';
-  top: 35%;
-  left: 30px;
-  font-size: 5vw;
-  text-align: center;
-  position: absolute;
+  font-size: 8vw;
   font-weight: bold;
+  color:white;
 }
+
 
 .section {
   display: block;
