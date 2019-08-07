@@ -74,8 +74,8 @@ header nav ul li a.active {
 @media (max-width: 991px){
   header {
     padding: 0px 20px;
-    z-index: 9999;
     position: fixed;
+
   }
   .menu-toggle {
     display: block;
@@ -90,7 +90,7 @@ header nav ul li a.active {
   }
   header nav {
     position: absolute;
-    width: 25%;
+    width: 80%;
     height: calc(100vh - 50px);
     background: #2D2D2B;
     top: 50px;
@@ -100,7 +100,6 @@ header nav ul li a.active {
 
   header nav.active{
     left: 0px;
-    z-index: 9999;
   }
 
   header nav ul {
@@ -119,28 +118,26 @@ header nav ul li a.active {
     text-decoration: none;
     font-size: 3vw;
   }
+}
 
-  .overlay {
-    display: none;
-    position: absolute;
-    /* full screen */
-    width: 100%;
-    left: -100%;
-    height: 100vh;
-    /* transparent black */
-    background: rgba(0, 0, 0, 0.7);
-    /* middle layer, i.e. appears below the sidebar */
-    z-index: -1;
-    /* animate the transition */
-    transition:0.5s;
-  }
-  /* display .overlay when it has the .active class */
-  .overlay.active {
-      display: block;
-      left: 0;
-  }
-
-
+.overlay {
+  display: none;
+  position: absolute;
+  /* full screen */
+  width: 100%;
+  left: -100%;
+  height: 100vh;
+  /* transparent black */
+  background: rgba(0, 0, 0, 0.7);
+  /* middle layer, i.e. appears below the sidebar */
+  z-index: 1;
+  /* animate the transition */
+  transition:0.5s;
+}
+/* display .overlay when it has the .active class */
+.overlay.active {
+  display: block;
+  left: 0;
 }
 
 .banner {
