@@ -3,21 +3,6 @@
   font-family: 'Josefin Sans', sans-serif;
   font-family: 'Open Sans', sans-serif;
 }
-.whiteWash {
-  color: #EBECED;
-}
-.denim {
-  color: #4C586F;
-}
-.cashmere {
-  color:#CBC5C1;
-}
-.frenchBlue {
-  color:#A2AAB0;
-}
-.gunmetal {
-  color:#3E3E3B;
-}
 
 html,body {
   background-color:  #EBECED;
@@ -25,18 +10,10 @@ html,body {
   padding: 0px;
   overflow-x: hidden;
 }
+
 nav {
   font-family: 'Open Sans';
 }
-
-.background {
-  background-color: #4C586F;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: -99;
-}
-
 
 /*Reactive Navbar & Sidebar*/
 header {
@@ -166,143 +143,38 @@ header nav ul li a.active {
 
 }
 
-.goldenGate {
-  width: 100%;
-}
-
 .banner {
-  margin-top: 50px;
   width: 100vw;
   height: calc(75vw * 9 /16 - 50px);
   background-image: url("images/campanile.jpg");
   background-size: cover;
   filter: saturate(2) hue-rotate(180deg);
-  z-index: -99;
+  margin-top: 50px;
+
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .banner h1 {
   font-family: 'Josefin Sans';
   font-size: 8vw;
   font-weight: bold;
-
-  width: 100%;
-  text-align: center;
-  top: 25%;
-  position: absolute;
+  color:white;
 }
-
-.section {
-  display: block;
-  font-family: 'Open Sans';
-  padding: 0px ;
-}
-.section h1 {
- text-align: center;
- font-size: 6vw;
- margin: 0px;
- font-family: 'Josefin Sans';
- font-weight: bold;
-}
-.section h1:before,.section h1:after {
- background-color: #333;
- content: "";
- display: inline-block;
- height: 1px;
- position: relative;
- vertical-align: middle;
- width: 10%;
-}
-.section h1:before {
- right: 10px;
- margin-left: -10%;
-}
-.section h1:after {
- left: 10px;
- margin-right: -10%;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: 2.5fr 3fr;
-  grid-template-rows: 40vw;
-  grid-column-gap: 30px;
-
-}
-.grid-pics {
-  grid-column: 1 / 2;
-}
-.grid-pics > carousel slide {
-  object-fit: cover;
-  width: 100%;
-  max-height: 100%;
-}
-.grid-text {
-  grid-column: 2 / 3;
-  font-size: 2.3vw;
-}
-.grid-text > h2 {
-  font-size: 3.5vw;
-  text-align: center;
-  font-weight: bold;
-}
-
-.contact {
-  display: flex;
-  justify-content:space-between;
-  padding: 0px 15vw;
-  margin-bottom: 50px;
-}
-.contact a > img{
-  width: 10vw;
-  height: 10vw;
-}
-
-.stack {
+.followMe {
+  padding: 20px 0px;
+  margin-top:50px;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
   width:100%;
-  float: left;
-  padding-left:50px;
-  text-align: left;
-  margin-bottom: 5vw;
+  background:#2D2D2B;
+  color: white;
 }
-
-.skill {
-  margin-top: 5vw;
-  display: grid;
-  grid-template-columns: 25vw 100vw;
-  grid-template-rows: 10vw;
-  float: left;
-  justify-content: center;
-
+.followMe a {
+  margin: 0px 20px;
 }
-
-.skill-pic {
-  grid-column: 1 / 2;
-  width: 20vw;
-  padding-left: 5vw;
-  align-self: center;
-}
-.skill-pic img {
-  width: 10vw;
-  align: left;
-}
-
-.skill-text {
-  float: left;
-  grid-column: 2 / 3;
-  width: 40vw;
-  align-self: center;
-}
-.skill-text h4 {
-  font-size: 4vw;
-}
-
-#carouselExampleFade {
-  width: 75vw;
-  margin-left: auto;
-  margin-right: auto;
-
-}
-.proj {
-  width: 75vw;
-  height: 50vw;
-  border-radius: 50px;
+.followMe a:hover {
+  text-decoration: none;
 }
