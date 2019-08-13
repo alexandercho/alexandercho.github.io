@@ -1,0 +1,120 @@
+
+
+.whiteWash {
+  color: #EBECED;
+}
+.denim {
+  color: #4C586F;
+}
+.cashmere {
+  color:#CBC5C1;
+}
+.frenchBlue {
+  color:#A2AAB0;
+}
+.gunmetal {
+  color:#3E3E3B;
+}
+/* Redo everything below */
+
+.section {
+  display: block;
+  font-family: 'Open Sans';
+  padding: 0px 30px;
+}
+.section h1 {
+ text-align: center;
+ font-size: 6vw;
+ margin: 5vw 0px;
+ font-family: 'Josefin Sans';
+ font-weight: bold;
+}
+.section h1:before,.section h1:after {
+ background-color: #333;
+ content: "";
+ display: inline-block;
+ height: 1px;
+ position: relative;
+ vertical-align: middle;
+ width: 10%;
+}
+.section h1:before {
+ right: 10px;
+ margin-left: -10%;
+}
+.section h1:after {
+ left: 10px;
+ margin-right: -10%;
+}
+
+.section p {
+  font-family: 'Open Sans';
+  font-size: 3vw;
+}
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 2.5fr 3fr;
+  grid-template-rows: 40vw;
+  grid-column-gap: 30px;
+
+}
+.grid-pics {
+  grid-column: 1 / 2;
+}
+.grid-pics > carousel slide {
+  object-fit: cover;
+  width: 100%;
+  max-height: 100%;
+}
+.grid-text {
+  grid-column: 2 / 3;
+  font-size: 2.3vw;
+}
+.grid-text > h2 {
+  font-size: 3.5vw;
+  text-align: center;
+  font-weight: bold;
+}
+
+
+
+
+.skill {
+  margin-top: 5vw;
+  display: grid;
+  grid-template-columns: 25vw 100vw;
+  grid-template-rows: 10vw;
+  float: left;
+  justify-content: center;
+
+}
+
+.skill-pic {
+  grid-column: 1 / 2;
+  width: 20vw;
+  padding-left: 5vw;
+  align-self: center;
+}
+.skill-pic img {
+  width: 10vw;
+  align: left;
+}
+
+.skill-text {
+  float: left;
+  grid-column: 2 / 3;
+  width: 40vw;
+  align-self: center;
+}
+.skill-text h4 {
+  font-size: 4vw;
+}
+
+#carouselExampleFade {
+  width: 75vw;
+  margin-left: auto;
+  margin-right: auto;
+
+}

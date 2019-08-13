@@ -1,166 +1,18 @@
-/* */
-@font-face {
-  font-family: 'Josefin Sans', sans-serif;
-  font-family: 'Open Sans', sans-serif;
-}
-.whiteWash {
-  color: #EBECED;
-}
-.denim {
-  color: #4C586F;
-}
-.cashmere {
-  color:#CBC5C1;
-}
-.frenchBlue {
-  color:#A2AAB0;
-}
-.gunmetal {
-  color:#3E3E3B;
-}
 
 html,body {
-  background-color:  #EBECED;
   margin: 0px;
   padding: 0px;
   overflow-x: hidden;
 }
-nav {
-  font-family: 'Open Sans';
+.content {
+  margin: 0px 7vw;
 }
-
 .background {
   background-color: #4C586F;
   width: 100%;
   height: 100%;
   position: absolute;
   z-index: -99;
-}
-
-
-/*Reactive Navbar & Sidebar*/
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 0px 5px;
-  width: 100%;
-  box-sizing: border-box;
-  background: #2D2D2B;
-  z-index: 9999;
-}
-header img{
-  color: #fff;
-  height: 50px;
-  padding: 5px;
-  position: absolute;
-  left: 2%;
-}
-header nav {
-  float: right;
-}
-header nav ul {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  background: #2D2D2B;
-}
-header nav ul li {
-  list-style: none;
-}
-header nav ul li a {
-  height: 50px;
-  line-height: 50px;
-  padding: 0px 20px;
-  color: #FFF;
-  text-decoration: none;
-  font-size: 1.5vw;
-  font-family: 'Open Sans';
-
-}
-header nav ul li a:hover {
-  color: #FFF;
-  background: #2D2D2B;
-}
-header nav ul li a.active {
-  color: #FFF;
-  background: #2D2D2B;
-}
-.menu-toggle {
-  color: #FFF;
-  float: left;
-  line-height: 50px;
-  font-size: 24px;
-  cursor: pointer;
-  display: none;
-}
-@media (max-width: 991px){
-  header {
-    padding: 0px 20px;
-    position: fixed;
-
-  }
-  .menu-toggle {
-    display: block;
-  }
-  header img{
-    height: calc(100vh - 50px);
-    max-height: 50px;
-    max-width: 50px;
-    float: left;
-    padding: 5px;
-    left: calc(100vw /2 - 25px);
-  }
-  header nav {
-    position: absolute;
-    width: 80%;
-    height: calc(100vh - 50px);
-    background: #2D2D2B;
-    top: 50px;
-    left: -100%;
-    transition: 0.5s;
-  }
-
-  header nav.active{
-    left: 0px;
-  }
-
-  header nav ul {
-    display: block;
-    text-align: center;
-
-  }
-  header nav ul li {
-    margin: 6vw 0vw;
-  }
-  header nav ul li a {
-    height: 50px;
-    line-height: 50px;
-    padding: 0px 10px;
-    color: #FFF;
-    text-decoration: none;
-    font-size: 3vw;
-  }
-}
-
-.overlay {
-  display: none;
-  position: absolute;
-  /* full screen */
-  width: 100%;
-  left: -100%;
-  height: 100vh;
-  /* transparent black */
-  background: rgba(0, 0, 0, 0.7);
-  /* middle layer, i.e. appears below the sidebar */
-  z-index: 1;
-  /* animate the transition */
-  transition:0.5s;
-}
-/* display .overlay when it has the .active class */
-.overlay.active {
-  display: block;
-  left: 0;
 }
 
 .banner {
@@ -177,126 +29,119 @@ header nav ul li a.active {
   justify-content: center;
 }
 .banner h1 {
-  font-family: 'Josefin Sans';
   font-size: 8vw;
   font-weight: bold;
   color:white;
 }
 
+.header {
+  text-align: center;
+  font-size: 6vw;
+  margin: 3vw 0px;
+}
 
-.section {
-  display: block;
-  font-family: 'Open Sans';
-  padding: 0px 30px;
-}
-.section h1 {
- text-align: center;
- font-size: 6vw;
- margin: 5vw 0px;
- font-family: 'Josefin Sans';
- font-weight: bold;
-}
-.section h1:before,.section h1:after {
- background-color: #333;
+.header:before, .header:after {
+ background-color: white;
  content: "";
  display: inline-block;
- height: 1px;
+ height: 3px;
  position: relative;
  vertical-align: middle;
  width: 10%;
 }
-.section h1:before {
+.header:before {
  right: 10px;
  margin-left: -10%;
 }
-.section h1:after {
+.header:after {
  left: 10px;
  margin-right: -10%;
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: 2.5fr 3fr;
-  grid-template-rows: 40vw;
-  grid-column-gap: 30px;
-
-}
-.grid-pics {
-  grid-column: 1 / 2;
-}
-.grid-pics > carousel slide {
-  object-fit: cover;
-  width: 100%;
-  max-height: 100%;
-}
-.grid-text {
-  grid-column: 2 / 3;
-  font-size: 2.3vw;
-}
-.grid-text > h2 {
-  font-size: 3.5vw;
-  text-align: center;
-  font-weight: bold;
+#about {
+  display: block;
+  padding: 0px 30px;
 }
 
-.contact {
-  display: flex;
-  justify-content:space-between;
-  padding: 0px 15vw;
-  margin-bottom: 50px;
-}
-.contact a > img{
-  width: 10vw;
-  height: 10vw;
-}
-
-.stack {
-  width:100%;
-  float: left;
-  padding-left:50px;
+#about p {
+  padding: 0px 5vw;
+  font-size: 3vw;
   text-align: left;
+}
+
+.link {
+  text-align: center;
+  margin: 5vw 0px;
+  font-size: 5vw;
+}
+
+.link a {
+  color: #3E3E3B;
+  background: #EBECED;
+  border: 2px #3E3E3B solid;
+  text-decoration: none;
+  padding: 5px 20px;
+}
+.link a:hover{
+  background: #3E3E3B;
+  color: #EBECED;
+  text-decoration: none;
+}
+
+.skillsetRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.stack {
+  display: grid;
+  width: 50%;
+  grid-template-rows: 10vw
+}
+.stackName {
+  grid-column: 1/ 2;
+  text-align: center;
+  font-size: 5vw;
+}
+.codingLanguage {
+  float: left;
+  font-size: 3vw;
+  line-height: 10vw;
+  vertical-align: middle;
   margin-bottom: 5vw;
 }
 
-.skill {
-  margin-top: 5vw;
-  display: grid;
-  grid-template-columns: 25vw 100vw;
-  grid-template-rows: 10vw;
-  float: left;
-  justify-content: center;
-
+.langIcon {
+  height: 10vw;
+  margin-right:5vw;
+}
+.whiteBackIcon {
+  padding: 0.5vw;
+  background: white;
+}
+.roundedIcon {
+  border-radius: 2vw;
 }
 
-.skill-pic {
-  grid-column: 1 / 2;
-  width: 20vw;
-  padding-left: 5vw;
-  align-self: center;
+.contact {
+  padding: 20px 0px;
+  margin-top: 50px;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+  width:100%;
+  color: white;
+  font-family: 'Josefin Sans';
 }
-.skill-pic img {
-  width: 10vw;
-  align: left;
+.contact a {
+  margin: 0px 20px;
 }
-
-.skill-text {
-  float: left;
-  grid-column: 2 / 3;
-  width: 40vw;
-  align-self: center;
+.contact a:hover {
+  text-decoration: none;
 }
-.skill-text h4 {
-  font-size: 4vw;
+.contactIcon {
+  width: 5vw;
 }
-
-#carouselExampleFade {
-  width: 75vw;
-  margin-left: auto;
-  margin-right: auto;
-
-}
-.proj {
-  width: 75vw;
-  height: 50vw;
-  border-radius: 50px;
+.roundedBorders {
+  border-radius: 5vw;
 }

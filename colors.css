@@ -1,0 +1,35 @@
+/* Text */
+.black {
+  background: #000000;
+}
+.darkGray {
+  background: #212121;
+}
+.gray {
+  background: #303030;
+}
+.lightGray {
+  background:#424242;
+}
+.whiteText {
+  color: #FFF;
+}
+.whiteBack {
+  
+}
+
+.whiteWash {
+  color: #EBECED;
+}
+.denim {
+  color: #4C586F;
+}
+.cashmere {
+  color:#CBC5C1;
+}
+.frenchBlue {
+  color:#A2AAB0;
+}
+.gunmetal {
+  color:#3E3E3B;
+}
