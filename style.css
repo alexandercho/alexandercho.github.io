@@ -64,7 +64,7 @@ html,body {
 }
 
 #about p {
-  padding: 0px 5vw;
+  padding: 0px 0vw;
   font-size: 3vw;
   text-align: left;
 }
@@ -140,7 +140,7 @@ html,body {
   text-decoration: none;
 }
 .contactIcon {
-  width: 5vw;
+  width: 3vw;
 }
 .roundedBorders {
   border-radius: 5vw;
