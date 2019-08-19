@@ -2,17 +2,17 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Alex Cho's Personal Website</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+    <title>Alex Cho's Personal Website</title>
     <link rel="icon" href="images/tabIcon.png">
 
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="navbar.css">
-    <link rel="stylesheet" href="fonts.css">
-    <link rel="stylesheet" href="colors.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/colors.css">
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
@@ -26,13 +26,13 @@
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Open+Sans&display=swap" rel="stylesheet">
   </head>
 
-  <body class="gray">
+  <body class="gray whiteText">
     <!-- Responsive Navbar -->
     <header>
       <nav>
         <ul>
-          <li><a class = "font1" href="/index.html">Home</a></li>
-          <li><a class = "font1" href="/about.html">About Me</a></li>
+          <li><a class = "font1" href="index.html">Home</a></li>
+          <li><a class = "font1" href="about.html">About Me</a></li>
           <li><a class = "font1" href="#skillsets">Skillsets</a></li>
           <li><a class = "font1" href="#projects">Projects</a></li>
           <li><a class = "font1" href="#contact">Contact</a></li>
@@ -64,11 +64,11 @@
           as a software developer so feel free to download my resume reach out
           to me.
         </p>
-        <h2 class="link"><a class="font1" href="about.html">Read More</a></h2>
+        <h2 class="link"><a class="font2" href="about.html">Read More</a></h2>
       </div>
 
       <!-- Skillsets -->
-      <div id="skillsets" class="whiteText">
+      <div id="skillsets">
         <h1 class="whiteText font1 header">Skillsets</h1>
 
         <div class="skillsetRow">
@@ -77,7 +77,8 @@
             <h1 class="stackName font1">Front End</h1>
             <ul class="font2" style="list-style: none;">
               <li><h1 class="codingLanguage">
-                <img class= "roundedIcon whiteBackIcon langIcon" src="images/skillsets/html.png">3 Months</h1> </li>
+                <img class="roundedIcon whiteBackIcon langIcon" src="images/skillsets/html.png"
+                title="HTML5" alt="HTML5">3 Months</h1> </li>
               <li><h1 class="codingLanguage">
                 <img class= "roundedIcon whiteBackIcon langIcon" src="images/skillsets/css.png">3 Months</h1> </li>
               <li><h1 class="roundedIcon codingLanguage">
@@ -113,9 +114,9 @@
             <h1 class="stackName font1">Cloud</h1>
             <ul class="font2" style="list-style: none;">
               <li><h1 class="codingLanguage">
-                <img class= "roundedIcon whiteBackIcon langIcon"  src="images/skillsets/aws.png">In-training</h1></li>
+                <img class= "roundedIcon whiteBackIcon langIcon"  src="images/skillsets/aws.png">Training</h1></li>
               <li><h1 class="codingLanguage">
-                <img class= "roundedIcon whiteBackIcon langIcon" src="images/skillsets/googlecloud.png">In-training</h1></li>
+                <img class= "roundedIcon whiteBackIcon langIcon" src="images/skillsets/googlecloud.png">Training</h1></li>
             </ul>
           </div>
         </div>
@@ -147,27 +148,33 @@
             <h1 class="stackName font1">Frameworks</h1>
             <ul class="font2" style="list-style: none;">
               <li><h1 class="codingLanguage" >
-                  <img class= "roundedIcon whiteBackIcon langIcon" src="images/skillsets/C.png">2 Years</h1></li>
+                  <img class= "roundedIcon whiteBackIcon langIcon" src="images/skillsets/bootstrap.png">3 Months</h1></li>
               <li><h1 class="codingLanguage" >
-                  <img class= "roundedIcon whiteBackIcon langIcon"  src="images/skillsets/C++.png">3 Years</h1></li>
+                  <img class= "roundedIcon whiteBackIcon langIcon"  src="images/skillsets/jquery.png">3 Months</h1></li>
+              <li><h1 class="codingLanguage" >
+                  <img class= "roundedIcon whiteBackIcon langIcon"  src="images/skillsets/nodejs.png">3 Months</h1></li>
             </ul>
           </div>
           <div class="stack">
             <h1 class="stackName font1">Libraries</h1>
             <ul class="font2" style="list-style: none;">
               <li><h1 class="codingLanguage">
-                <img class= "langIcon"  src="images/skillsets/photoshop.png">5 Years</h1></li>
+                <img class= "roundedIcon whiteBackIcon langIcon"  src="images/skillsets/jupyter.png">3 Years</h1></li>
               <li><h1 class="codingLanguage">
-                <img class= "langIcon" src="images/skillsets/illustrator.png">6 Years</h1></li>
+                <img class= "roundedIcon whiteBackIcon langIcon"  src="images/skillsets/numpy.png">3 Years</h1></li>
+              <li><h1 class="codingLanguage">
+                <img class= "roundedIcon whiteBackIcon langIcon"  src="images/skillsets/pytorch.png">2 Years</h1></li>
+              <li><h1 class="codingLanguage">
+                <img class= "roundedIcon whiteBackIcon langIcon"  src="images/skillsets/tensorflow.png">2 Years</h1></li>
             </ul>
           </div>
         </div>
       </div>
 
       <!-- Projects -->
-      <div id="projects" class="whiteText">
+      <div id="projects">
         <h1 class="header font1">Projects</h1>
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width:80vw; margin: 0px auto;">
+        <div id="carouselIndicators" class="carousel slide" data-ride="carousel" style="width:80vw; height: 50vw;margin: 0px auto;">
           <!--<ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -175,45 +182,47 @@
           </ol>-->
           <div class="carousel-inner roundedBorders" >
             <div class="carousel-item active">
-              <img class="d-block w-100" src="images/projects/columbusParking.png" alt="First slide">
+              <img class="d-block w-100" src="images/projects/columbusParking.png" alt="First slide" style="width:80vw; height: 40vw;">
               <div class="carousel-caption d-md-block" style="top: 20vw;">
-                <h5 class="projectName" >Smart Columbus Parking</h5>
-                <p class="projectDescription">This project with Honda uses driver data</p>
+                <h5 class="font2 projectName" >Smart Columbus Parking</h5>
+                <p class="font2 projectDescription">This project with Honda uses driver data and
+                  parking meter data to predict the availability of public parking in Columbus, OH.</p>
               </div>
             </div>
             <div class="carousel-item">
-              <img class="d-block w-100" src="images/projects/columbusParking.png"
-              style=""
-              alt="Second slide">
+              <img class="d-block w-100" src="images/projects/spamPredictor.png"
+              alt="Second slide" style="width:80vw; height: 40vw;">
               <div class="carousel-caption d-md-block" style="top: 20vw;">
-                <h5 class="projectName">Smart Columbus Parking</h5>
-                <p class="projectDescription">This project with Honda uses driver data</p>
+                <h5 class="blackText font2 projectName">Spam Predictor</h5>
+                <p class="blackText font2 projectDescription">This project researches the makeup of spam and
+                uses a dataset to train a machine learning model to predict whether an email is spam based
+                on its contents.</p>
               </div>
             </div>
             <div class="carousel-item">
-              <img class="d-block w-100" src="images/projects/columbusParking.png" alt="Third slide">
+              <img class="d-block w-100" src="images/projects/columbusParking.png" alt="Third slide" style="width:80vw; height: 40vw;">
               <div class="carousel-caption d-md-block" style="top: 20vw;">
                 <h5 class="projectName" >Smart Columbus Parking</h5>
                 <p class="projectDescription">This project has a description</p>
               </div>
             </div>
           </div>
-          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
           </a>
-          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
           </a>
 
         </div>
-        <h2 class="link"><a href="https://github.com/alexandercho">Source Code</a></h2>
+        <h2 class="link font2"><a href="https://github.com/alexandercho"><img class="githubIcon" src="images/github.png">Source Code</a></h2>
       </div>
     </div>
 
     <!-- Contact -->
-    <div class="contact whiteText black" >
+    <div id="contact" class="black" >
       <h1 class="footer font1">Contact Me</h1>
       <div>
         <a href="mailto:alexandercho@berkeley.edu">

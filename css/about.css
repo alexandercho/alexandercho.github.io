@@ -1,0 +1,139 @@
+/* */
+@font-face {
+  font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
+}
+
+html,body {
+  background-color:  #EBECED;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+}
+
+nav {
+  font-family: 'Open Sans';
+}
+
+.banner {
+  width: 100vw;
+  height: calc(75vw * 9 /16 - 50px);
+  background-image: url("images/campanile.jpg");
+  background-size: cover;
+  filter: saturate(2) hue-rotate(180deg);
+  margin-top: 50px;
+
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.banner h1 {
+  font-family: 'Josefin Sans';
+  font-size: 8vw;
+  font-weight: bold;
+  color:white;
+  vertical-align: middle;
+}
+.header {
+  font-size: 5vw;
+  text-align: center;
+}
+.text {
+  font-size: 3vw;
+}
+.current {
+  display:grid;
+  grid-template-columns: 2fr 3fr;
+  grid-template-rows: 60vw;
+  overflow:visible;
+}
+.goldenGate {
+  grid-column: 1 / 2;
+  width: 200%;
+  max-height: 140%;
+  margin: 30px 0px;
+  filter: invert(17%) sepia(78%) saturate(3677%) hue-rotate(340deg) brightness(84%) contrast(80%);
+}
+.currentText {
+  margin-top: 20px;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+}
+.education {
+  display:grid;
+  grid-template-columns: 5fr 2fr;
+  grid-template-rows: 60vw;
+  overflow:visible;
+  margin-bottom: 15vw;
+}
+.educationText {
+  margin-top: 15vw;
+  margin-left: 5vw;
+  text-align:center;
+}
+.campanile {
+  grid-column: 2 / 3
+  float: right;
+  margin: 10vw 10vw;
+  width:10vw;
+  height:50vw;
+}
+.subject {
+  font-size: 4vw;
+  padding-left: 5vw;
+}
+.courses {
+  font-size: 3vw;
+  list-style-type:none;
+  padding-left: 10vw;
+  line-height: 5vw;
+}
+.work {
+  text-align:center;
+}
+.job {
+  display:grid;
+  grid-template-columns: 3fr 2fr;
+  grid-template-rows: 45vw;
+  overflow:visible;
+}
+.jobDescription {
+  grid-column: 1 / 2;
+  margin-left: 5vw;
+}
+.jobTitle {
+  font-size: 4vw;
+}
+.jobPeriod {
+  font-size: 3vw;
+}
+.jobText {
+  width:100%;
+  font-size: 3vw;
+}
+.jobImage {
+  grid-column: 2 / 3;
+  width: 20vw;
+  float:right;
+  margin-top: 10vw;
+  margin-left: 10vw;
+}
+.followMe {
+
+  padding: 20px 0px;
+  margin-top:50px;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+  width:100%;
+  background: black;
+  color: white;
+}
+.followMe a {
+  margin: 0px 20px;
+}
+.followMe a:hover {
+  text-decoration: none;
+}

@@ -8,8 +8,10 @@
     <link rel="icon" href="images/tabIcon.png">
 
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="about.css">
-    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/colors.css">
+    <link rel="stylesheet" href="css/about.css">
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
@@ -23,20 +25,19 @@
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Open+Sans&display=swap" rel="stylesheet">
   </head>
 
-  <body>
+  <body class="gray whiteText">
     <!-- Responsive Navbar -->
     <header>
       <nav>
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="#about">About Me</a></li>
-          <li><a href="#skillsets">Skillsets</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a class = "font1" href="index.html">Home</a></li>
+          <li><a class = "font1" href="about.html">About Me</a></li>
+          <li><a class = "font1" href="index.html#skillsets">Skillsets</a></li>
+          <li><a class = "font1" href="index.html#projects">Projects</a></li>
+          <li><a class = "font1" href="index.html#contact">Contact</a></li>
         </ul>
       </nav>
       <div class="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></div>
-
       <img src="images/tabIcon.png">
       <!-- Dark Overlay element -->
       <div class="overlay"></div>
@@ -44,22 +45,16 @@
 
 
     <!-- Banner-->
-    <div class="banner">
-      <h1 style="vertical-align: middle;">About Me</h1>
+    <div class="banner font1">
+      <h1>About Me</h1>
     </div>
 
     <!-- Current-->
-    <div style="display:grid; grid-template-columns: 2fr 3fr; grid-template-rows: 60vw; overflow:visible;">
-      <div>
-        <img style="grid-column: 1 / 2; width: 200%;
-        max-height: 140%; margin: 30px 0px; filter: invert(17%) sepia(78%) saturate(3677%) hue-rotate(340deg) brightness(84%) contrast(80%);"src="images/goldenGate.png">
-      </div>
-
-      <div style="margin-top: 20px; margin-left:auto; margin-right:auto; text-align:center;">
-        <h1 style="font-family: 'Josefin Sans';
-        font-size: 5vw;">Current</h1>
-        <p style="font-family: 'Josefin Sans';
-        font-size: 3vw;">I am currently based in the San Francisco Bay Area
+    <div class="current">
+      <img class="goldenGate" src="images/goldenGate.png">
+      <div class="currentText">
+        <h1 class="header font1">Current</h1>
+        <p class="text font1">I am currently based in the San Francisco Bay Area
         looking for work and adjusting to post-graduate life.
         My days consist of learning front-end development
         and looking for a software engineering job.  </p>
@@ -67,31 +62,26 @@
     </div>
 
     <!-- Education -->
-    <div style="display:grid; grid-template-columns: 5fr 2fr; grid-template-rows: 60vw; overflow:visible;">
-      <div style="margin-top: 60px; margin-left:40px; text-align:center;">
-        <h2 style="font-family: 'Josefin Sans';
-        font-size: 5vw;">Education</h2>
-        <p style="font-family: 'Josefin Sans';
-        font-size: 3vw;">I attended UC Berkeley and recently finished my
+    <div class="education">
+      <div class="educationText">
+        <h2 class="header font1">Education</h2>
+        <p class="text font1">I attended UC Berkeley and recently finished my
           undergraduate education this past spring.
           I graduated with a B.S. in Electrical Engineering &
           Computer Science and a Certificate in Entrepeneurship
           and Technology from the Sutardja Center for
           Entrepenurship.</p>
       </div>
-      <div style="grid-column: 2 / 3">
-        <img src="images/campanileBlueTall.png"
-        style="float: right;margin: 20px 40px; width:10vw; height:50vw;">
-      </div>
+      <img class="campanile" src="images/campanileBlueTall.png">
     </div>
 
     <!-- Courses -->
-    <div style="margin-left: 50px;">
-      <h1 style="font-family: 'Josefin Sans'; font-size: 5vw; text-align: center">Completed Courses</h1>
+    <div classes="coursework">
+      <h1 class="header font1">Completed Courses</h1>
 
-      <h1 style="font-family: 'Josefin Sans'; font-size: 4vw;">Computer Science<h1>
+      <h1 class="font1 subject">Computer Science<h1>
 
-      <ul style="font-family: 'Josefin Sans'; font-size: 2.5vw;list-style-type:none;">
+      <ul class="font2 courses">
         <li>Artificial Intelligence</li>
         <li>Data Structures</li>
         <li>Database Systems</li>
@@ -100,22 +90,22 @@
         <li>Machine Learning</li>
       </ul>
 
-      <h1 style="font-family: 'Josefin Sans'; font-size: 4vw;">Electrical Engineering<h1>
-      <ul style="font-family: 'Josefin Sans'; font-size: 2.5vw;list-style-type:none;">
+      <h1 class="font1 subject">Electrical Engineering<h1>
+      <ul class="font2 courses">
         <li>Designing Information Devices & Systems </li>
         <li>Signals and Systems</li>
       </ul>
 
-      <h1 style="font-family: 'Josefin Sans'; font-size: 4vw;">Mathematics<h1>
-      <ul style="font-family: 'Josefin Sans'; font-size: 2.5vw;list-style-type:none;">
+      <h1 class="font1 subject">Mathematics<h1>
+      <ul class="font2 courses">
         <li>Discrete Mathematics & Probability Theory </li>
         <li>Multivariable Calculus </li>
         <li>Linear Algebra & Differential Equations </li>
         <li>Mathematical Statistics in Data Science</li>
       </ul>
 
-      <h1 style="font-family: 'Josefin Sans'; font-size: 4vw;">Other<h1>
-      <ul style="font-family: 'Josefin Sans'; font-size: 2.5vw;list-style-type:none;">
+      <h1 class="font1 subject">Other<h1>
+      <ul class="font2 courses">
         <li>The Foundations of Data Science</li>
         <li>Principles & Techniques of Data Science </li>
         <li>Applied Data Science w/ Venture Applications </li>
@@ -125,36 +115,31 @@
     </div>
 
     <!-- Work  style="margin-top: 50px; margin-left:auto; margin-right:auto; text-align:center;width:100%; float: left;" -->
-    <div  style="text-align:center;">
-      <h1 style="font-family: 'Josefin Sans'; font-size: 5vw;">Work</h1>
-      <div style="display:grid; grid-template-columns: 3fr 2fr; grid-template-rows: 45vw; overflow:visible;">
-        <div style="grid-column: 1 / 2; margin-top: 20px;">
-          <h2 style="font-family: 'Josefin Sans';      font-size: 4vw;">Current</h2>
-          <h3 style="font-family: 'Josefin Sans';      font-size: 3vw;">May 2019 - Now</h3>
-          <p style="font-family: 'Josefin Sans';width:100%; margin-left: 30px;
-          font-size: 3vw;">I am currently based in the San Francisco Bay Area
+    <div class="work">
+      <h1 class="header font1">Work</h1>
+      <div class="job">
+        <div class="jobDescription">
+          <h2 class="font1 jobTitle">Current</h2>
+          <h3 class="font1 jobPeriod">May 2019 - Now</h3>
+          <p class="font2 jobText">I am currently based in the San Francisco Bay Area
           looking for work and adjusting to post-graduate life.
           My days consist of learning front-end development
           and looking for a software engineering job.  </p>
         </div>
-        <div style="grid-column: 2 / 3;">
-          <img src="images/jobApp.svg" width="300vw" style=" width: 25vw;float:right; margin-top: 20px;" >
-        </div>
+        <img class="jobImage"src="images/work.png"  >
+
       </div>
 
-      <div style="display:grid; grid-template-columns: 3fr 2fr; grid-template-rows: 35vw; overflow:visible;">
-        <div style="grid-column: 1 / 2; margin-top: 0px;">
-          <h2  style="font-family: 'Josefin Sans';      font-size: 4vw;">Boeing</h2>
-          <h3  style="font-family: 'Josefin Sans';      font-size: 3vw;">May 2017 - Aug 2017</h3>
-          <p style="font-family: 'Josefin Sans';width:100%; margin-left: 30px;
-          font-size: 3vw;">I worked at the Boeing Huntington Beach site over a
+      <div class="job">
+        <div class="jobDescription">
+          <h2 class="font1 jobTitle">Boeing Intern</h2>
+          <h3 class="font1 jobPeriod">May 2017 - Aug 2017</h3>
+          <p class="font2 jobText">I worked at the Boeing Huntington Beach site over a
           summer with a diverse team of varying role to develop a
           feedback loop project that used computer vision
           and mechanical parts.</p>
         </div>
-        <div style="grid-column: 2 / 3 ">
-          <img src="images/boeing.png" style="width: 30vw; float:right;">
-        </div>
+        <img class="jobImage"src="images/boeing.png">
       </div>
     </div>
 
@@ -165,8 +150,8 @@
 
 
     <!-- Social Media -->
-    <div class="followMe" >
-      <h1 style="font-family: 'Josefin Sans'; font-size: 5vw;">Follow Me</h1>
+    <div class="followMe whiteText black" >
+      <h1 class="footer font1">Follow Me</h1>
       <div>
         <a href="https://www.facebook.com/alexcelerator">
           <img src="images/contactIcons/facebook.png" style="width:10vw; ">

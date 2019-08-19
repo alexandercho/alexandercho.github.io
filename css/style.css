@@ -18,7 +18,7 @@ html,body {
 .banner {
   width: 100vw;
   height: calc(100vw * 9 /16 - 50px);
-  background-image: url("images/campanile.jpg");
+  background-image: url("../images/campanile.jpg");
   background-size: cover;
   filter: saturate(2) hue-rotate(180deg);
   margin-top: 50px;
@@ -69,9 +69,12 @@ html,body {
   text-align: left;
 }
 
+.githubIcon {
+  width: 4vw;
+  margin-right: 2vw;
+}
 .link {
   text-align: center;
-  margin: 5vw 0px;
   font-size: 4vw;
 }
 
@@ -105,10 +108,10 @@ html,body {
 }
 .codingLanguage {
   float: left;
-  font-size: 3vw;
+  font-size: 2.5vw;
   line-height: 10vw;
   vertical-align: middle;
-  margin-bottom: 5vw;
+  margin-bottom: 3vw;
 }
 
 .langIcon {
@@ -130,20 +133,31 @@ html,body {
   font-size: 2vw;
 }
 
-.contact {
+#skillsets {
+  margin-top: -5vw;
+  padding-top: 50px;
+}
+#projects {
+  padding-top: 50px;
+  margin-top: -5vw;
+}
+
+.footer {
+  font-size: 5vw;
+}
+#contact {
   padding: 20px 0px;
-  margin-top: 50px;
+  margin-top:50px;
   margin-left:auto;
   margin-right:auto;
   text-align:center;
   width:100%;
   color: white;
-  font-family: 'Josefin Sans';
 }
-.contact a {
+#contact a {
   margin: 0px 20px;
 }
-.contact a:hover {
+#contact a:hover {
   text-decoration: none;
 }
 .contactIcon {

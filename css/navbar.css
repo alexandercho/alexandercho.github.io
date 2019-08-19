@@ -72,7 +72,7 @@ header nav ul li a.active {
   }
   header nav {
     position: absolute;
-    width: 60%;
+    width: 40%;
     height: calc(100vh - 50px);
     background: #212121;
     top: 50px;
@@ -90,7 +90,7 @@ header nav ul li a.active {
     background: #212121;;
   }
   header nav ul li {
-    margin: 6vw 0vw;
+    margin: 4vw 0vw;
   }
   header nav ul li a {
     height: 50px;
