@@ -18,7 +18,7 @@ nav {
 .banner {
   width: 100vw;
   height: calc(75vw * 9 /16 - 50px);
-  background-image: url("images/campanile.jpg");
+  background-image: url("../images/campanile.jpg");
   background-size: cover;
   filter: saturate(2) hue-rotate(180deg);
   margin-top: 50px;
@@ -98,6 +98,7 @@ nav {
   grid-template-columns: 3fr 2fr;
   grid-template-rows: 45vw;
   overflow:visible;
+  margin-top: 5vw;
 }
 .jobDescription {
   grid-column: 1 / 2;
@@ -132,8 +133,12 @@ nav {
   color: white;
 }
 .followMe a {
+
   margin: 0px 20px;
 }
 .followMe a:hover {
   text-decoration: none;
+}
+.footer {
+  font-size: 8vw;
 }
