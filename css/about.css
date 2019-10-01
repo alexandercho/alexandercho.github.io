@@ -40,7 +40,7 @@ nav {
   text-align: center;
 }
 .text {
-  font-size: 2.8vw;
+  font-size: 3vw;
 }
 .current {
   display:grid;
@@ -52,7 +52,7 @@ nav {
   grid-column: 1 / 2;
   width: 200%;
   max-height: 140%;
-  margin: 10vw 0px;
+  margin: 15vw 0px;
   filter: invert(17%)
     sepia(78%)
     saturate(3677%)
