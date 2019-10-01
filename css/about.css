@@ -17,11 +17,11 @@ nav {
 
 .banner {
   width: 100vw;
-  height: calc(75vw * 9 /16 - 50px);
+  height: calc(75vw * 9 /16 );
   background-image: url("../images/campanile.jpg");
   background-size: cover;
   filter: saturate(2) hue-rotate(180deg);
-  margin-top: 50px;
+  margin-top: 75px;
 
   text-align: center;
   display: flex;
@@ -55,7 +55,7 @@ nav {
   margin: 10vw 0px;
   filter: invert(17%)
     sepia(78%)
-    saturate(3677%) 
+    saturate(3677%)
     hue-rotate(340deg)
     brightness(84%)
     contrast(80%);
@@ -100,10 +100,11 @@ nav {
 }
 .job {
   display:grid;
-  grid-template-columns: 3fr 2fr;
+  grid-template-columns: 4fr 2fr;
   grid-template-rows: 45vw;
   overflow:visible;
   margin-top: 5vw;
+  margin-bottom: 10vw;
 }
 .jobDescription {
   grid-column: 1 / 2;
@@ -146,4 +147,7 @@ nav {
 }
 .footer {
   font-size: 8vw;
+}
+.roundedImage {
+  border-radius: 3vw;
 }

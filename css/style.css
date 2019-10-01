@@ -21,7 +21,7 @@ html,body {
   background-image: url("../images/campanile.jpg");
   background-size: cover;
   filter: saturate(2) hue-rotate(180deg);
-  margin-top: 50px;
+  margin-top: 75px;
 
   text-align: center;
   display: flex;
