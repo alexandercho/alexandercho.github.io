@@ -6,10 +6,14 @@
   background: #212121;
 }
 .gray {
+
   background: #303030;
 }
 .lightGray {
   background:#424242;
+}
+.grayText {
+  color: #303030;
 }
 .whiteText {
   color: #FFF;
