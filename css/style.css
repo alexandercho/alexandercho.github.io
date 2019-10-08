@@ -17,7 +17,7 @@ html,body {
 
 .banner {
   width: 100vw;
-  height: calc(100vw * 9 /16 - 75px);
+  height: calc(100vw *4 / 9);
   background-image: url("../images/banner.jpg");
   background-size: cover;
   /*filter: saturate(2) hue-rotate(180deg);*/
