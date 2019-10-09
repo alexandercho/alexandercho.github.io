@@ -40,7 +40,7 @@ nav {
   text-align: center;
 }
 .text {
-  font-size: 3vw;
+  font-size: 2.5vw;
 }
 .current {
   display:grid;
@@ -71,7 +71,7 @@ nav {
   grid-template-columns: 5fr 2fr;
   grid-template-rows: 60vw;
   overflow:visible;
-  margin-bottom: 15vw;
+  margin-bottom: 5vw;
 }
 .educationText {
   margin-top: 20vw;
@@ -140,7 +140,7 @@ nav {
 }
 .followMe a {
 
-  margin: 0px 20px;
+  margin: 0px 5vw;
 }
 .followMe a:hover {
   text-decoration: none;

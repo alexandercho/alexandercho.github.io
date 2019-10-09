@@ -155,7 +155,7 @@ html,body {
   color: white;
 }
 #contact a {
-  margin: 0px 20px;
+  margin: 0px 10vw;
 }
 #contact a:hover {
   text-decoration: none;
