@@ -25,8 +25,8 @@ h3 {
 .nav-link {
   color: white !important;
   font-family: 'Josefin Sans', sans-serif !important;
-  font-size: 25px !important;
-  margin: 0 1vw;
+  font-size: 2vw !important;
+  margin: 0 0.5vw;
 }
 .carousel-caption {
   bottom: 0px !important;
@@ -38,6 +38,10 @@ h3 {
   font-size: 2vw !important;
   background-color: #212529 !important;
   color: white !important;
+}
+#moreAbout {
+  margin: 0px auto !important;
+  text-align: center;
 }
 p {
   color: white !important;

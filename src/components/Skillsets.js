@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -6,7 +6,7 @@ import Figure from 'react-bootstrap/Figure';
 
 function getMonthsSince(time) {
   var msToMo = 1000*60*60*24*30;
-  var diff = Date.now() - time.getTime()
+  var diff = Date.now() - time.getTime();
   return Math.round(diff/msToMo);
 }
 
@@ -31,7 +31,8 @@ function languageFigure(lang) {
     borderRadius: '1vw',
     backgroundColor: 'white',
     width: '10vw',
-    maxWidth: 'none'
+    maxWidth: 'none',
+    padding: '5px'
   };
   const figureStyle = {
     width: "100%",
@@ -73,7 +74,6 @@ function languageFigure(lang) {
       </Col>
     </Row>);
 }
-
 function stackColumn(stack) {
   var stackName = stack['name']
   var languages = stack['languages']
@@ -96,7 +96,6 @@ function stackColumn(stack) {
     </Col>
   );
 }
-
 function Skillsets() {
   var stacks = [
       {name: "Front End",
@@ -169,7 +168,7 @@ function Skillsets() {
         ]}
     ];
   return (
-    <Container fluid>
+    <Container fluid id='skillsets'>
       <Row><h1 style={{margin: '0px auto'}}>Skillsets</h1></Row>
       <Row style={{marginTop: '1vw'}}>
         {stacks.map(stack => stackColumn(stack))}

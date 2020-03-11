@@ -8,11 +8,7 @@ import AboutMe from './components/AboutMe';
 import Skillsets from './components/Skillsets';
 import Contact from './components/Contact';
 import Projects from './components/Projects'
-
-
-
-
-
+import Content from './components/Content';
 
 function App() {
   const home = {
@@ -21,15 +17,11 @@ function App() {
   return (
       <div id="home" style={home}>
         {ResponsiveNavbar()}
-        {Banner()}
-        <div style={{padding:'0 10vw'}}>
-          {AboutMe()}
-          {Skillsets()}
-          {Projects()}
-          {PageTools()}
+        <div id='main'>
+          {Content()}
         </div>
 
-        {Contact()}
+
       </div>);
 }
 

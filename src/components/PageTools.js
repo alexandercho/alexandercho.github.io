@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Figure from 'react-bootstrap/Figure';
 
 function pageLogo(name) {
+  
   const path = "/images/skillsets/"+name.toLowerCase().replace(/\s/g,'')+".png";
   const figureStyle = {
     margin: '0 auto',
@@ -16,7 +17,8 @@ function pageLogo(name) {
     width: '10vw',
     height: '10vw',
     backgroundColor:'white',
-    borderRadius:'1vw'
+    borderRadius:'1vw',
+    padding: '5px'
   };
   const colStyle = {
     padding: '0'
