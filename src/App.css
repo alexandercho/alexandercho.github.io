@@ -4,50 +4,204 @@
   font-family: 'Josefin Sans', sans-serif;
   font-family: 'Montserrat', sans-serif;
 }
+:root {
+  /*Pick 2 fonts and 3 colors*/
+  /*Use for light backgrounds*/
+  --black: #343A40; /*Blackish 2D2D2B*/
+  /*Use for dark backgrounds and as a background color*/
+  --white: #F6F5F0; /*Off White*/
+  /*Used as a background color and for */
+  --color: #7EB8C4; /*Pastel blue*/
+}
+
+body {
+  background-color: var(--white);
+}
+
+h1, h2, h3, p, #stackName  {
+  color: var(--white);
+  font-family: 'Josefin Sans', sans-serif !important;
+}
 
 h1 {
-  color: white !important;
-  font-family: 'Josefin Sans', sans-serif !important;
   font-size: 5vw !important;
 }
-h2 {
-  color: white !important;
-  font-family: 'Josefin Sans', sans-serif !important;
+h2, #stackName  {
   font-size: 3vw !important;
 }
-
 h3 {
-  color: white !important;
-  font-family: 'Josefin Sans', sans-serif !important;
   font-size: 4vw !important;
 }
+p {
+  font-size: 3vw;
+}
 
+#banner {
+  height: 50vw;
+}
+
+#bannerText {
+  margin-left: 15vw;
+  width: 75vw;
+  top: 18vw;
+}
+
+#content {
+  position: static;
+  margin-top: 56vh;
+}
+
+#profile {
+  height:auto;
+  width: 30vw;
+  margin: auto;
+  border-radius: 10%;
+}
+#skill {
+  margin-top: 0vw;
+  padding: 0 1vw;
+}
+
+#stackName {
+  text-align: center !important;
+  margin: 5vw auto;
+}
+#skillsetsTitle {
+  margin-bottom: 1em;
+}
+.navbar-brand {
+  padding-top: 0px !important;
+  padding-left: 10px;
+}
+.navbar-brand img{
+  width: 6vw;
+}
+.jumbotron {
+  brightness: 0.1;
+}
+.dropdown-item {
+  background: transparent;
+}
 .nav-link {
-  color: white !important;
+  color: var(--white) !important;
   font-family: 'Josefin Sans', sans-serif !important;
   font-size: 2vw !important;
   margin: 0 0.5vw;
 }
+.btn {
+  font-size: 2rem !important;
+  font-family: 'Josefin Sans', sans-serif !important;
+}
 .carousel-caption {
   bottom: 0px !important;
 }
+.figure {
+  margin: 0;
+}
+.figure-img {
+  border-color: var(--black);
+  border-style: solid;
+  background-color: var(--white);
+  border-radius: 25%;
+  padding: 0.5em;
+}
+.figure-img {
+  width: 15vw;
+}
+.col {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}
 .dropdown-menu {
-  background-color: #212529 !important;
+  background-color: var(--black) !important;
 }
 .dropdown-item {
   font-size: 2vw !important;
-  background-color: #212529 !important;
+  background-color: var(--black) !important;
   color: white !important;
 }
+
 #moreAbout {
   margin: 0px auto !important;
   text-align: center;
 }
-p {
-  color: white !important;
-  font-family: 'Josefin Sans', sans-serif !important;
-  font-size: 3vw;
+
+.navbar-collapse {
+  margin-left: 3vw;
 }
-body {
-  padding-top: 50px;
+.nav-link {
+  padding-top: 0px;
+  font-size: 2.5vw !important;
+}
+.fade {
+  transition: opacity 1.5s linear !important;
+}
+.overlay {
+  backgroundSize: cover;
+  width: 100%;
+  height: 50vw;
+  position: fixed;
+  zIndex: -9999;
+  top: 0px;
+}
+
+#Projects {
+  background-color: var(--white);
+  padding: 5vw;
+}
+#about {
+  background-color: var(--color);
+  z-index: 99;
+  border-style: none;
+  display: inline-block;
+  padding: 5vw;
+}
+
+#skillsets, #pageTools{
+  background-color: var(--black) !important;
+  display: inline-block;
+  margin: 0 auto;
+  padding: 5vw 5vw;
+  text-align: center;
+}
+
+#bannerText {
+  position: relative !important;
+}
+#projectsTitle {
+  text-align: center;
+  color: var(--black)
+}
+#projectTile {
+  width: 24vw;
+  height: 16vw;
+  margin: 1vw;
+}
+#projTiles {
+  display: inline-block;
+  margin: 0 auto;
+  text-align: center;
+}
+@media only screen and (max-width: 550px) {
+  #main {
+    position: static;
+  }
+  .navbar {
+    background-color: #343a40 !important;
+  }
+  .navbar-brand img{
+    width: 15vw;
+  }
+  .nav-link {
+    font-size: 5vw !important;
+  }
+  #content {
+    position: static;
+    margin-top: 50vw;
+  }
+  #banner {
+    height: 150vw !important;
+    width: auto;
+    background-size: cover;
+  }
 }

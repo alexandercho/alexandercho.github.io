@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Figure from 'react-bootstrap/Figure';
 
 function pageLogo(name) {
-  
+
   const path = "/images/skillsets/"+name.toLowerCase().replace(/\s/g,'')+".png";
   const figureStyle = {
     margin: '0 auto',
@@ -48,7 +48,7 @@ function PageTools() {
   };
   const madeWith = ['HTML','CSS','Javascript','React','React Bootstrap'];
   return (
-    <Container fluid style={{margin: '5vw 0'}}>
+    <Container fluid style={{padding: '5vw'}}id='pageTools'>
       <Row>
         <Col ><h1 style={headerStyle}>This Page Was Made With</h1></Col>
       </Row>

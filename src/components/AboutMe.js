@@ -1,59 +1,51 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
+
 import Button from 'react-bootstrap/Button';
+
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+
 import ReactDOM from 'react-dom';
-import MoreAboutMe from '../MoreAboutMe';
 
 function AboutMe() {
+  /*Break into subcategories:
+  Education, Skillsets, Work*/
   const containerStyle = {
-    padding: '0px 5vw',
-    margin: '3vw auto'
+    marginTop: '0vw'
+
   };
 
   const hStyle = {
     textAlign: 'center',
-    fontSize: '5vw',
-    color: 'white'
+    fontSize: '5vw'
   };
 
   const pStyle = {
     textAlign: 'center',
-    fontSize: '3vw',
-    color: 'white'
+    fontSize: '2vw',
+    padding: '0 5vw'
   };
 
-  var mam = () => {
-    ReactDOM.render(<MoreAboutMe/>, document.getElementById('main'));
-  }
-
-
   return (
-    <Container style={containerStyle} fluid id="about">
-      <h1 style={hStyle}>About Me</h1>
-      <p style={pStyle}>
-        Welcome to my personal website where you can learn what I've done,
-        what I'm doing, and what I plan to do in the future. I currently am
-        a recent graduate from UC Berkeley recently finished with a contract job
-        as a tech consultant and software developer for the UC Berkeley SCET. I
-        am also currently
-        searching for full-time work so feel free
-        to download my resume reach out to me.
-      </p>
-      <Col col-md-4 col-lg-2>
+    <Container fluid style={containerStyle} fluid id="about" >
         <Row>
-          <Button text-center
-          size='md'
-          variant="light"
-          id="moreAbout"
-          onClick={mam}
-          >
-            More About Me
-          </Button>
+          <Col style={{textAlign: "center"}}>
+            <h1 style={hStyle}>About Me</h1>
+            <p style={pStyle}>
+              Welcome to my personal website where you can learn what I've done,
+              what I'm doing, and what I plan to do in the future. I am
+              a recent graduate from UC Berkeley searching for full-time work as a software
+              engineer.
+            </p>
+            <Button variant="dark" size="lg"> <h2>More About Me</h2></Button>
+          </Col>
+          <Col>
+            <img src='images/centered.jpg' id='profile'></img>
+          </Col>
         </Row>
-      </Col>
-    </Container>
+
+      </Container>
     );
 }
 

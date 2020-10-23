@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -25,73 +25,30 @@ function languageFigure(lang) {
   var spaceRemoved = lang['name'].replace(/\./g,' ')
   const path = "/images/skillsets/" + spaceRemoved.toLowerCase().replace(/\s/g,'') + ".png";
 
-  const imageStyle = {
-    display: 'block',
-    margin: '0 auto',
-    borderRadius: '1vw',
-    backgroundColor: 'white',
-    width: '10vw',
-    maxWidth: 'none',
-    padding: '5px'
-  };
-  const figureStyle = {
-    width: "100%",
-    margin: '0 auto',
-    display: 'inline-block'
-  };
-  const colStyle = {
-    margin: '0 1vw'
-  };
-  const yearStyle= {
-    color: 'white',
-    textAlign: "center",
-    margin: '0 auto',
-    fontSize: '2vw'
-  };
-  const rowStyle = {
-    margin: '3vw 0px',
-    padding: '0 1vw'
-  };
-  const yearPos = {
-    margin: 'auto 0'
-  }
   var timeSpent = getMonthsSince(lang['startDate']);
   var timeStr = timeToString(timeSpent);
 
   return (
-    <Row style={rowStyle} className="justify-content-center">
-      <Col style={colStyle} xs={6} sm={6} md={6} lg={6}>
-        <Figure style={figureStyle}>
+    <Row id="skill" className="justify-content-center">
+      <Col xs>
+        <Figure>
           <Figure.Image
           alt={lang['name']}
           src={path}
-          style={imageStyle}
           />
         </Figure>
       </Col>
-      <Col style={yearPos} xs={4} sm={4} md={4} lg={4}>
-        <h2 style={yearStyle}>{timeStr}</h2>
+      <Col xs>
+        <h2>{timeStr}</h2>
       </Col>
     </Row>);
 }
 function stackColumn(stack) {
   var stackName = stack['name']
   var languages = stack['languages']
-  const colStyle = {
-    padding:'1vw 2vw'
-  };
-  const headerStyle = {
-    color: 'white',
-    fontSize: '5vw',
-    textAlign: 'center',
-    margin: '0px auto',
-    height: '4vw'
-  };
   return (
-    <Col style={colStyle} xs={6} sm={6} md={4} lg={4}>
-      <Row>
-        <h2 style={headerStyle}>{stackName}</h2>
-      </Row>
+    <Col xs={6} sm={6} md={4} lg={4}>
+      <h2 id='stackName'>{stackName}</h2>
       {languages.map(lang => languageFigure(lang))}
     </Col>
   );
@@ -169,8 +126,8 @@ function Skillsets() {
     ];
   return (
     <Container fluid id='skillsets'>
-      <Row><h1 style={{margin: '0px auto'}}>Skillsets</h1></Row>
-      <Row style={{marginTop: '1vw'}}>
+      <h1 id='skillsetsTitle'>Skillsets</h1>
+      <Row>
         {stacks.map(stack => stackColumn(stack))}
       </Row>
     </Container>
