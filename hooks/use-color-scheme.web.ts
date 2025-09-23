@@ -12,7 +12,6 @@ export function useColorScheme() {
   }, []);
 
   const colorScheme = useRNColorScheme();
-
   if (hasHydrated) {
     return colorScheme;
   }
