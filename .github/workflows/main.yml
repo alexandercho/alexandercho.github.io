@@ -1,0 +1,29 @@
+name: Deploy on Main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2️⃣ Set up Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 21.7.1
+
+      # 3️⃣ Install dependencies with Yarn
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      # 4️⃣ Run deploy script
+      - name: Deploy
+        run: yarn deploy
