@@ -8,11 +8,12 @@ import { StatusBar } from 'expo-status-bar';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { NavBar } from '@/components/NavBar';
+import { useCutoffs } from '@/hooks/useCutoffs';
+import { DarkModeSwitch } from '@/components/DarkModeSwitch';
 
 export default function Layout() {
     const colorScheme = useColorScheme();
-    const { width } = useWindowDimensions();
-    const isMobile = width <= 768;
+    const { isMobile } = useCutoffs();
     const [ready, setReady] = useState(false);
     const [isDarkMode, setIsDarkMode] = useState(colorScheme === 'dark');
 
@@ -35,17 +36,15 @@ export default function Layout() {
         );
     }
 
-    const renderLogo = () => <Link href="/">
-        <Image source={require('@/assets/images/react-logo.png')}
-            style={styles.logo} />
-    </Link>
-
     const renderDrawer = () => {
         const { Screen } = Drawer;
 
         return <Drawer screenOptions={{
             drawerActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-            headerTitle: renderLogo,
+            headerTitle: () => <Link href="/">
+                <Image source={require('@/assets/images/react-logo.png')}
+                    style={styles.logo} />
+            </Link>,
             headerTitleAlign: 'center'
         }}>
             <Screen
@@ -84,18 +83,7 @@ export default function Layout() {
         headerLeft: () => null,
         headerTitle: () => <NavBar />,
         headerTransparent: true,
-        headerRight: () => <Switch
-            style={{
-                marginRight: 32
-            }}
-            // @ts-expect-error react-native doesn't include activeThumbColor in types
-            activeThumbColor="#ffd93d"
-            thumbColor={isDarkMode ? '#f5dd4b' : '#f4f3f4'}
-            trackColor={{ false: '#bbb', true: '#1e3a8a' }}
-            ios_backgroundColor="#888"
-            onValueChange={() => setIsDarkMode(!isDarkMode)}
-            value={isDarkMode}
-        />
+        headerRight: () => <DarkModeSwitch isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
     }} />
 
     return <ThemeProvider value={isDarkMode ? DarkTheme : DefaultTheme}>
