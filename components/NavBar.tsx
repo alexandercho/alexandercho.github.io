@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Image, View } from 'react-native';
 import { Link } from 'expo-router';
 
-import { ThemedText } from '@/components/themed-text';
+import { ThemedText } from '@/components/ThemedText';
 
 export function NavBar() {
     const renderLogo = () => <Link href="/">

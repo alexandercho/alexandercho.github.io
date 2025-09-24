@@ -7,7 +7,6 @@ type DarkModeSwitchProps = {
 };
 
 export function DarkModeSwitch({ isDarkMode, setIsDarkMode }: DarkModeSwitchProps) {
-
     return (
         <Switch
             style={{

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, StyleSheet, Image, Switch, Text, useWindowDimensions, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, Image, Text, View } from 'react-native';
 import { Stack, Link } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 
 import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { useColorScheme } from '@/hooks/useColorScheme';
 import { NavBar } from '@/components/NavBar';
 import { useCutoffs } from '@/hooks/useCutoffs';
 import { DarkModeSwitch } from '@/components/DarkModeSwitch';
