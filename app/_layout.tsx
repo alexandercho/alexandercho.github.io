@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, Animated, StyleSheet, Image, Switch, Text, useWindowDimensions, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, Image, Switch, Text, useWindowDimensions, View } from 'react-native';
 import { Stack, Link } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
@@ -7,7 +7,7 @@ import { StatusBar } from 'expo-status-bar';
 
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
-import { ThemedText } from '@/components/themed-text';
+import { NavBar } from '@/components/NavBar';
 
 export default function Layout() {
     const colorScheme = useColorScheme();
@@ -39,16 +39,6 @@ export default function Layout() {
         <Image source={require('@/assets/images/react-logo.png')}
             style={styles.logo} />
     </Link>
-
-    const headerTitle = () => <View style={styles.headerTitle}>
-        {renderLogo()}
-        <View style={styles.links}>
-            <Link href="/"><ThemedText type="defaultSemiBold">Home</ThemedText></Link>
-            <Link href="/about"><ThemedText type="defaultSemiBold">About</ThemedText></Link>
-            <Link href="/projects"><ThemedText type="defaultSemiBold">Projects</ThemedText></Link>
-            <Link href="/contact"><ThemedText type="defaultSemiBold">Contact</ThemedText></Link>
-        </View>
-    </View>
 
     const renderDrawer = () => {
         const { Screen } = Drawer;
@@ -92,7 +82,7 @@ export default function Layout() {
     const renderStack = () => <Stack screenOptions={{
         headerBackVisible: false,
         headerLeft: () => null,
-        headerTitle,
+        headerTitle: () => <NavBar />,
         headerTransparent: true,
         headerRight: () => <Switch
             style={{
