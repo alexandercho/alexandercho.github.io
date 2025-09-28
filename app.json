@@ -22,7 +22,9 @@
       "predictiveBackGestureEnabled": false
     },
     "web": {
-      "output": "static",
+      "output": {
+        "publicPath": "./"
+      },
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
@@ -42,7 +44,8 @@
     ],
     "experiments": {
       "typedRoutes": true,
-      "reactCompiler": true
+      "reactCompiler": true,
+      "baseUrl": "/alexandercho.github.io"
     }
   }
 }
