@@ -1,4 +1,4 @@
-name: Deploy on Main
+name: Deploy on master
 
 on:
   push:
@@ -23,6 +23,10 @@ jobs:
       # 3️⃣ Install dependencies with Yarn
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+
+      # 4️⃣ Run deploy script
+      - name: Deploy
+        run: yarn predeploy
 
       # 4️⃣ Run deploy script
       - name: Deploy
