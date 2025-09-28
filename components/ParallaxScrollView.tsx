@@ -10,6 +10,7 @@ import Animated, {
 import { ThemedView } from '@/components/ThemedView';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { useThemeColor } from '@/hooks/useThemeColor';
+import { useScroll } from '@/contexts/ScrollContext';
 
 type Props = PropsWithChildren<{
   headerImage: ReactElement;
@@ -21,6 +22,7 @@ export default function ParallaxScrollView({
   headerImage,
   headerBackgroundColor,
 }: Props) {
+  const { setScrollY } = useScroll();
   const { width } = useWindowDimensions();
   const HEADER_HEIGHT = width / 3;
   const backgroundColor = useThemeColor({}, 'background');
@@ -46,6 +48,7 @@ export default function ParallaxScrollView({
 
   return (
     <Animated.ScrollView
+      onScroll={(e) => setScrollY(e.nativeEvent.contentOffset.y)}
       ref={scrollRef}
       style={{ backgroundColor, flex: 1 }}
       scrollEventThrottle={16}>
