@@ -9,7 +9,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "lint": "expo lint",
-    "deploy": "gh-pages --nojekyll -d dist",
+    "deploy": "gh-pages -d dist",
     "predeploy": "expo export -p web"
   },
   "dependencies": {
