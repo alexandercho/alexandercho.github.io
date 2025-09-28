@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Image, Text, View, useWindowDimensions } from 'react-native';
-import { Stack, Link } from 'expo-router';
+import { Stack, Link, usePathname } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
@@ -13,6 +13,7 @@ import { DarkModeSwitch } from '@/components/DarkModeSwitch';
 import { useScroll } from '@/contexts/ScrollContext';
 
 export default function Layout() {
+    const pathname = usePathname()
     const { scrollY } = useScroll();
     const { width } = useWindowDimensions();
     const colorScheme = useColorScheme();
@@ -85,7 +86,7 @@ export default function Layout() {
         headerBackVisible: false,
         headerLeft: () => null,
         headerTitle: () => <NavBar />,
-        headerTransparent: scrollY < width / 3,
+        headerTransparent: scrollY < width / 3 && pathname === '/',
         headerRight: () => <DarkModeSwitch isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
     }} />
 
