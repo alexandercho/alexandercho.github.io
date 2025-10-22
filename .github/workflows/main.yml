@@ -26,8 +26,8 @@ jobs:
 
       # 4️⃣ Run deploy script
       - name: Deploy
-        run: npx predeploy
+        run: yarn predeploy
 
       # 4️⃣ Run deploy script
       - name: Deploy
-        run: npx deploy
+        run: yarn deploy

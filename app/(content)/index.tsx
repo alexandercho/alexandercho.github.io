@@ -22,7 +22,7 @@ export default function HomeScreen() {
                 <View style={styles.bannerContainer}>
                     <Image
                         contentFit='cover'
-                        contentPosition={{ top: '30%' }}
+                        contentPosition={{ top: '25%' }}
                         transition={500}
                         source={bannerSource}
                         style={styles.banner}
@@ -350,7 +350,7 @@ const styles = StyleSheet.create({
     titleContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 8,
+        gap: 8
     },
     stepContainer: {
         gap: 8,
@@ -358,7 +358,7 @@ const styles = StyleSheet.create({
     },
     bannerContainer: {
         width: '100%',
-        aspectRatio: 3 / 1,
+        aspectRatio: 2.9 / 1,
         position: 'relative',
     },
     banner: {
