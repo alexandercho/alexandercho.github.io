@@ -6,7 +6,7 @@ import { ThemedText } from '@/components/ThemedText';
 
 export function NavBar() {
     const renderLogo = () => <Link href="/">
-        <Image source={require('@/assets/images/react-logo.png')}
+        <Image resizeMode={'contain'} source={require('@/assets/whiteLogo.png')}
             style={styles.logo} />
     </Link>
 
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     logo: {
-        height: 50,
-        width: 50
+        height: 36,
+        width: 72
     },
 });
