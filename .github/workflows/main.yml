@@ -1,37 +1,57 @@
-name: Deploy on master
+name: CI & Deploy
 
 on:
-  push:
+  push:           # Run on all branches for lint
     branches:
-      - master
+      - '**'
+  pull_request:
+    branches:
+      - main
+      - develop
 
 jobs:
-  deploy:
+  lint:
+    name: Lint code
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout the repository
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      # 2️⃣ Set up Node.js
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 21.7.1
 
-      # 3️⃣ Install dependencies with Yarn
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      # 4️⃣ Run deploy script
-      - name: Deploy
+      - name: Run ESLint
+        run: yarn lint
+
+  deploy:
+    name: Deploy site
+    runs-on: ubuntu-latest
+    needs: lint
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 21.7.1
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build site
         run: yarn predeploy
 
-      # 4️⃣ Run deploy script
-      - name: Deploy
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-
