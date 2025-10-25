@@ -46,7 +46,7 @@ export default function Layout() {
         return <Drawer screenOptions={{
             drawerActiveTintColor: Colors[colorScheme ?? 'light'].tint,
             headerTitle: () => <Link href="/">
-                <Image source={require('@/assets/images/react-logo.png')}
+                <Image source={require('@/assets/tabIcon.png')}
                     style={styles.logo} />
             </Link>,
             headerTitleAlign: 'center'
