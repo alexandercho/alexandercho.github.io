@@ -1,5 +1,4 @@
 import { ThemedText } from '@/components/ThemedText';
-// import { StyleSheet } from 'react-native';
 export default function About() {
   return (
     <ThemedText>UNDER CONSTRUCTION</ThemedText>
