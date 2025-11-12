@@ -1,15 +1,16 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet, View } from 'react-native';
+import { ImageBackground } from 'expo-image';
+import { useWindowDimensions, StyleSheet, View } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
-import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import { LinearGradient } from 'expo-linear-gradient';
+import ReflectedText from '@/components/ReflectedText';
+import { Link } from 'expo-router';
 
 export default function HomeScreen() {
     const theme = useTheme();
+    const { width } = useWindowDimensions()
     const isDarkMode = theme.dark
     const bannerSource = isDarkMode
         ? require('@/assets/banners/darkBanner.gif')
@@ -20,328 +21,50 @@ export default function HomeScreen() {
             headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
             headerImage={
                 <View style={styles.bannerContainer}>
-                    <Image
+                    <ImageBackground
                         contentFit='cover'
-                        contentPosition={{ top: '25%' }}
+                        contentPosition={{ top: '35%' }}
                         transition={500}
                         source={bannerSource}
-                        style={styles.banner}
-                    />
-                    <LinearGradient
-                        colors={[`rgba(0,0,0,0.${isDarkMode ? 5 : 1})`, 'transparent']}
-                        style={StyleSheet.absoluteFillObject}
-                        start={{ x: 0.5, y: 0 }}
-                        end={{ x: 0.5, y: 1 }}
-                    />
+                        style={styles.banner}>
+                        <ReflectedText
+                            text="Hey I'm Alexander Cho"
+                            fontSize={width / 30}
+                            style={{
+                                top: "50%",
+                                left: "-25%",
+                            }}
+                        />
+                    </ImageBackground>
                 </View>
-            }
-        >
+            }>
             <ThemedView style={styles.titleContainer}>
-                <ThemedText type='title'>Welcome!</ThemedText>
-                <HelloWave />
+                <ThemedText type='title'>Welcome to my personal website!</ThemedText>
             </ThemedView>
             <ThemedView style={styles.stepContainer}>
-                <ThemedText type='subtitle'>Step 1: Try it</ThemedText>
-                <ThemedText>
-                    Edit <ThemedText type='defaultSemiBold'>app/(tabs)/index.tsx</ThemedText> to see changes.
-                    Press{' '}
-                    <ThemedText type='defaultSemiBold'>
-                        {Platform.select({
-                            ios: 'cmd + d',
-                            android: 'cmd + m',
-                            web: 'F12',
-                        })}
-                    </ThemedText>{' '}
-                    to open developer tools.
-                </ThemedText>
+                <ThemedText type='subtitle'>A little about me</ThemedText>
+                <ThemedText style={{ maxWidth: 720, textAlign: 'left' }}>{`\t I\'m a fullstack software engineer based in the San Francisco Bay Area. My areas of focus are quality multi-platform UI/UX, business efficient system design, and AI/ML. I built this website with Expo so it works on web, tablet, and mobile browsers. You can even run it as an iPhone or Android app.
+                `}</ThemedText>
+                <Link href='/(content)/about'>
+                    <ThemedText type='link'>{`More About Me ->`}</ThemedText>
+                </Link>
             </ThemedView>
             <ThemedView style={styles.stepContainer}>
-                <ThemedText>
-                    {`Tap the Explore tab to learn more about what's included in this starter app.`}
-                </ThemedText>
+                <ThemedText type='subtitle'>Current Projects</ThemedText>
+                <ThemedText>{`
+                    This website is currently the only project I have publicly available but more will be coming soon.
+                `}</ThemedText>
+                <Link href='/(content)/projects'>
+                    <ThemedText type='link'>{`See My Projects ->`}</ThemedText>
+                </Link>
             </ThemedView>
             <ThemedView style={styles.stepContainer}>
-                <ThemedText type='subtitle'>Step 3: Get a fresh start</ThemedText>
-                <ThemedText>
-                    {`When you're ready, run `}
-                    <ThemedText type='defaultSemiBold'>npm run reset-project</ThemedText> to get a fresh{' '}
-                    <ThemedText type='defaultSemiBold'>app</ThemedText> directory. This will move the current{' '}
-                    <ThemedText type='defaultSemiBold'>app</ThemedText> to{' '}
-                    <ThemedText type='defaultSemiBold'>app-example</ThemedText>.
-                </ThemedText>
+                <ThemedText type='subtitle'>Reach out — I’d love to connect.</ThemedText>
+                <Link href='/(content)/contact'>
+                    <ThemedText type='link'>{`Send a message ->`}</ThemedText>
+                </Link>
             </ThemedView>
-            <ThemedView style={styles.titleContainer}>
-                <ThemedText type='title'>Welcome!</ThemedText>
-                <HelloWave />
-            </ThemedView>
-            <ThemedView style={styles.stepContainer}>
-                <ThemedText type='subtitle'>Step 1: Try it</ThemedText>
-                <ThemedText>
-                    Edit <ThemedText type='defaultSemiBold'>app/(tabs)/index.tsx</ThemedText> to see changes.
-                    Press{' '}
-                    <ThemedText type='defaultSemiBold'>
-                        {Platform.select({
-                            ios: 'cmd + d',
-                            android: 'cmd + m',
-                            web: 'F12',
-                        })}
-                    </ThemedText>{' '}
-                    to open developer tools.
-                </ThemedText>
-            </ThemedView>
-            <ThemedView style={styles.stepContainer}>
-                <ThemedText>
-                    {`Tap the Explore tab to learn more about what's included in this starter app.`}
-                </ThemedText>
-            </ThemedView>
-            <ThemedView style={styles.stepContainer}>
-                <ThemedText type='subtitle'>Step 3: Get a fresh start</ThemedText>
-                <ThemedText>
-                    {`When you're ready, run `}
-                    <ThemedText type='defaultSemiBold'>npm run reset-project</ThemedText> to get a fresh{' '}
-                    <ThemedText type='defaultSemiBold'>app</ThemedText> directory. This will move the current{' '}
-                    <ThemedText type='defaultSemiBold'>app</ThemedText> to{' '}
-                    <ThemedText type='defaultSemiBold'>app-example</ThemedText>.
-                </ThemedText>
-            </ThemedView>
-            <ThemedView style={styles.titleContainer}>
-                <ThemedText type='title'>Welcome!</ThemedText>
-                <HelloWave />
-            </ThemedView>
-            <ThemedView style={styles.stepContainer}>
-                <ThemedText type='subtitle'>Step 1: Try it</ThemedText>
-                <ThemedText>
-                    Edit <ThemedText type='defaultSemiBold'>app/(tabs)/index.tsx</ThemedText> to see changes.
-                    Press{' '}
-                    <ThemedText type='defaultSemiBold'>
-                        {Platform.select({
-                            ios: 'cmd + d',
-                            android: 'cmd + m',
-                            web: 'F12',
-                        })}
-                    </ThemedText>{' '}
-                    to open developer tools.
-                </ThemedText>
-            </ThemedView>
-            <ThemedView style={styles.stepContainer}>
-                <ThemedText>
-                    {`Tap the Explore tab to learn more about what's included in this starter app.`}
-                </ThemedText>
-            </ThemedView>
-            <ThemedView style={styles.stepContainer}>
-                <ThemedText type='subtitle'>Step 3: Get a fresh start</ThemedText>
-                <ThemedText>
-                    {`When you're ready, run `}
-                    <ThemedText type='defaultSemiBold'>npm run reset-project</ThemedText> to get a fresh{' '}
-                    <ThemedText type='defaultSemiBold'>app</ThemedText> directory. This will move the current{' '}
-                    <ThemedText type='defaultSemiBold'>app</ThemedText> to{' '}
-                    <ThemedText type='defaultSemiBold'>app-example</ThemedText>.
-                </ThemedText>
-            </ThemedView>
-            <ThemedView style={styles.titleContainer}>
-                <ThemedText type='title'>Welcome!</ThemedText>
-                <HelloWave />
-            </ThemedView>
-            <ThemedView style={styles.stepContainer}>
-                <ThemedText type='subtitle'>Step 1: Try it</ThemedText>
-                <ThemedText>
-                    Edit <ThemedText type='defaultSemiBold'>app/(tabs)/index.tsx</ThemedText> to see changes.
-                    Press{' '}
-                    <ThemedText type='defaultSemiBold'>
-                        {Platform.select({
-                            ios: 'cmd + d',
-                            android: 'cmd + m',
-                            web: 'F12',
-                        })}
-                    </ThemedText>{' '}
-                    to open developer tools.
-                </ThemedText>
-            </ThemedView>
-            <ThemedView style={styles.stepContainer}>
-                <ThemedText>
-                    {`Tap the Explore tab to learn more about what's included in this starter app.`}
-                </ThemedText>
-            </ThemedView>
-            <ThemedView style={styles.stepContainer}>
-                <ThemedText type='subtitle'>Step 3: Get a fresh start</ThemedText>
-                <ThemedText>
-                    {`When you're ready, run `}
-                    <ThemedText type='defaultSemiBold'>npm run reset-project</ThemedText> to get a fresh{' '}
-                    <ThemedText type='defaultSemiBold'>app</ThemedText> directory. This will move the current{' '}
-                    <ThemedText type='defaultSemiBold'>app</ThemedText> to{' '}
-                    <ThemedText type='defaultSemiBold'>app-example</ThemedText>.
-                </ThemedText>
-            </ThemedView>
-            <ThemedView style={styles.titleContainer}>
-                <ThemedText type='title'>Welcome!</ThemedText>
-                <HelloWave />
-            </ThemedView>
-            <ThemedView style={styles.stepContainer}>
-                <ThemedText type='subtitle'>Step 1: Try it</ThemedText>
-                <ThemedText>
-                    Edit <ThemedText type='defaultSemiBold'>app/(tabs)/index.tsx</ThemedText> to see changes.
-                    Press{' '}
-                    <ThemedText type='defaultSemiBold'>
-                        {Platform.select({
-                            ios: 'cmd + d',
-                            android: 'cmd + m',
-                            web: 'F12',
-                        })}
-                    </ThemedText>{' '}
-                    to open developer tools.
-                </ThemedText>
-            </ThemedView>
-            <ThemedView style={styles.stepContainer}>
-                <ThemedText>
-                    {`Tap the Explore tab to learn more about what's included in this starter app.`}
-                </ThemedText>
-            </ThemedView>
-            <ThemedView style={styles.stepContainer}>
-                <ThemedText type='subtitle'>Step 3: Get a fresh start</ThemedText>
-                <ThemedText>
-                    {`When you're ready, run `}
-                    <ThemedText type='defaultSemiBold'>npm run reset-project</ThemedText> to get a fresh{' '}
-                    <ThemedText type='defaultSemiBold'>app</ThemedText> directory. This will move the current{' '}
-                    <ThemedText type='defaultSemiBold'>app</ThemedText> to{' '}
-                    <ThemedText type='defaultSemiBold'>app-example</ThemedText>.
-                </ThemedText>
-            </ThemedView>
-            <ThemedView style={styles.titleContainer}>
-                <ThemedText type='title'>Welcome!</ThemedText>
-                <HelloWave />
-            </ThemedView>
-            <ThemedView style={styles.stepContainer}>
-                <ThemedText type='subtitle'>Step 1: Try it</ThemedText>
-                <ThemedText>
-                    Edit <ThemedText type='defaultSemiBold'>app/(tabs)/index.tsx</ThemedText> to see changes.
-                    Press{' '}
-                    <ThemedText type='defaultSemiBold'>
-                        {Platform.select({
-                            ios: 'cmd + d',
-                            android: 'cmd + m',
-                            web: 'F12',
-                        })}
-                    </ThemedText>{' '}
-                    to open developer tools.
-                </ThemedText>
-            </ThemedView>
-            <ThemedView style={styles.stepContainer}>
-                <ThemedText>
-                    {`Tap the Explore tab to learn more about what's included in this starter app.`}
-                </ThemedText>
-            </ThemedView>
-            <ThemedView style={styles.stepContainer}>
-                <ThemedText type='subtitle'>Step 3: Get a fresh start</ThemedText>
-                <ThemedText>
-                    {`When you're ready, run `}
-                    <ThemedText type='defaultSemiBold'>npm run reset-project</ThemedText> to get a fresh{' '}
-                    <ThemedText type='defaultSemiBold'>app</ThemedText> directory. This will move the current{' '}
-                    <ThemedText type='defaultSemiBold'>app</ThemedText> to{' '}
-                    <ThemedText type='defaultSemiBold'>app-example</ThemedText>.
-                </ThemedText>
-            </ThemedView>
-            <ThemedView style={styles.titleContainer}>
-                <ThemedText type='title'>Welcome!</ThemedText>
-                <HelloWave />
-            </ThemedView>
-            <ThemedView style={styles.stepContainer}>
-                <ThemedText type='subtitle'>Step 1: Try it</ThemedText>
-                <ThemedText>
-                    Edit <ThemedText type='defaultSemiBold'>app/(tabs)/index.tsx</ThemedText> to see changes.
-                    Press{' '}
-                    <ThemedText type='defaultSemiBold'>
-                        {Platform.select({
-                            ios: 'cmd + d',
-                            android: 'cmd + m',
-                            web: 'F12',
-                        })}
-                    </ThemedText>{' '}
-                    to open developer tools.
-                </ThemedText>
-            </ThemedView>
-            <ThemedView style={styles.stepContainer}>
-                <ThemedText>
-                    {`Tap the Explore tab to learn more about what's included in this starter app.`}
-                </ThemedText>
-            </ThemedView>
-            <ThemedView style={styles.stepContainer}>
-                <ThemedText type='subtitle'>Step 3: Get a fresh start</ThemedText>
-                <ThemedText>
-                    {`When you're ready, run `}
-                    <ThemedText type='defaultSemiBold'>npm run reset-project</ThemedText> to get a fresh{' '}
-                    <ThemedText type='defaultSemiBold'>app</ThemedText> directory. This will move the current{' '}
-                    <ThemedText type='defaultSemiBold'>app</ThemedText> to{' '}
-                    <ThemedText type='defaultSemiBold'>app-example</ThemedText>.
-                </ThemedText>
-            </ThemedView>
-            <ThemedView style={styles.titleContainer}>
-                <ThemedText type='title'>Welcome!</ThemedText>
-                <HelloWave />
-            </ThemedView>
-            <ThemedView style={styles.stepContainer}>
-                <ThemedText type='subtitle'>Step 1: Try it</ThemedText>
-                <ThemedText>
-                    Edit <ThemedText type='defaultSemiBold'>app/(tabs)/index.tsx</ThemedText> to see changes.
-                    Press{' '}
-                    <ThemedText type='defaultSemiBold'>
-                        {Platform.select({
-                            ios: 'cmd + d',
-                            android: 'cmd + m',
-                            web: 'F12',
-                        })}
-                    </ThemedText>{' '}
-                    to open developer tools.
-                </ThemedText>
-            </ThemedView>
-            <ThemedView style={styles.stepContainer}>
-                <ThemedText>
-                    {`Tap the Explore tab to learn more about what's included in this starter app.`}
-                </ThemedText>
-            </ThemedView>
-            <ThemedView style={styles.stepContainer}>
-                <ThemedText type='subtitle'>Step 3: Get a fresh start</ThemedText>
-                <ThemedText>
-                    {`When you're ready, run `}
-                    <ThemedText type='defaultSemiBold'>npm run reset-project</ThemedText> to get a fresh{' '}
-                    <ThemedText type='defaultSemiBold'>app</ThemedText> directory. This will move the current{' '}
-                    <ThemedText type='defaultSemiBold'>app</ThemedText> to{' '}
-                    <ThemedText type='defaultSemiBold'>app-example</ThemedText>.
-                </ThemedText>
-            </ThemedView>
-            <ThemedView style={styles.titleContainer}>
-                <ThemedText type='title'>Welcome!</ThemedText>
-                <HelloWave />
-            </ThemedView>
-            <ThemedView style={styles.stepContainer}>
-                <ThemedText type='subtitle'>Step 1: Try it</ThemedText>
-                <ThemedText>
-                    Edit <ThemedText type='defaultSemiBold'>app/(tabs)/index.tsx</ThemedText> to see changes.
-                    Press{' '}
-                    <ThemedText type='defaultSemiBold'>
-                        {Platform.select({
-                            ios: 'cmd + d',
-                            android: 'cmd + m',
-                            web: 'F12',
-                        })}
-                    </ThemedText>{' '}
-                    to open developer tools.
-                </ThemedText>
-            </ThemedView>
-            <ThemedView style={styles.stepContainer}>
-                <ThemedText>
-                    {`Tap the Explore tab to learn more about what's included in this starter app.`}
-                </ThemedText>
-            </ThemedView>
-            <ThemedView style={styles.stepContainer}>
-                <ThemedText type='subtitle'>Step 3: Get a fresh start</ThemedText>
-                <ThemedText>
-                    {`When you're ready, run `}
-                    <ThemedText type='defaultSemiBold'>npm run reset-project</ThemedText> to get a fresh{' '}
-                    <ThemedText type='defaultSemiBold'>app</ThemedText> directory. This will move the current{' '}
-                    <ThemedText type='defaultSemiBold'>app</ThemedText> to{' '}
-                    <ThemedText type='defaultSemiBold'>app-example</ThemedText>.
-                </ThemedText>
-            </ThemedView>
+
         </ParallaxScrollView>
     );
 }
@@ -349,12 +72,13 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
     titleContainer: {
         flexDirection: 'row',
-        alignItems: 'center',
+        justifyContent: 'center',
         gap: 8
     },
     stepContainer: {
-        gap: 8,
-        marginBottom: 8,
+        marginVertical: 32,
+        alignItems: 'center',
+        flexDirection: 'column'
     },
     bannerContainer: {
         width: '100%',
