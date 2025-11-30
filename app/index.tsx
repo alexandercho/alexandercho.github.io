@@ -45,7 +45,7 @@ export default function HomeScreen() {
                 <ThemedText type='subtitle'>A little about me</ThemedText>
                 <ThemedText style={{ maxWidth: 720, textAlign: 'left' }}>{`\t I\'m a fullstack software engineer based in the San Francisco Bay Area. My areas of focus are quality multi-platform UI/UX, business efficient system design, and AI/ML. I built this website with Expo so it works on web, tablet, and mobile browsers. You can even run it as an iPhone or Android app.
                 `}</ThemedText>
-                <Link href='/(content)/about'>
+                <Link href='/about'>
                     <ThemedText type='link'>{`More About Me ->`}</ThemedText>
                 </Link>
             </ThemedView>
@@ -54,17 +54,16 @@ export default function HomeScreen() {
                 <ThemedText>{`
                     This website is currently the only project I have publicly available but more will be coming soon.
                 `}</ThemedText>
-                <Link href='/(content)/projects'>
+                <Link href='/projects'>
                     <ThemedText type='link'>{`See My Projects ->`}</ThemedText>
                 </Link>
             </ThemedView>
             <ThemedView style={styles.stepContainer}>
                 <ThemedText type='subtitle'>Reach out — I’d love to connect.</ThemedText>
-                <Link href='/(content)/contact'>
+                <Link href='/contact'>
                     <ThemedText type='link'>{`Send a message ->`}</ThemedText>
                 </Link>
             </ThemedView>
-
         </ParallaxScrollView>
     );
 }
