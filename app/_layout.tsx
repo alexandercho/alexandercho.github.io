@@ -97,12 +97,12 @@ export default function Layout() {
         );
     }
 
-    return <ScrollProvider>
-        <ThemeProvider value={isDarkMode ? DarkTheme : DefaultTheme}>
+    return <ThemeProvider value={isDarkMode ? DarkTheme : DefaultTheme}>
+        <ScrollProvider>
             <StatusBar style="auto" />
             {isMobile ? <DrawerStack /> : <HomeStack />}
-        </ThemeProvider >;
-    </ScrollProvider >
+        </ScrollProvider >
+    </ThemeProvider >;
 }
 
 const styles = StyleSheet.create({
