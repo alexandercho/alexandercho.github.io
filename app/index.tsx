@@ -13,8 +13,8 @@ export default function HomeScreen() {
     const { width } = useWindowDimensions()
     const isDarkMode = theme.dark
     const bannerSource = isDarkMode
-        ? require('@/assets/banners/darkBanner.gif')
-        : require('@/assets/banners/lightBanner.gif');
+        ? require('@/assets/banners/darkBanner.jpg')
+        : require('@/assets/banners/lightBanner.jpg');
 
     return (
         <ParallaxScrollView
@@ -23,7 +23,7 @@ export default function HomeScreen() {
                 <View style={styles.bannerContainer}>
                     <ImageBackground
                         contentFit='cover'
-                        contentPosition={{ top: '35%' }}
+                        contentPosition={{ top: '36%' }}
                         transition={500}
                         source={bannerSource}
                         style={styles.banner}>
@@ -31,8 +31,8 @@ export default function HomeScreen() {
                             text="Hey I'm Alexander Cho"
                             fontSize={width / 30}
                             style={{
-                                top: "50%",
-                                left: "-25%",
+                                top: "62%",
+                                left: "20%",
                             }}
                         />
                     </ImageBackground>

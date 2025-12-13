@@ -55,13 +55,15 @@ function DrawerStack() {
     </Drawer>
 }
 
-function HomeStack() {
+type DarkModeSwitchProps = {
+    isDarkMode: boolean;
+    setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+function HomeStack({ isDarkMode, setIsDarkMode }: DarkModeSwitchProps) {
     const pathname = usePathname()
     const { scrollY } = useScroll();
     const { width } = useWindowDimensions();
-    const colorScheme = useColorScheme();
-    const [isDarkMode, setIsDarkMode] = useState(colorScheme === 'dark');
-
     return <Stack screenOptions={{
         headerBackVisible: false,
         headerLeft: () => null,
@@ -76,7 +78,6 @@ export default function Layout() {
     const [ready, setReady] = useState(false);
     const colorScheme = useColorScheme();
     const [isDarkMode, setIsDarkMode] = useState(colorScheme === 'dark');
-
     useEffect(() => {
         if (colorScheme) {
             setReady(true);
@@ -100,7 +101,7 @@ export default function Layout() {
     return <ThemeProvider value={isDarkMode ? DarkTheme : DefaultTheme}>
         <ScrollProvider>
             <StatusBar style="auto" />
-            {isMobile ? <DrawerStack /> : <HomeStack />}
+            {isMobile ? <DrawerStack /> : <HomeStack isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />}
         </ScrollProvider >
     </ThemeProvider >;
 }
