@@ -34,28 +34,28 @@ function DrawerStack({ isDarkMode, setIsDarkMode }: DarkModeSwitchProps) {
             name="index"
             options={{
                 drawerLabel: 'Home',
-                title: 'overview',
+                title: 'overview'
             }}
         />
         <Screen
             name="about"
             options={{
                 drawerLabel: 'About',
-                title: 'overview',
+                title: 'overview'
             }}
         />
         <Screen
             name="projects"
             options={{
                 drawerLabel: 'Projects',
-                title: 'overview',
+                title: 'overview'
             }}
         />
         <Screen
             name="contact"
             options={{
                 drawerLabel: 'Contact',
-                title: 'overview',
+                title: 'overview'
             }}
         />
     </Drawer>
@@ -108,26 +108,14 @@ export default function Layout() {
 }
 
 const styles = StyleSheet.create({
-    headerTitle: {
-        flex: 1,
-        flexDirection: 'row',
-        height: 64,
-        alignItems: 'center',
-        gap: 48
-    },
-    links: {
-        flex: 1,
-        flexDirection: 'row',
-        gap: 32
-    },
     loadingContainer: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     logo: {
         height: 50,
         width: 50
-    },
+    }
 });
 
