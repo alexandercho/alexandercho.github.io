@@ -1,25 +1,29 @@
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import { ScrollView, StyleSheet, Image } from 'react-native';
+import { StyleSheet, Image } from 'react-native';
 import { useCutoffs } from '@/hooks/useCutoffs';
+import { ThemedScrollView } from '@/components/ThemedScrollView';
 
 const data = [
     {
         header: '🎓 Education',
         text: 'UC Berkeley, Class of 2019 \nB.S. in Electrical Engineering & Computer Science \nSCET Certification in Entrepreneurship & Technology',
-        image: ''
+        image: 'https://tile.loc.gov/image-services/iiif/service:pnp:highsm:21300:21324/full/pct:25/0/default.jpg'
     },
     {
         header: '💼 Professional Experience',
-        text: 'Senior Software Engineer – Grokker (2021–Present)\n\nOver the past four years, I\'ve led and contributed to the development of web, mobile, and TV applications, working across the full stack to deliver scalable, user- focused products.\n\nAt Grokker, I\'ve specialized in:\n• Full-stack development using Node.js, React, and React Native\n• LLM RAG pipelines, integrating large language models into production workflows\n• System monitoring and performance with Prometheus and Grafana\n• Cloud infrastructure with AWS (S3, ECS, EC2)\n• Real-time features via Socket.IO\n• CI/CD automation using GitLab pipelines\n\nI\'m passionate about designing systems that are both elegant and reliable — from intuitive front - ends to efficient backends.'
+        text: 'Senior Software Engineer – Grokker (2021–Present)\n\nOver the past four years, I\'ve led and contributed to the development of web, mobile, and TV applications, working across the full stack to deliver scalable, user-focused products.\n\nAt Grokker, I\'ve specialized in:\n• Full-stack development using Node.js, React, and React Native\n• LLM RAG pipelines, integrating large language models into production workflows\n• System monitoring and performance with Prometheus and Grafana\n• Cloud infrastructure with AWS (S3, ECS, EC2)\n• Real-time features via Socket.IO\n• CI/CD automation using GitLab pipelines\n\nI\'m passionate about designing systems that are both elegant and reliable — from intuitive front-ends to efficient backends.',
+        image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80'
     },
     {
         header: '🧠 Technical Toolkit',
-        text: 'Languages & Frameworks:\nJavaScript, TypeScript, Python, Node.js, React, React Native, Expo\n\nDatabases:\nMongoDB\n\nDevOps & Cloud:\nAWS (S3, ECS, EC2), GitLab CI/CD, Prometheus, Grafana\n\nOther Interests:\nPandas, data analysis, AI integration'
+        text: 'Languages & Frameworks:\nJavaScript, TypeScript, Python, Node.js, React, React Native, Expo\n\nDatabases:\nMongoDB\n\nDevOps & Cloud:\nAWS (S3, ECS, EC2), GitLab CI/CD, Prometheus, Grafana\n\nOther Interests:\nPandas, data analysis, AI integration',
+        image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80'
     },
     {
         header: '🍳 Personal Interests',
-        text: 'When I\'m not coding, you\'ll probably find me in the kitchen. Cooking is my favorite creative outlet — a balance of precision and experimentation that mirrors how I approach engineering.\n\nI also enjoy exploring new tools in Python, building small side projects, and learning about emerging tech in AI and developer productivity.'
+        text: 'When I\'m not coding, you\'ll probably find me in the kitchen. Cooking is my favorite creative outlet — a balance of precision and experimentation that mirrors how I approach engineering.\n\nI also enjoy exploring new tools in Python, building small side projects, and learning about emerging tech in AI and developer productivity.',
+        image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&q=80'
     }
 ]
 
@@ -37,29 +41,54 @@ export default function About() {
             key={index}
             style={styles.section}
         >
-            <ThemedView style={styles.sectionHeader}>
-                <ThemedText type='subtitle' style={styles.headerText}>{header}</ThemedText>
-            </ThemedView>
+            {isMobile ? (
+                <>
+                    <ThemedView style={styles.sectionHeader}>
+                        <ThemedText type='subtitle'>{header}</ThemedText>
+                    </ThemedView>
 
-            {image && (
-                <Image
-                    source={{ uri: image }}
-                    style={[
-                        styles.sectionImage,
-                        { height: isMobile ? 180 : 250 }
-                    ]}
-                    resizeMode="cover"
-                />
+                    <ThemedText type='default' style={styles.sectionText}>
+                        {text}
+                    </ThemedText>
+
+                    {image && (
+                        <ThemedView style={styles.imageContainerMobile}>
+                            <Image
+                                source={{ uri: image }}
+                                style={styles.sectionImage}
+                                resizeMode="cover"
+                            />
+                        </ThemedView>
+                    )}
+                </>
+            ) : (
+                <ThemedView style={styles.sectionContent}>
+                    <ThemedView style={styles.textContainer}>
+                        <ThemedView style={styles.sectionHeader}>
+                            <ThemedText type='subtitle'>{header}</ThemedText>
+                        </ThemedView>
+
+                        <ThemedText type='default' style={styles.sectionText}>
+                            {text}
+                        </ThemedText>
+                    </ThemedView>
+
+                    {image && (
+                        <ThemedView style={styles.imageContainer}>
+                            <Image
+                                source={{ uri: image }}
+                                style={styles.sectionImage}
+                                resizeMode="cover"
+                            />
+                        </ThemedView>
+                    )}
+                </ThemedView>
             )}
-
-            <ThemedText type='default' style={styles.sectionText}>
-                {text}
-            </ThemedText>
         </ThemedView>
     );
 
     return (
-        <ScrollView style={styles.scrollContainer}>
+        <ThemedScrollView style={styles.scrollContainer}>
             <ThemedView style={styles.container}>
                 <ThemedView style={styles.hero}>
                     <ThemedText type='title' style={styles.mainTitle}>
@@ -70,7 +99,7 @@ export default function About() {
                     </ThemedText>
                 </ThemedView>
 
-                <ThemedView style={[styles.content, { maxWidth: isMobile ? 900 : '100%' }]}>
+                <ThemedView style={[styles.content, { maxWidth: isMobile ? '100%' : 1100 }]}>
                     {data.map(renderSection)}
                 </ThemedView>
 
@@ -80,7 +109,7 @@ export default function About() {
                     </ThemedText>
                 </ThemedView>
             </ThemedView>
-        </ScrollView>
+        </ThemedScrollView>
     );
 }
 
@@ -97,13 +126,10 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     mainTitle: {
-        fontSize: 36,
-        fontWeight: 'bold',
         marginBottom: 12,
         textAlign: 'center'
     },
     subtitle: {
-        fontSize: 18,
         opacity: 0.7,
         textAlign: 'center',
         maxWidth: 600
@@ -125,21 +151,31 @@ const styles = StyleSheet.create({
         elevation: 2,
         borderLeftColor: '#3b82f6'
     },
+    sectionContent: {
+        flexDirection: 'row',
+        gap: 24,
+        alignItems: 'center'
+    },
+    textContainer: {
+        flex: 1
+    },
     sectionHeader: {
         marginBottom: 16
     },
-    headerText: {
-        fontSize: 24,
-        fontWeight: '600'
+    imageContainer: {
+        width: 280,
+        flexShrink: 0
+    },
+    imageContainerMobile: {
+        width: '100%',
+        marginTop: 16
     },
     sectionImage: {
         width: '100%',
-        borderRadius: 8,
-        marginBottom: 16
+        height: 200,
+        borderRadius: 8
     },
     sectionText: {
-        fontSize: 16,
-        lineHeight: 26,
         opacity: 0.9
     },
     footer: {
@@ -148,7 +184,6 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     footerText: {
-        fontSize: 16,
         opacity: 0.7,
         textAlign: 'center'
     }
