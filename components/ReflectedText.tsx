@@ -1,4 +1,3 @@
-import React from "react";
 import { View, Text, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -57,8 +56,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
     },
     reflectionContainer: {
-        height: 40, // shorter than text height
-        overflow: "hidden",
+        height: 40, // shorter than text height 
         width: "100%",
     },
 });
