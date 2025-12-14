@@ -31,8 +31,8 @@ export default function HomeScreen() {
                             text="Hey I'm Alexander Cho"
                             fontSize={width / 30}
                             style={{
-                                top: "62%",
-                                left: "20%",
+                                top: '62%',
+                                left: '20%'
                             }}
                         />
                     </ImageBackground>
@@ -46,7 +46,7 @@ export default function HomeScreen() {
                 <ThemedText style={{ maxWidth: 720, textAlign: 'left' }}>{`\t I\'m a fullstack software engineer based in the San Francisco Bay Area. My areas of focus are quality multi-platform UI/UX, business efficient system design, and AI/ML. I built this website with Expo so it works on web, tablet, and mobile browsers. You can even run it as an iPhone or Android app.
                 `}</ThemedText>
                 <Link href='/about'>
-                    <ThemedText type='link'>{`More About Me ->`}</ThemedText>
+                    <ThemedText type='link'>{'More About Me ->'}</ThemedText>
                 </Link>
             </ThemedView>
             <ThemedView style={styles.stepContainer}>
@@ -55,13 +55,13 @@ export default function HomeScreen() {
                     This website is currently the only project I have publicly available but more will be coming soon.
                 `}</ThemedText>
                 <Link href='/projects'>
-                    <ThemedText type='link'>{`See My Projects ->`}</ThemedText>
+                    <ThemedText type='link'>{'See My Projects ->'}</ThemedText>
                 </Link>
             </ThemedView>
             <ThemedView style={styles.stepContainer}>
                 <ThemedText type='subtitle'>Reach out — I’d love to connect.</ThemedText>
                 <Link href='/contact'>
-                    <ThemedText type='link'>{`Send a message ->`}</ThemedText>
+                    <ThemedText type='link'>{'Send a message ->'}</ThemedText>
                 </Link>
             </ThemedView>
         </ParallaxScrollView>
@@ -82,10 +82,10 @@ const styles = StyleSheet.create({
     bannerContainer: {
         width: '100%',
         aspectRatio: 2.9 / 1,
-        position: 'relative',
+        position: 'relative'
     },
     banner: {
         width: '100%',
-        height: '100%',
-    },
+        height: '100%'
+    }
 });

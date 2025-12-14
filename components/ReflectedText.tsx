@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet, ViewStyle, TextStyle } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+import { View, Text, StyleSheet, ViewStyle, TextStyle } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 interface ReflectedTextProps {
     text: string;
@@ -11,10 +11,10 @@ interface ReflectedTextProps {
 
 export default function ReflectedText({
     text,
-    color = "#fff",
+    color = '#fff',
     fontSize = 32,
     style,
-    textStyle,
+    textStyle
 }: ReflectedTextProps) {
     return (
         <View style={[styles.container, style]}>
@@ -24,7 +24,7 @@ export default function ReflectedText({
             {/* Reflection */}
             <View style={[styles.reflectionContainer, styles.container]}>
                 <LinearGradient
-                    colors={[`${color}80`, "transparent"]} // 50% opacity fade
+                    colors={[`${color}80`, 'transparent']} // 50% opacity fade
                     start={{ x: 0, y: 0 }}
                     end={{ x: 0, y: 1 }}
                     style={StyleSheet.absoluteFillObject}
@@ -36,9 +36,9 @@ export default function ReflectedText({
                             color,
                             fontSize,
                             transform: [{ scaleY: -1 }], // flip vertically
-                            opacity: 0.35, // dim reflection
+                            opacity: 0.35 // dim reflection
                         },
-                        textStyle,
+                        textStyle
                     ]}
                 >
                     {text}
@@ -50,13 +50,13 @@ export default function ReflectedText({
 
 const styles = StyleSheet.create({
     container: {
-        alignItems: "center",
+        alignItems: 'center'
     },
     text: {
-        fontWeight: "bold",
+        fontWeight: 'bold'
     },
     reflectionContainer: {
         height: 40, // shorter than text height 
-        width: "100%",
-    },
+        width: '100%'
+    }
 });
