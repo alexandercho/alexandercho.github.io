@@ -1,18 +1,21 @@
-import React from 'react';
 import { StyleSheet, Image, View } from 'react-native';
 import { Link } from 'expo-router';
 
 import { ThemedText } from '@/components/ThemedText';
 
-export function NavBar() {
-    const renderLogo = () => <Link href="/">
-        <Image resizeMode={'contain'} source={require('@/assets/whiteLogo.png')}
-            style={styles.logo} />
-    </Link>
-
+const images = {
+    whiteLogo: require('@/assets/whiteLogo.png'),
+    blackLogo: require('@/assets/blackLogo.png')
+}
+export function NavBar({ isDarkMode }: {
+    isDarkMode: boolean;
+}) {
     return (
         <View style={styles.headerTitle}>
-            {renderLogo()}
+            <Link href="/">
+                <Image resizeMode={'contain'} source={isDarkMode ? images.whiteLogo : images.blackLogo}
+                    style={styles.logo} />
+            </Link>
             <View style={styles.links}>
                 <Link href="/"><ThemedText type="defaultSemiBold">Home</ThemedText></Link>
                 <Link href="/about"><ThemedText type="defaultSemiBold">About</ThemedText></Link>

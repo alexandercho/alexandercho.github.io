@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Image, Text, View, useWindowDimensions } from 'react-native';
 import { Stack, Link, usePathname } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
@@ -12,7 +12,12 @@ import { useCutoffs } from '@/hooks/useCutoffs';
 import { DarkModeSwitch } from '@/components/DarkModeSwitch';
 import { ScrollProvider, useScroll } from '@/contexts/ScrollContext';
 
-function DrawerStack() {
+type DarkModeSwitchProps = {
+    isDarkMode: boolean;
+    setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+function DrawerStack({ isDarkMode, setIsDarkMode }: DarkModeSwitchProps) {
     const { Screen } = Drawer;
     const colorScheme = useColorScheme();
 
@@ -22,7 +27,8 @@ function DrawerStack() {
             <Image source={require('@/assets/tabIcon.png')}
                 style={styles.logo} />
         </Link>,
-        headerTitleAlign: 'center'
+        headerTitleAlign: 'center',
+        headerRight: () => <DarkModeSwitch isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
     }}>
         <Screen
             name="index"
@@ -55,17 +61,14 @@ function DrawerStack() {
     </Drawer>
 }
 
-function HomeStack() {
+function HomeStack({ isDarkMode, setIsDarkMode }: DarkModeSwitchProps) {
     const pathname = usePathname()
     const { scrollY } = useScroll();
     const { width } = useWindowDimensions();
-    const colorScheme = useColorScheme();
-    const [isDarkMode, setIsDarkMode] = useState(colorScheme === 'dark');
-
     return <Stack screenOptions={{
         headerBackVisible: false,
         headerLeft: () => null,
-        headerTitle: () => <NavBar />,
+        headerTitle: () => <NavBar isDarkMode={isDarkMode} />,
         headerTransparent: scrollY < width / 3 && pathname === '/',
         headerRight: () => <DarkModeSwitch isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
     }} />
@@ -76,7 +79,6 @@ export default function Layout() {
     const [ready, setReady] = useState(false);
     const colorScheme = useColorScheme();
     const [isDarkMode, setIsDarkMode] = useState(colorScheme === 'dark');
-
     useEffect(() => {
         if (colorScheme) {
             setReady(true);
@@ -100,7 +102,7 @@ export default function Layout() {
     return <ThemeProvider value={isDarkMode ? DarkTheme : DefaultTheme}>
         <ScrollProvider>
             <StatusBar style="auto" />
-            {isMobile ? <DrawerStack /> : <HomeStack />}
+            {isMobile ? <DrawerStack isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} /> : <HomeStack isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />}
         </ScrollProvider >
     </ThemeProvider >;
 }

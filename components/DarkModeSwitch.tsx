@@ -1,5 +1,6 @@
-import React from 'react';
-import { Switch } from 'react-native';
+import { Pressable } from 'react-native';
+import Feather from '@expo/vector-icons/Feather';
+import { Colors } from '@/constants/theme';
 
 type DarkModeSwitchProps = {
     isDarkMode: boolean;
@@ -7,18 +8,9 @@ type DarkModeSwitchProps = {
 };
 
 export function DarkModeSwitch({ isDarkMode, setIsDarkMode }: DarkModeSwitchProps) {
-    return (
-        <Switch
-            style={{
-                marginRight: 32
-            }}
-            // @ts-expect-error react-native doesn't include activeThumbColor in types
-            activeThumbColor="#ffd93d"
-            thumbColor={isDarkMode ? '#f5dd4b' : '#f4f3f4'}
-            trackColor={{ false: '#bbb', true: '#1e3a8a' }}
-            ios_backgroundColor="#888"
-            onValueChange={() => setIsDarkMode(!isDarkMode)}
-            value={isDarkMode}
-        />
-    );
+    const color = isDarkMode ? Colors.dark.text : Colors.light.text;
+    const name = isDarkMode ? 'sun' : 'moon'
+    return <Pressable onPress={() => setIsDarkMode(!isDarkMode)}>
+        <Feather name={name} color={color} size={36} style={{ right: 25 }} />
+    </Pressable>;
 }
