@@ -85,7 +85,7 @@ export default function Layout() {
         if (colorScheme) {
             setReady(true);
         }
-        setIsDarkMode(colorScheme !== 'dark')
+        setIsDarkMode(colorScheme === 'dark')
     }, [colorScheme]);
 
     useEffect(() => {

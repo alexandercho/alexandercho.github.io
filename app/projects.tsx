@@ -1,6 +1,6 @@
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Pressable, Linking, ActivityIndicator } from 'react-native';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/useColorScheme';
@@ -23,7 +23,6 @@ const getLanguageColor = (language: string): string => {
 
 export default function Projects() {
     const [repoData, setRepoData] = useState<Repo[]>([]);
-    const [loading, setLoading] = useState(true);
     const colorScheme = useColorScheme();
 
     useEffect(() => {
@@ -36,82 +35,79 @@ export default function Projects() {
                     ({ name, htmlUrl, description, homepage, language })
                 )
             )
-            .then(setRepoData)
-            .finally(() => setLoading(false));
+            .then(setRepoData);
     }, []);
 
     const handleRepoPress = (url: string) => {
         Linking.openURL(url);
     };
 
-    if (loading) {
-        return (
-            <ThemedView style={styles.loadingContainer}>
-                <ActivityIndicator size="large" color={Colors[colorScheme ?? 'light'].tint} />
-                <ThemedText style={styles.loadingText}>Loading projects...</ThemedText>
-            </ThemedView>
-        );
-    }
+    const loadingScreen = <ThemedView style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color={Colors[colorScheme ?? 'light'].tint} />
+        <ThemedText style={styles.loadingText}>Loading projects...</ThemedText>
+    </ThemedView>
 
     return (
-        <ScrollView style={styles.container}>
-            <ThemedView style={styles.content}>
-                <ThemedText style={styles.title}>My Projects</ThemedText>
-                <ThemedText style={styles.subtitle}>
-                    {repoData.length} repositories on GitHub
-                </ThemedText>
+        <Suspense fallback={loadingScreen}>
+            <ScrollView style={styles.container}>
+                <ThemedView style={styles.content}>
+                    <ThemedText style={styles.title}>My Projects</ThemedText>
+                    <ThemedText style={styles.subtitle}>
+                        {repoData.length} repositories on GitHub
+                    </ThemedText>
 
-                <ThemedView style={styles.projectsGrid}>
-                    {repoData.map((repo, index) => (
-                        <Pressable
-                            key={index}
-                            onPress={() => handleRepoPress(repo.htmlUrl)}
-                        >
-                            <ThemedView style={styles.projectCard}>
-                                <ThemedView style={styles.cardHeader}>
-                                    <ThemedText style={styles.projectName}>
-                                        {repo.name}
-                                    </ThemedText>
-                                    {repo.language && (
-                                        <ThemedView style={styles.languageTag}>
-                                            <ThemedView
-                                                style={[
-                                                    styles.languageDot,
-                                                    { backgroundColor: getLanguageColor(repo.language) }
-                                                ]}
-                                            />
-                                            <ThemedText style={styles.languageText}>
-                                                {repo.language}
-                                            </ThemedText>
-                                        </ThemedView>
-                                    )}
-                                </ThemedView>
-
-                                {repo.description && (
-                                    <ThemedText style={styles.description}>
-                                        {repo.description}
-                                    </ThemedText>
-                                )}
-
-                                {repo.homepage && (
-                                    <Pressable
-                                        onPress={() => handleRepoPress(repo.homepage)}
-                                    >
-                                        <ThemedText style={styles.homepage}>
-                                            🌐 Live Demo
+                    <ThemedView style={styles.projectsGrid}>
+                        {repoData.map((repo, index) => (
+                            <Pressable
+                                key={index}
+                                onPress={() => handleRepoPress(repo.htmlUrl)}
+                            >
+                                <ThemedView style={styles.projectCard}>
+                                    <ThemedView style={styles.cardHeader}>
+                                        <ThemedText style={styles.projectName}>
+                                            {repo.name}
                                         </ThemedText>
-                                    </Pressable>
-                                )}
+                                        {repo.language && (
+                                            <ThemedView style={styles.languageTag}>
+                                                <ThemedView
+                                                    style={[
+                                                        styles.languageDot,
+                                                        { backgroundColor: getLanguageColor(repo.language) }
+                                                    ]}
+                                                />
+                                                <ThemedText style={styles.languageText}>
+                                                    {repo.language}
+                                                </ThemedText>
+                                            </ThemedView>
+                                        )}
+                                    </ThemedView>
 
-                                <ThemedText style={styles.viewOnGithub}>
-                                    View on GitHub →
-                                </ThemedText>
-                            </ThemedView>
-                        </Pressable>
-                    ))}
+                                    {repo.description && (
+                                        <ThemedText style={styles.description}>
+                                            {repo.description}
+                                        </ThemedText>
+                                    )}
+
+                                    {repo.homepage && (
+                                        <Pressable
+                                            onPress={() => handleRepoPress(repo.homepage)}
+                                        >
+                                            <ThemedText style={styles.homepage}>
+                                                🌐 Live Demo
+                                            </ThemedText>
+                                        </Pressable>
+                                    )}
+
+                                    <ThemedText style={styles.viewOnGithub}>
+                                        View on GitHub →
+                                    </ThemedText>
+                                </ThemedView>
+                            </Pressable>
+                        ))}
+                    </ThemedView>
                 </ThemedView>
-            </ThemedView>
-        </ScrollView>
+            </ScrollView>
+        </Suspense>
     );
 }
 
