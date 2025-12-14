@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { ActivityIndicator, StyleSheet, Image, Text, View, useWindowDimensions } from 'react-native';
+import { useEffect, useState, useRef } from 'react';
+import { StyleSheet, Image, View, useWindowDimensions, Animated } from 'react-native';
 import { Stack, Link, usePathname } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
@@ -79,43 +79,45 @@ export default function Layout() {
     const [ready, setReady] = useState(false);
     const colorScheme = useColorScheme();
     const [isDarkMode, setIsDarkMode] = useState(colorScheme === 'dark');
+    const fadeAnim = useRef(new Animated.Value(0)).current;
+
     useEffect(() => {
         if (colorScheme) {
             setReady(true);
         }
-        setIsDarkMode(colorScheme === 'dark')
+        setIsDarkMode(colorScheme !== 'dark')
     }, [colorScheme]);
 
-    // TODO: Create a loading screen
-    if (!ready) {
-        return (
-            <View style={styles.loadingContainer}>
-                <ActivityIndicator
-                    size="large"
-                    color={Colors.light.tint}
-                />
-                <Text style={{ marginTop: 12 }}>Loading…</Text>
-            </View>
-        );
-    }
+    useEffect(() => {
+        if (ready) {
+            Animated.timing(fadeAnim, {
+                toValue: 1,
+                duration: 800,
+                useNativeDriver: true
+            }).start();
+        }
+    }, [ready, fadeAnim]);
 
-    return <ThemeProvider value={isDarkMode ? DarkTheme : DefaultTheme}>
-        <ScrollProvider>
-            <StatusBar style="auto" />
-            {isMobile ? <DrawerStack isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} /> : <HomeStack isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />}
-        </ScrollProvider >
-    </ThemeProvider >;
+    const neutralBackground = '#2a2a2a';
+
+    return <View style={[styles.container, { backgroundColor: neutralBackground }]}>
+        <ThemeProvider value={isDarkMode ? DarkTheme : DefaultTheme}>
+            <ScrollProvider>
+                <Animated.View style={[styles.container, { opacity: fadeAnim }]}>
+                    <StatusBar style="auto" />
+                    {isMobile ? <DrawerStack isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} /> : <HomeStack isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />}
+                </Animated.View>
+            </ScrollProvider>
+        </ThemeProvider>
+    </View>;
 }
 
 const styles = StyleSheet.create({
-    loadingContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
+    container: {
+        flex: 1
     },
     logo: {
         height: 50,
         width: 50
     }
 });
-
