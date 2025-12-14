@@ -6,8 +6,7 @@ on:
       - '**'
   pull_request:
     branches:
-      - master
-      - develop
+      - master 
 
 jobs:
   lint:
