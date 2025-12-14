@@ -39,13 +39,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         gap: 32
     },
-    loadingContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
     logo: {
         height: 36,
         width: 72
-    },
+    }
 });
