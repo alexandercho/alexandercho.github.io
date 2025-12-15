@@ -40,13 +40,10 @@ interface TextProps {
 export default function About() {
     const { isMobile } = useCutoffs();
 
-    const renderSection = ({ header, text, image }: TextProps, index: number) => (
-        <ThemedView
-            key={index}
-            style={styles.section}
-        >
-            {isMobile ? (
-                <>
+    const renderSection = ({ header, text, image }: TextProps, index: number) => {
+        if (isMobile) {
+            return (
+                <ThemedView key={index} style={styles.section}>
                     <ThemedView style={styles.sectionHeader}>
                         <ThemedText type='subtitle'>{header}</ThemedText>
                     </ThemedView>
@@ -64,8 +61,12 @@ export default function About() {
                             />
                         </ThemedView>
                     )}
-                </>
-            ) : (
+                </ThemedView>
+            );
+        }
+
+        return (
+            <ThemedView key={index} style={styles.section}>
                 <ThemedView style={styles.sectionContent}>
                     <ThemedView style={styles.textContainer}>
                         <ThemedView style={styles.sectionHeader}>
@@ -87,9 +88,9 @@ export default function About() {
                         </ThemedView>
                     )}
                 </ThemedView>
-            )}
-        </ThemedView>
-    );
+            </ThemedView>
+        );
+    };
 
     return (
         <ThemedScrollView style={styles.scrollContainer}>
