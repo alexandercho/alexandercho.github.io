@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, ViewStyle, TextStyle } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
+import { Fonts } from '@/constants/theme';
 interface ReflectedTextProps {
     text: string;
     color?: string;
@@ -50,7 +51,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     text: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontFamily: Fonts.sans
     },
     reflectionContainer: {
         height: 40,
