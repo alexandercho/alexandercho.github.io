@@ -26,33 +26,33 @@ function DrawerStack({ isDarkMode, setIsDarkMode }: DarkModeSwitchProps) {
 
     return <Drawer screenOptions={{
         drawerActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerTitle: () => <Link href="/"><Image source={require('@/assets/tabIcon.png')} style={styles.logo} /></Link>,
+        headerTitle: () => <Link href='/'><Image source={require('@/assets/tabIcon.png')} style={styles.logo} /></Link>,
         headerTitleAlign: 'center',
         headerRight: () => <DarkModeSwitch isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
     }}>
         <Screen
-            name="index"
+            name='index'
             options={{
                 drawerLabel: 'Home',
                 title: 'overview'
             }}
         />
         <Screen
-            name="about"
+            name='about'
             options={{
                 drawerLabel: 'About',
                 title: 'overview'
             }}
         />
         <Screen
-            name="projects"
+            name='projects'
             options={{
                 drawerLabel: 'Projects',
                 title: 'overview'
             }}
         />
         <Screen
-            name="contact"
+            name='contact'
             options={{
                 drawerLabel: 'Contact',
                 title: 'overview'
@@ -102,7 +102,7 @@ export default function Layout() {
         <ThemeProvider value={isDarkMode ? DarkTheme : DefaultTheme}>
             <ScrollProvider>
                 <Animated.View style={[styles.container, { opacity: fadeAnim }]}>
-                    <StatusBar style="auto" />
+                    <StatusBar style='auto' />
                     {isMobile ? <DrawerStack isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} /> : <HomeStack isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />}
                 </Animated.View>
             </ScrollProvider>

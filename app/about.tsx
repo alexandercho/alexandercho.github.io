@@ -60,7 +60,7 @@ export default function About() {
                             <Image
                                 source={{ uri: image }}
                                 style={styles.sectionImage}
-                                resizeMode="cover"
+                                resizeMode='cover'
                             />
                         </ThemedView>
                     )}
@@ -82,7 +82,7 @@ export default function About() {
                             <Image
                                 source={{ uri: image }}
                                 style={styles.sectionImage}
-                                resizeMode="cover"
+                                resizeMode='cover'
                             />
                         </ThemedView>
                     )}

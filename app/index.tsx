@@ -29,7 +29,7 @@ export default function HomeScreen() {
                         source={bannerSource}
                         style={styles.banner}>
                         <ReflectedText
-                            text="Hey I'm Alexander Cho"
+                            text={'Hey I\'m Alexander Cho'}
                             fontSize={width / 30}
                             style={{
                                 top: '62%',

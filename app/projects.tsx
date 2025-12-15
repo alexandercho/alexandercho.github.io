@@ -46,7 +46,7 @@ export default function Projects() {
     };
 
     const loadingScreen = <ThemedView style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color={Colors[colorScheme ?? 'light'].tint} />
+        <ActivityIndicator size='large' color={Colors[colorScheme ?? 'light'].tint} />
         <ThemedText style={styles.loadingText}>Loading projects...</ThemedText>
     </ThemedView>
 
