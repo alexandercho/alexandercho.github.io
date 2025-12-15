@@ -8,7 +8,7 @@ type DarkModeSwitchProps = {
 };
 
 export function DarkModeSwitch({ isDarkMode, setIsDarkMode }: DarkModeSwitchProps) {
-    const color = isDarkMode ? Colors.dark.text : Colors.light.text;
+    const color = isDarkMode ? Colors.dark.icon : Colors.light.icon;
     const name = isDarkMode ? 'sun' : 'moon'
     return <Pressable onPress={() => setIsDarkMode(!isDarkMode)}>
         <Feather name={name} color={color} size={36} style={{ right: 25 }} />

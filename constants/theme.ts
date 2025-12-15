@@ -15,7 +15,7 @@ export const Colors = {
         tint: tintColorLight,
         icon: '#687076',
         tabIconDefault: '#687076',
-        tabIconSelected: tintColorLight,
+        tabIconSelected: tintColorLight
     },
     dark: {
         text: '#ECEDEE',
@@ -23,7 +23,7 @@ export const Colors = {
         tint: tintColorDark,
         icon: '#9BA1A6',
         tabIconDefault: '#9BA1A6',
-        tabIconSelected: tintColorDark,
+        tabIconSelected: tintColorDark
     },
     JavaScript: '#f1e05a',
     TypeScript: '#3178c6',
@@ -41,7 +41,7 @@ export const Colors = {
     'C++': '#f34b7d',
     'C#': '#178600',
     Shell: '#89e051',
-    Dart: '#00B4AB',
+    Dart: '#00B4AB'
 };
 
 export const Fonts = Platform.select({
@@ -53,18 +53,18 @@ export const Fonts = Platform.select({
         /** iOS `UIFontDescriptorSystemDesignRounded` */
         rounded: 'ui-rounded',
         /** iOS `UIFontDescriptorSystemDesignMonospaced` */
-        mono: 'ui-monospace',
+        mono: 'ui-monospace'
     },
     default: {
         sans: 'normal',
         serif: 'serif',
         rounded: 'normal',
-        mono: 'monospace',
+        mono: 'monospace'
     },
     web: {
-        sans: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
-        serif: "Georgia, 'Times New Roman', serif",
-        rounded: "'SF Pro Rounded', 'Hiragino Maru Gothic ProN', Meiryo, 'MS PGothic', sans-serif",
-        mono: "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
-    },
+        sans: 'system-ui, -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Helvetica, Arial, sans-serif',
+        serif: 'Georgia, \'Times New Roman\', serif',
+        rounded: '\'SF Pro Rounded\', \'Hiragino Maru Gothic ProN\', Meiryo, \'MS PGothic\', sans-serif',
+        mono: 'SFMono-Regular, Menlo, Monaco, Consolas, \'Liberation Mono\', \'Courier New\', monospace'
+    }
 });

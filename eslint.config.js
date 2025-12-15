@@ -8,7 +8,7 @@ module.exports = defineConfig([
     ignores: ['dist/*', '.expo/*']
   },
   {
-    files: ['**/*.tsx', '**/*.jsx'],
+    files: ['**/*.tsx', '**/*.ts'],
     plugins: {
       'react-native': reactNative
     },
@@ -16,7 +16,8 @@ module.exports = defineConfig([
       'react-native/no-unused-styles': 'warn',
       'comma-dangle': ['error', 'never'],
       'quotes': ['error', 'single'],
-      'no-trailing-spaces': 'error'
+      'no-trailing-spaces': 'error',
+      'indent': ['error', 4]
     }
   }
 ]);
