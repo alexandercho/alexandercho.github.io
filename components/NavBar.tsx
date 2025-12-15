@@ -12,15 +12,15 @@ export function NavBar({ isDarkMode }: {
 }) {
     return (
         <View style={styles.headerTitle}>
-            <Link href="/">
+            <Link href='/'>
                 <Image resizeMode={'contain'} source={isDarkMode ? images.whiteLogo : images.blackLogo}
                     style={styles.logo} />
             </Link>
             <View style={styles.links}>
-                <Link href="/"><ThemedText type="defaultSemiBold">Home</ThemedText></Link>
-                <Link href="/about"><ThemedText type="defaultSemiBold">About</ThemedText></Link>
-                <Link href="/projects"><ThemedText type="defaultSemiBold">Projects</ThemedText></Link>
-                <Link href="/contact"><ThemedText type="defaultSemiBold">Contact</ThemedText></Link>
+                <Link href='/'><ThemedText type='defaultSemiBold'>Home</ThemedText></Link>
+                <Link href='/about'><ThemedText type='defaultSemiBold'>About</ThemedText></Link>
+                <Link href='/projects'><ThemedText type='defaultSemiBold'>Projects</ThemedText></Link>
+                <Link href='/contact'><ThemedText type='defaultSemiBold'>Contact</ThemedText></Link>
             </View>
         </View>
     );

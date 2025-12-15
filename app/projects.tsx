@@ -1,8 +1,11 @@
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
 import { Suspense, useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Pressable, Linking, ActivityIndicator } from 'react-native';
+
 import { Colors } from '@/constants/theme';
+
+import { ThemedText } from '@/components/ThemedText';
+import { ThemedView } from '@/components/ThemedView';
+
 import { useColorScheme } from '@/hooks/useColorScheme';
 
 interface Repo {
@@ -18,7 +21,7 @@ const getLanguageColor = (language: string): string => {
     if (colorKey in Colors && colorKey !== 'light' && colorKey !== 'dark') {
         return Colors[colorKey] as string;
     }
-    return '#888';
+    return Colors.defaultLanguage;
 };
 
 export default function Projects() {
@@ -43,7 +46,7 @@ export default function Projects() {
     };
 
     const loadingScreen = <ThemedView style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color={Colors[colorScheme ?? 'light'].tint} />
+        <ActivityIndicator size='large' color={Colors[colorScheme ?? 'light'].tint} />
         <ThemedText style={styles.loadingText}>Loading projects...</ThemedText>
     </ThemedView>
 
@@ -116,10 +119,9 @@ const styles = StyleSheet.create({
         flex: 1
     },
     content: {
-        padding: 20,
-        maxWidth: 1200,
         alignSelf: 'center',
-        width: '100%'
+        width: '100%',
+        padding: 24
     },
     loadingContainer: {
         flex: 1,
@@ -148,7 +150,7 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         borderWidth: 1,
         marginBottom: 16,
-        shadowColor: '#000',
+        shadowColor: 'black',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
         shadowRadius: 4,

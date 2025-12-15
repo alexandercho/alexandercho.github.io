@@ -6,10 +6,13 @@ import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native
 import { StatusBar } from 'expo-status-bar';
 
 import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/useColorScheme';
-import { NavBar } from '@/components/NavBar';
-import { useCutoffs } from '@/hooks/useCutoffs';
+
 import { DarkModeSwitch } from '@/components/DarkModeSwitch';
+import { NavBar } from '@/components/NavBar';
+
+import { useColorScheme } from '@/hooks/useColorScheme';
+import { useCutoffs } from '@/hooks/useCutoffs';
+
 import { ScrollProvider, useScroll } from '@/contexts/ScrollContext';
 
 type DarkModeSwitchProps = {
@@ -23,36 +26,33 @@ function DrawerStack({ isDarkMode, setIsDarkMode }: DarkModeSwitchProps) {
 
     return <Drawer screenOptions={{
         drawerActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerTitle: () => <Link href="/">
-            <Image source={require('@/assets/tabIcon.png')}
-                style={styles.logo} />
-        </Link>,
+        headerTitle: () => <Link href='/'><Image source={require('@/assets/tabIcon.png')} style={styles.logo} /></Link>,
         headerTitleAlign: 'center',
         headerRight: () => <DarkModeSwitch isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
     }}>
         <Screen
-            name="index"
+            name='index'
             options={{
                 drawerLabel: 'Home',
                 title: 'overview'
             }}
         />
         <Screen
-            name="about"
+            name='about'
             options={{
                 drawerLabel: 'About',
                 title: 'overview'
             }}
         />
         <Screen
-            name="projects"
+            name='projects'
             options={{
                 drawerLabel: 'Projects',
                 title: 'overview'
             }}
         />
         <Screen
-            name="contact"
+            name='contact'
             options={{
                 drawerLabel: 'Contact',
                 title: 'overview'
@@ -98,13 +98,11 @@ export default function Layout() {
         }
     }, [ready, fadeAnim]);
 
-    const neutralBackground = '#2a2a2a';
-
-    return <View style={[styles.container, { backgroundColor: neutralBackground }]}>
+    return <View style={styles.container}>
         <ThemeProvider value={isDarkMode ? DarkTheme : DefaultTheme}>
             <ScrollProvider>
                 <Animated.View style={[styles.container, { opacity: fadeAnim }]}>
-                    <StatusBar style="auto" />
+                    <StatusBar style='auto' />
                     {isMobile ? <DrawerStack isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} /> : <HomeStack isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />}
                 </Animated.View>
             </ScrollProvider>
@@ -114,7 +112,8 @@ export default function Layout() {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        backgroundColor: Colors.neutralBackground
     },
     logo: {
         height: 50,
