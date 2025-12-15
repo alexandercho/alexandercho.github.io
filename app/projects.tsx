@@ -21,7 +21,7 @@ const getLanguageColor = (language: string): string => {
     if (colorKey in Colors && colorKey !== 'light' && colorKey !== 'dark') {
         return Colors[colorKey] as string;
     }
-    return '#888';
+    return Colors.defaultLanguage;
 };
 
 export default function Projects() {
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         borderWidth: 1,
         marginBottom: 16,
-        shadowColor: '#000',
+        shadowColor: 'black',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
         shadowRadius: 4,

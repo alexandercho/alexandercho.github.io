@@ -8,18 +8,18 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import ReflectedText from '@/components/ReflectedText';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import { Colors } from '@/constants/theme';
 
 export default function HomeScreen() {
     const theme = useTheme();
     const { width } = useWindowDimensions()
-    const isDarkMode = theme.dark
+    const isDarkMode = theme.dark;
     const bannerSource = isDarkMode
         ? require('@/assets/banners/darkBanner.jpg')
         : require('@/assets/banners/lightBanner.jpg');
 
     return (
         <ParallaxScrollView
-            headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
             headerImage={
                 <View style={styles.bannerContainer}>
                     <ImageBackground
@@ -48,7 +48,7 @@ export default function HomeScreen() {
                 `}</ThemedText>
                 <Link href='/about'>
                     <ThemedText type='link'>{'More About Me'}</ThemedText>
-                    <Feather name={'arrow-right'} size={16} color={'#0a7ea4'} />
+                    <Feather name={'arrow-right'} size={16} color={Colors.links} />
                 </Link>
             </ThemedView>
             <ThemedView style={styles.stepContainer}>
@@ -58,14 +58,14 @@ export default function HomeScreen() {
                 }</ThemedText>
                 <Link href='/projects'>
                     <ThemedText type='link'>{'See My Projects'}</ThemedText>
-                    <Feather name={'arrow-right'} size={16} color={'#0a7ea4'} />
+                    <Feather name={'arrow-right'} size={16} color={Colors.links} />
                 </Link>
             </ThemedView>
             <ThemedView style={styles.stepContainer}>
                 <ThemedText type='subtitle'>Reach out — I’d love to connect.</ThemedText>
                 <Link href='/contact'>
                     <ThemedText type='link'>{'Send a message'}</ThemedText>
-                    <Feather name={'arrow-right'} size={16} color={'#0a7ea4'} />
+                    <Feather name={'arrow-right'} size={16} color={Colors.links} />
                 </Link>
             </ThemedView>
         </ParallaxScrollView>

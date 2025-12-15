@@ -98,9 +98,7 @@ export default function Layout() {
         }
     }, [ready, fadeAnim]);
 
-    const neutralBackground = '#2a2a2a';
-
-    return <View style={[styles.container, { backgroundColor: neutralBackground }]}>
+    return <View style={styles.container}>
         <ThemeProvider value={isDarkMode ? DarkTheme : DefaultTheme}>
             <ScrollProvider>
                 <Animated.View style={[styles.container, { opacity: fadeAnim }]}>
@@ -114,7 +112,8 @@ export default function Layout() {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        backgroundColor: Colors.neutralBackground
     },
     logo: {
         height: 50,

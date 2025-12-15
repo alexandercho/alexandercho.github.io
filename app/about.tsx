@@ -4,6 +4,8 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { ThemedScrollView } from '@/components/ThemedScrollView';
 
+import { Colors } from '@/constants/theme';
+
 import { useCutoffs } from '@/hooks/useCutoffs';
 
 const data = [
@@ -146,12 +148,12 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         padding: 24,
         borderLeftWidth: 4,
-        shadowColor: '#000',
+        shadowColor: 'black',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
         shadowRadius: 4,
         elevation: 2,
-        borderLeftColor: '#3b82f6'
+        borderLeftColor: Colors.paletteColor1
     },
     sectionContent: {
         flexDirection: 'row',

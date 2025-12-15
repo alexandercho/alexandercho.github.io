@@ -15,7 +15,8 @@ export const Colors = {
         tint: tintColorLight,
         icon: '#687076',
         tabIconDefault: '#687076',
-        tabIconSelected: tintColorLight
+        tabIconSelected: tintColorLight,
+        headerBackground: '#A1CEDC'
     },
     dark: {
         text: '#ECEDEE',
@@ -23,8 +24,15 @@ export const Colors = {
         tint: tintColorDark,
         icon: '#9BA1A6',
         tabIconDefault: '#9BA1A6',
-        tabIconSelected: tintColorDark
+        tabIconSelected: tintColorDark,
+        headerBackground: '#1D3D47'
     },
+    neutralBackground: '#2a2a2a',
+    paletteColor1: '#3b82f6',
+    links: '#0a7ea4',
+    email: '#EA4335',
+    Instagram: '#D62976',
+    LinkedIn: '#0A66C2',
     JavaScript: '#f1e05a',
     TypeScript: '#3178c6',
     Python: '#3572A5',
@@ -41,7 +49,8 @@ export const Colors = {
     'C++': '#f34b7d',
     'C#': '#178600',
     Shell: '#89e051',
-    Dart: '#00B4AB'
+    Dart: '#00B4AB',
+    defaultLanguage: '#888'
 };
 
 export const Fonts = Platform.select({

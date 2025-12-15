@@ -12,7 +12,7 @@ interface ReflectedTextProps {
 
 export default function ReflectedText({
     text,
-    color = '#fff',
+    color = 'white',
     fontSize = 32,
     style,
     textStyle
