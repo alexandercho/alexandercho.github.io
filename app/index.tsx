@@ -1,12 +1,12 @@
-import { ImageBackground } from 'expo-image';
 import { useWindowDimensions, StyleSheet, View } from 'react-native';
+import { Link } from 'expo-router';
+import { ImageBackground } from 'expo-image';
 import { useTheme } from '@react-navigation/native';
 
 import ParallaxScrollView from '@/components/ParallaxScrollView';
+import ReflectedText from '@/components/ReflectedText';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import ReflectedText from '@/components/ReflectedText';
-import { Link } from 'expo-router';
 
 export default function HomeScreen() {
     const theme = useTheme();

@@ -6,10 +6,13 @@ import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native
 import { StatusBar } from 'expo-status-bar';
 
 import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/useColorScheme';
-import { NavBar } from '@/components/NavBar';
-import { useCutoffs } from '@/hooks/useCutoffs';
+
 import { DarkModeSwitch } from '@/components/DarkModeSwitch';
+import { NavBar } from '@/components/NavBar';
+
+import { useColorScheme } from '@/hooks/useColorScheme';
+import { useCutoffs } from '@/hooks/useCutoffs';
+
 import { ScrollProvider, useScroll } from '@/contexts/ScrollContext';
 
 type DarkModeSwitchProps = {
@@ -23,10 +26,7 @@ function DrawerStack({ isDarkMode, setIsDarkMode }: DarkModeSwitchProps) {
 
     return <Drawer screenOptions={{
         drawerActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerTitle: () => <Link href="/">
-            <Image source={require('@/assets/tabIcon.png')}
-                style={styles.logo} />
-        </Link>,
+        headerTitle: () => <Link href="/"><Image source={require('@/assets/tabIcon.png')} style={styles.logo} /></Link>,
         headerTitleAlign: 'center',
         headerRight: () => <DarkModeSwitch isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
     }}>

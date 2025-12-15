@@ -1,8 +1,11 @@
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
 import { Suspense, useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Pressable, Linking, ActivityIndicator } from 'react-native';
+
 import { Colors } from '@/constants/theme';
+
+import { ThemedText } from '@/components/ThemedText';
+import { ThemedView } from '@/components/ThemedView';
+
 import { useColorScheme } from '@/hooks/useColorScheme';
 
 interface Repo {
@@ -116,10 +119,9 @@ const styles = StyleSheet.create({
         flex: 1
     },
     content: {
-        padding: 20,
-        maxWidth: 1200,
         alignSelf: 'center',
-        width: '100%'
+        width: '100%',
+        padding: 24
     },
     loadingContainer: {
         flex: 1,

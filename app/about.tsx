@@ -1,8 +1,10 @@
+import { StyleSheet, Image } from 'react-native';
+
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import { StyleSheet, Image } from 'react-native';
-import { useCutoffs } from '@/hooks/useCutoffs';
 import { ThemedScrollView } from '@/components/ThemedScrollView';
+
+import { useCutoffs } from '@/hooks/useCutoffs';
 
 const data = [
     {

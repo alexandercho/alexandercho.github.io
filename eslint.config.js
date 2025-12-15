@@ -16,7 +16,8 @@ module.exports = defineConfig([
     rules: {
       'react-native/no-unused-styles': 'warn',
       'comma-dangle': ['error', 'never'],
-      'quotes': ['error', 'single']
+      'quotes': ['error', 'single'],
+      'no-trailing-spaces': 'error'
     }
   }
 ]);

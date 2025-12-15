@@ -1,8 +1,10 @@
 import { StyleSheet, Pressable, Linking } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+
 import { ThemedScrollView } from '@/components/ThemedScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+
 import { useThemeColor } from '@/hooks/useThemeColor';
 
 export default function Contact() {

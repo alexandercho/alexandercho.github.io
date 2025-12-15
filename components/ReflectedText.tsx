@@ -18,13 +18,10 @@ export default function ReflectedText({
 }: ReflectedTextProps) {
     return (
         <View style={[styles.container, style]}>
-            {/* Original text */}
             <Text style={[styles.text, { color, fontSize }, textStyle]}>{text}</Text>
-
-            {/* Reflection */}
             <View style={[styles.reflectionContainer, styles.container]}>
                 <LinearGradient
-                    colors={[`${color}80`, 'transparent']} // 50% opacity fade
+                    colors={[`${color}80`, 'transparent']}
                     start={{ x: 0, y: 0 }}
                     end={{ x: 0, y: 1 }}
                     style={StyleSheet.absoluteFillObject}
@@ -35,8 +32,8 @@ export default function ReflectedText({
                         {
                             color,
                             fontSize,
-                            transform: [{ scaleY: -1 }], // flip vertically
-                            opacity: 0.35 // dim reflection
+                            transform: [{ scaleY: -1 }],
+                            opacity: 0.35
                         },
                         textStyle
                     ]}
@@ -56,7 +53,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     reflectionContainer: {
-        height: 40, // shorter than text height 
+        height: 40,
         width: '100%'
     }
 });
