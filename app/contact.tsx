@@ -1,8 +1,12 @@
 import { StyleSheet, Pressable, Linking } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+
 import { ThemedScrollView } from '@/components/ThemedScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+
+import { Colors } from '@/constants/theme';
+
 import { useThemeColor } from '@/hooks/useThemeColor';
 
 export default function Contact() {
@@ -12,13 +16,13 @@ export default function Contact() {
             name: 'Email',
             icon: 'mail',
             url: 'mailto:alexanderswcho@gmail.com',
-            color: '#EA4335'
+            color: Colors.email
         },
         {
             name: 'LinkedIn',
             icon: 'linkedin',
             url: 'https://www.linkedin.com/in/alexscho/',
-            color: '#0A66C2'
+            color: Colors.LinkedIn
         },
         {
             name: 'GitHub',
@@ -30,7 +34,7 @@ export default function Contact() {
             name: 'Instagram',
             icon: 'instagram',
             url: 'https://www.instagram.com/alexcelerator/',
-            color: '#D62976'
+            color: Colors.Instagram
         }
     ];
 

@@ -1,8 +1,12 @@
+import { StyleSheet, Image } from 'react-native';
+
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import { StyleSheet, Image } from 'react-native';
-import { useCutoffs } from '@/hooks/useCutoffs';
 import { ThemedScrollView } from '@/components/ThemedScrollView';
+
+import { Colors } from '@/constants/theme';
+
+import { useCutoffs } from '@/hooks/useCutoffs';
 
 const data = [
     {
@@ -36,13 +40,10 @@ interface TextProps {
 export default function About() {
     const { isMobile } = useCutoffs();
 
-    const renderSection = ({ header, text, image }: TextProps, index: number) => (
-        <ThemedView
-            key={index}
-            style={styles.section}
-        >
-            {isMobile ? (
-                <>
+    const renderSection = ({ header, text, image }: TextProps, index: number) => {
+        if (isMobile) {
+            return (
+                <ThemedView key={index} style={styles.section}>
                     <ThemedView style={styles.sectionHeader}>
                         <ThemedText type='subtitle'>{header}</ThemedText>
                     </ThemedView>
@@ -56,12 +57,16 @@ export default function About() {
                             <Image
                                 source={{ uri: image }}
                                 style={styles.sectionImage}
-                                resizeMode="cover"
+                                resizeMode='cover'
                             />
                         </ThemedView>
                     )}
-                </>
-            ) : (
+                </ThemedView>
+            );
+        }
+
+        return (
+            <ThemedView key={index} style={styles.section}>
                 <ThemedView style={styles.sectionContent}>
                     <ThemedView style={styles.textContainer}>
                         <ThemedView style={styles.sectionHeader}>
@@ -78,14 +83,14 @@ export default function About() {
                             <Image
                                 source={{ uri: image }}
                                 style={styles.sectionImage}
-                                resizeMode="cover"
+                                resizeMode='cover'
                             />
                         </ThemedView>
                     )}
                 </ThemedView>
-            )}
-        </ThemedView>
-    );
+            </ThemedView>
+        );
+    };
 
     return (
         <ThemedScrollView style={styles.scrollContainer}>
@@ -144,12 +149,12 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         padding: 24,
         borderLeftWidth: 4,
-        shadowColor: '#000',
+        shadowColor: 'black',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
         shadowRadius: 4,
         elevation: 2,
-        borderLeftColor: '#3b82f6'
+        borderLeftColor: Colors.paletteColor1
     },
     sectionContent: {
         flexDirection: 'row',
