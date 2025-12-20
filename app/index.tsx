@@ -1,44 +1,17 @@
-import { useWindowDimensions, StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Link } from 'expo-router';
-import { ImageBackground } from 'expo-image';
-import { useTheme } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
 
+import Banner from '@/components/Banner';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
-import ReflectedText from '@/components/ReflectedText';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { Colors } from '@/constants/theme';
 
 export default function HomeScreen() {
-    const theme = useTheme();
-    const { width } = useWindowDimensions()
-    const isDarkMode = theme.dark;
-    const bannerSource = isDarkMode
-        ? require('@/assets/banners/darkBanner.jpg')
-        : require('@/assets/banners/lightBanner.jpg');
-
     return (
         <ParallaxScrollView
-            headerImage={
-                <View style={styles.bannerContainer}>
-                    <ImageBackground
-                        contentFit='cover'
-                        contentPosition={{ top: '36%' }}
-                        transition={500}
-                        source={bannerSource}
-                        style={styles.banner}>
-                        <ReflectedText
-                            text={'Hey I\'m Alexander Cho'}
-                            fontSize={width / 30}
-                            style={{
-                                top: '62%',
-                                left: '20%'
-                            }}
-                        />
-                    </ImageBackground>
-                </View>
-            }>
+            headerImage={<Banner />}>
             <ThemedView style={styles.titleContainer}>
                 <ThemedText type='title'>Welcome to my personal website!</ThemedText>
             </ThemedView>
@@ -82,14 +55,5 @@ const styles = StyleSheet.create({
         marginVertical: 32,
         alignItems: 'center',
         flexDirection: 'column'
-    },
-    bannerContainer: {
-        width: '100%',
-        aspectRatio: 2.9 / 1,
-        position: 'relative'
-    },
-    banner: {
-        width: '100%',
-        height: '100%'
     }
 });

@@ -1,6 +1,6 @@
 import { StyleSheet, Text, type TextProps } from 'react-native';
 
-import { Colors, Fonts } from '@/constants/theme';
+import { Colors } from '@/constants/theme';
 
 import { useThemeColor } from '@/hooks/useThemeColor';
 
@@ -28,8 +28,7 @@ export function ThemedText({
                 type === 'defaultSemiBold' ? styles.defaultSemiBold : undefined,
                 type === 'subtitle' ? styles.subtitle : undefined,
                 type === 'link' ? styles.link : undefined,
-                style,
-                { fontFamily: Fonts.rounded }
+                style
             ]}
             {...rest}
         />
