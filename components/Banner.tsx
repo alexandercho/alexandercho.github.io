@@ -21,7 +21,7 @@ export default function Banner() {
                 source={bannerSource}
                 style={styles.banner}>
                 <ReflectedText
-                    text={'Hey I\'m Alexander Cho'}
+                    text={'Hey I\'m Alex Cho. I write code.'}
                     fontSize={width / 30}
                     style={{
                         top: '62%',

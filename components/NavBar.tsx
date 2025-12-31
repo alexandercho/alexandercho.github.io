@@ -3,10 +3,12 @@ import { Link } from 'expo-router';
 
 import { ThemedText } from '@/components/ThemedText';
 
+import { Spacing } from '@/constants/spacing';
 const images = {
     whiteLogo: require('@/assets/whiteLogo.png'),
     blackLogo: require('@/assets/blackLogo.png')
 }
+
 export function NavBar({ isDarkMode }: {
     isDarkMode: boolean;
 }) {
@@ -30,14 +32,14 @@ const styles = StyleSheet.create({
     headerTitle: {
         flex: 1,
         flexDirection: 'row',
-        height: 64,
+        height: Spacing.xxl,
         alignItems: 'center',
-        gap: 48
+        gap: Spacing.xl
     },
     links: {
         flex: 1,
         flexDirection: 'row',
-        gap: 32
+        gap: Spacing.lg
     },
     logo: {
         height: 36,
