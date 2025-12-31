@@ -7,6 +7,7 @@ import Animated, {
     useScrollOffset
 } from 'react-native-reanimated';
 
+import { Spacing } from '@/constants/spacing';
 import { ThemedView } from '@/components/ThemedView';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useScroll } from '@/contexts/ScrollContext';
@@ -68,8 +69,8 @@ export default function ParallaxScrollView({
 const styles = StyleSheet.create({
     content: {
         flex: 1,
-        padding: 32,
-        gap: 16,
+        padding: Spacing.lg,
+        gap: Spacing.sm,
         overflow: 'hidden'
     }
 });

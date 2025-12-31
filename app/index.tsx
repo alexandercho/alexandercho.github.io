@@ -7,8 +7,11 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { Colors } from '@/constants/theme';
+import { useThemeColor } from '@/hooks/useThemeColor';
 
 export default function HomeScreen() {
+    const backgroundColor = useThemeColor({}, 'background');
+
     return (
         <ParallaxScrollView headerImage={<Banner />}>
             <ThemedView style={styles.container}>
@@ -19,7 +22,7 @@ export default function HomeScreen() {
                     <View style={styles.divider} />
                 </ThemedView>
 
-                <ThemedView style={styles.card}>
+                <ThemedView style={[styles.card, { backgroundColor }]}>
                     <ThemedText type='subtitle' style={styles.cardTitle}>
                         A little about me
                     </ThemedText>
@@ -40,7 +43,7 @@ export default function HomeScreen() {
                     </Link>
                 </ThemedView>
 
-                <ThemedView style={styles.card}>
+                <ThemedView style={[styles.card, { backgroundColor }]}>
                     <ThemedText type='subtitle' style={styles.cardTitle}>
                         Current Projects
                     </ThemedText>
@@ -101,7 +104,6 @@ const styles = StyleSheet.create({
         marginBottom: 24,
         padding: 24,
         borderRadius: 16,
-        backgroundColor: 'rgba(0, 0, 0, 0.03)',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.05,
@@ -131,7 +133,6 @@ const styles = StyleSheet.create({
         marginTop: 16,
         padding: 32,
         borderRadius: 16,
-        backgroundColor: 'rgba(0, 0, 0, 0.05)',
         alignItems: 'center',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 4 },
