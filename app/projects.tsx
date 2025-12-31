@@ -7,6 +7,7 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { Spacing } from '@/constants/spacing';
 
 interface Repo {
     name: string;
@@ -54,8 +55,8 @@ export default function Projects() {
         <Suspense fallback={loadingScreen}>
             <ScrollView style={styles.container}>
                 <ThemedView style={styles.content}>
-                    <ThemedText style={styles.title}>My Projects</ThemedText>
-                    <ThemedText style={styles.subtitle}>
+                    <ThemedText type='title'>My Projects</ThemedText>
+                    <ThemedText type='subtitle' style={{ marginVertical: Spacing.lg }}>
                         {repoData.length} repositories on GitHub
                     </ThemedText>
 
@@ -67,7 +68,7 @@ export default function Projects() {
                             >
                                 <ThemedView style={styles.projectCard}>
                                     <ThemedView style={styles.cardHeader}>
-                                        <ThemedText style={styles.projectName}>
+                                        <ThemedText type='subtitle'>
                                             {repo.name}
                                         </ThemedText>
                                         {repo.language && (
@@ -78,7 +79,7 @@ export default function Projects() {
                                                         { backgroundColor: getLanguageColor(repo.language) }
                                                     ]}
                                                 />
-                                                <ThemedText style={styles.languageText}>
+                                                <ThemedText>
                                                     {repo.language}
                                                 </ThemedText>
                                             </ThemedView>
@@ -86,7 +87,7 @@ export default function Projects() {
                                     </ThemedView>
 
                                     {repo.description && (
-                                        <ThemedText style={styles.description}>
+                                        <ThemedText style={{ marginVertical: Spacing.sm }}>
                                             {repo.description}
                                         </ThemedText>
                                     )}
@@ -95,13 +96,13 @@ export default function Projects() {
                                         <Pressable
                                             onPress={() => handleRepoPress(repo.homepage)}
                                         >
-                                            <ThemedText style={styles.homepage}>
+                                            <ThemedText>
                                                 🌐 Live Demo
                                             </ThemedText>
                                         </Pressable>
                                     )}
 
-                                    <ThemedText style={styles.viewOnGithub}>
+                                    <ThemedText type='link'>
                                         View on GitHub →
                                     </ThemedText>
                                 </ThemedView>
@@ -121,7 +122,7 @@ const styles = StyleSheet.create({
     content: {
         alignSelf: 'center',
         width: '100%',
-        padding: 24
+        padding: Spacing.md
     },
     loadingContainer: {
         flex: 1,
@@ -129,27 +130,17 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     loadingText: {
-        marginTop: 12,
+        marginTop: Spacing.xs,
         fontSize: 16
     },
-    title: {
-        fontSize: 32,
-        fontWeight: 'bold',
-        marginBottom: 8
-    },
-    subtitle: {
-        fontSize: 16,
-        opacity: 0.7,
-        marginBottom: 24
-    },
     projectsGrid: {
-        gap: 16
+        gap: Spacing.sm
     },
     projectCard: {
-        padding: 20,
-        borderRadius: 12,
+        padding: Spacing.md,
+        borderRadius: Spacing.xs,
         borderWidth: 1,
-        marginBottom: 16,
+        marginBottom: Spacing.sm,
         shadowColor: 'black',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
@@ -160,21 +151,16 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: 12,
+        marginBottom: Spacing.xs,
         flexWrap: 'wrap',
-        gap: 8
-    },
-    projectName: {
-        fontSize: 20,
-        fontWeight: '600',
-        flex: 1
+        gap: Spacing.xxs
     },
     languageTag: {
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: 10,
-        paddingVertical: 4,
-        borderRadius: 12,
+        paddingVertical: Spacing.xxxs,
+        borderRadius: Spacing.xs,
         backgroundColor: 'rgba(128, 128, 128, 0.1)'
     },
     languageDot: {
@@ -182,25 +168,5 @@ const styles = StyleSheet.create({
         height: 10,
         borderRadius: 5,
         marginRight: 6
-    },
-    languageText: {
-        fontSize: 12,
-        fontWeight: '500'
-    },
-    description: {
-        fontSize: 14,
-        opacity: 0.8,
-        marginBottom: 12,
-        lineHeight: 20
-    },
-    homepage: {
-        fontSize: 14,
-        fontWeight: '500',
-        marginBottom: 8
-    },
-    viewOnGithub: {
-        fontSize: 14,
-        fontWeight: '500',
-        marginTop: 4
     }
 });
