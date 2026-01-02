@@ -12,6 +12,7 @@ import { useThemeColor } from '@/hooks/useThemeColor';
 
 export default function Contact() {
     const backgroundColor = useThemeColor({}, 'primaryText');
+    const borderColor = useThemeColor({}, 'border');
     const socialLinks = [
         {
             name: 'Email',
@@ -46,7 +47,7 @@ export default function Contact() {
         >
             <ThemedView style={styles.header}>
                 <ThemedText type='title'>Get In Touch</ThemedText>
-                <ThemedText type='subtitle'>
+                <ThemedText>
                     {
                         'I\'d love to hear from you! Whether you have a question, want to collaborate, or just want to say hi, feel free to reach out.'
                     }
@@ -58,7 +59,7 @@ export default function Contact() {
                     {socialLinks.map((link) => (
                         <Pressable
                             key={link.name}
-                            style={styles.socialButton}
+                            style={[styles.socialButton, { borderColor }]}
                             onPress={Linking.openURL as any}
                         >
                             <Feather name={link.icon as any} size={28} color={link.color} />
