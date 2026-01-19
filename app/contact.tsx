@@ -88,7 +88,8 @@ const styles = StyleSheet.create({
         marginBottom: Spacing.lg
     },
     socialContainer: {
-        marginBottom: Spacing.lg
+        marginBottom: Spacing.lg,
+        gap: Spacing.lg
     },
     socialLinks: {
         flexDirection: 'row',

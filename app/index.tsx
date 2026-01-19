@@ -11,6 +11,7 @@ import { useThemeColor } from '@/hooks/useThemeColor';
 
 export default function HomeScreen() {
     const backgroundColor = useThemeColor({}, 'background');
+    const tintColor = useThemeColor({}, 'tint');
 
     return (
         <ParallaxScrollView headerImage={<Banner />}>
@@ -19,7 +20,7 @@ export default function HomeScreen() {
                     <ThemedText type='title' style={styles.heroTitle}>
                         Welcome to my personal website!
                     </ThemedText>
-                    <View style={styles.divider} />
+                    <View style={[styles.divider, { backgroundColor: tintColor }]} />
                 </ThemedView>
 
                 <ThemedView style={[styles.card, { backgroundColor }]}>
@@ -48,8 +49,7 @@ export default function HomeScreen() {
                         Current Projects
                     </ThemedText>
                     <ThemedText style={styles.cardText}>
-                        This website is currently the only project I have publicly available
-                        but more will be coming soon.
+                        This site showcases a selection of my work that I’ve deployed publicly so far, with additional projects to be added over time.
                     </ThemedText>
                     <Link href='/projects' style={styles.linkContainer}>
                         <View style={styles.linkContent}>
@@ -96,7 +96,6 @@ const styles = StyleSheet.create({
     divider: {
         width: 60,
         height: 4,
-        backgroundColor: Colors.links,
         borderRadius: 2,
         opacity: 0.8
     },
