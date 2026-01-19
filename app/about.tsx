@@ -4,12 +4,10 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { ThemedScrollView } from '@/components/ThemedScrollView';
 
-import { Colors } from '@/constants/theme';
 import { Spacing } from '@/constants/spacing';
 
 import { useCutoffs } from '@/hooks/useCutoffs';
 import { data } from '@/constants/AboutData';
-import { useColorScheme } from '@/hooks/useColorScheme';
 import { useThemeColor } from '@/hooks/useThemeColor';
 
 const EducationSection = ({ data, isMobile }: { data: any; isMobile: boolean }) => (

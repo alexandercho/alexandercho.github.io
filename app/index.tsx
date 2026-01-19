@@ -6,7 +6,6 @@ import Banner from '@/components/Banner';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import { Colors } from '@/constants/theme';
 import { useThemeColor } from '@/hooks/useThemeColor';
 
 export default function HomeScreen() {
@@ -39,7 +38,7 @@ export default function HomeScreen() {
                             <ThemedText type='link' style={styles.linkText}>
                                 More About Me
                             </ThemedText>
-                            <Feather name='arrow-right' size={18} color={Colors.links} />
+                            <Feather name='arrow-right' size={18} color={tintColor} />
                         </View>
                     </Link>
                 </ThemedView>
@@ -56,7 +55,7 @@ export default function HomeScreen() {
                             <ThemedText type='link' style={styles.linkText}>
                                 See My Projects
                             </ThemedText>
-                            <Feather name='arrow-right' size={18} color={Colors.links} />
+                            <Feather name='arrow-right' size={18} color={tintColor} />
                         </View>
                     </Link>
                 </ThemedView>
@@ -70,7 +69,7 @@ export default function HomeScreen() {
                             <ThemedText type='link' style={styles.ctaLinkText}>
                                 Send a message
                             </ThemedText>
-                            <Feather name='send' size={18} color={Colors.links} />
+                            <Feather name='send' size={18} color={tintColor} />
                         </View>
                     </Link>
                 </ThemedView>
