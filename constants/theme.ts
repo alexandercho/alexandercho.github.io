@@ -17,12 +17,13 @@ export const Colors = {
         icon: '#687076',
         tabIconDefault: '#687076',
         tabIconSelected: '#3B82F6',
-        headerBackground: '#A1CEDC'
+        headerBackground: '#A1CEDC',
+        links: '#0a7ea4'
     },
     dark: {
         primaryText: '#F9FAFB',
         secondaryText: '#9CA3AF',
-        background: '#111827',
+        background: '#121212',
         surface: '#1E293B',
         highlight: '#F87171',
         border: '#E5E7EB',
@@ -30,11 +31,11 @@ export const Colors = {
         icon: '#9BA1A6',
         tabIconDefault: '#9BA1A6',
         tabIconSelected: '#EF4444',
-        headerBackground: '#1D3D47'
+        headerBackground: '#1D3D47',
+        links: '#A40A0A'
     },
-    neutralBackground: '#2a2a2a',
     paletteColor1: '#3b82f6',
-    links: '#0a7ea4',
+    neutralBackground: '#2a2a2a',
     email: '#EA4335',
     Instagram: '#D62976',
     LinkedIn: '#0A66C2',

@@ -2,7 +2,7 @@ import { StyleSheet, Image, View } from 'react-native';
 import { Link } from 'expo-router';
 
 import { ThemedText } from '@/components/ThemedText';
-
+import { ThemedIcon } from '@/components/ThemedIcon';
 import { Spacing } from '@/constants/spacing';
 const images = {
     whiteLogo: require('@/assets/whiteLogo.png'),
@@ -12,6 +12,25 @@ const images = {
 export function NavBar({ isDarkMode }: {
     isDarkMode: boolean;
 }) {
+
+    const linkData = [
+        ['home', 'home'],
+        ['about', 'user'],
+        ['projects', 'briefcase'],
+        ['contact', 'mail']
+    ]
+    const renderLinks = (data: string[][]) => {
+        return data.map((datum: string[]) => {
+            const [key, val] = datum;
+            const href = `/${key === 'home' ? '' : key}`;
+            return <Link key={key} href={href as any}>
+                <ThemedIcon name={val} style={styles.icon} />
+                <ThemedText type='defaultSemiBold'>{key[0].toUpperCase() + key.slice(1)}</ThemedText>
+            </Link>
+        }
+        )
+    }
+
     return (
         <View style={styles.headerTitle}>
             <Link href='/'>
@@ -19,10 +38,7 @@ export function NavBar({ isDarkMode }: {
                     style={styles.logo} />
             </Link>
             <View style={styles.links}>
-                <Link href='/'><ThemedText type='defaultSemiBold'>Home</ThemedText></Link>
-                <Link href='/about'><ThemedText type='defaultSemiBold'>About</ThemedText></Link>
-                <Link href='/projects'><ThemedText type='defaultSemiBold'>Projects</ThemedText></Link>
-                <Link href='/contact'><ThemedText type='defaultSemiBold'>Contact</ThemedText></Link>
+                {renderLinks(linkData)}
             </View>
         </View>
     );
@@ -39,10 +55,13 @@ const styles = StyleSheet.create({
     links: {
         flex: 1,
         flexDirection: 'row',
-        gap: Spacing.lg
+        gap: Spacing.xl
     },
     logo: {
         height: 36,
         width: 72
+    },
+    icon: {
+        marginRight: Spacing.xxs
     }
 });

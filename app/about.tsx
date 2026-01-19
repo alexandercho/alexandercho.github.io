@@ -4,132 +4,35 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { ThemedScrollView } from '@/components/ThemedScrollView';
 
-import { Colors } from '@/constants/theme';
-
-import { useCutoffs } from '@/hooks/useCutoffs';
 import { Spacing } from '@/constants/spacing';
 
-const data = [
-    {
-        header: '🎓 Education',
-        subtitle: 'UC Berkeley, Class of 2019',
-        degree: 'B.S. in Electrical Engineering & Computer Science',
-        certification: 'SCET Certification in Entrepreneurship & Technology',
-        coursework: [
-            {
-                category: 'Computer Science',
-                courses: 'Data Structures, Database Systems, Efficient Algorithms & Intractable Problems, Artificial Intelligence, Machine Learning, Engineering Optimization Models'
-            },
-            {
-                category: 'Electrical Engineering',
-                courses: 'Designing Information Devices & Systems, Signals and Systems'
-            },
-            {
-                category: 'Mathematics',
-                courses: 'Discrete Mathematics & Probability Theory, Multivariable Calculus, Linear Algebra & Differential Equations, Mathematical Statistics in Data Science'
-            },
-            {
-                category: 'Other',
-                courses: 'Principles & Techniques of Data Science, Applied Data Science w/ Venture Applications, Professional Communication'
-            }
-        ],
-        image: 'https://tile.loc.gov/image-services/iiif/service:pnp:highsm:21300:21324/full/pct:25/0/default.jpg'
-    },
-    {
-        header: '💼 Professional Experience',
-        positions: [
-            {
-                title: 'Senior Software Engineer',
-                company: 'Grokker',
-                period: '2024–Present',
-                description: 'Leading development of web, mobile, and TV applications across the full stack to deliver scalable, user-focused products.',
-                highlights: [
-                    'Full-stack development using Node.js, React, and React Native',
-                    'LLM RAG pipelines, integrating large language models into production workflows',
-                    'System monitoring and performance with Prometheus and Grafana',
-                    'Cloud infrastructure with AWS (S3, ECS, EC2)',
-                    'Real-time features via Socket.IO',
-                    'CI/CD automation using GitLab pipelines'
-                ],
-                image: 'https://media.licdn.com/dms/image/v2/D5610AQGaS26_bbJO8A/image-shrink_800/image-shrink_800/0/1728068522630?e=2147483647&v=beta&t=yziG8rrkUHuaqp7cipPGVImVXMNdsReNWlK-sV2pIrc'
-            },
-            {
-                title: 'Software Engineer',
-                company: 'Grokker',
-                period: '2021–2024',
-                description: 'Contributed to the development of web, mobile, and TV applications, working across the full stack to deliver scalable, user-focused products.',
-                highlights: [
-                    'Full-stack development using Node.js, React, and React Native',
-                    'LLM RAG pipelines, integrating large language models into production workflows',
-                    'System monitoring and performance with Prometheus and Grafana',
-                    'Cloud infrastructure with AWS (S3, ECS, EC2)',
-                    'Real-time features via Socket.IO',
-                    'CI/CD automation using GitLab pipelines'
-                ],
-                image: 'https://cms.grokimg.net/About+Page/New%2BYT%2BBannerfinalv2.jpg'
-            },
-            {
-                title: 'Software Engineering Contractor',
-                company: 'Microsoft',
-                period: '2020 – 2021',
-                description: 'Developed internal software for Microsoft clients, working with Java, Azure, SQL Server, and KQL. Maintained internal emailing software using C#.',
-                highlights: [],
-                image: 'https://cdn.pixabay.com/photo/2019/11/07/07/48/microsoft-4608125_1280.jpg'
-            }
-        ]
-    },
-    {
-        header: '🧠 Technical Toolkit',
-        categories: [
-            {
-                title: 'Languages & Frameworks',
-                items: 'JavaScript, TypeScript, Python, Node.js, React, React Native, Expo'
-            },
-            {
-                title: 'Databases',
-                items: 'MongoDB'
-            },
-            {
-                title: 'DevOps & Cloud',
-                items: 'AWS (S3, ECS, EC2), GitLab CI/CD, Prometheus, Grafana'
-            },
-            {
-                title: 'Other Interests',
-                items: 'Pandas, data analysis, AI integration'
-            }
-        ],
-        image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80'
-    },
-    {
-        header: '🍳 Personal Interests',
-        text: 'When I\'m not coding, you\'ll probably find me in the kitchen. Cooking is my favorite creative outlet — a balance of precision and experimentation that mirrors how I approach engineering. You can take a look at what I\'m cooking up on my Instagram.\n\nI also enjoy exploring new tools in Python, building small side projects, and learning about emerging tech in AI and developer productivity.',
-        image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&q=80'
-    }
-];
+import { useCutoffs } from '@/hooks/useCutoffs';
+import { data } from '@/constants/AboutData';
+import { useThemeColor } from '@/hooks/useThemeColor';
 
 const EducationSection = ({ data, isMobile }: { data: any; isMobile: boolean }) => (
-    <ThemedView style={styles.sectionContent}>
+    <ThemedView style={[styles.sectionContent, isMobile && styles.sectionContentMobile]}>
         <ThemedView style={[styles.textContainer, isMobile && styles.fullWidth]}>
-            <ThemedText type='subtitle' style={styles.positionTitle}>
+            <ThemedText type="subtitle" style={styles.positionTitle}>
                 {data.subtitle}
             </ThemedText>
-            <ThemedText type='default' style={styles.degree}>
+            <ThemedText type="default" style={styles.degree}>
                 {data.degree}
             </ThemedText>
-            <ThemedText type='default' style={[styles.certification, { marginBottom: Spacing.sm }]}>
+            <ThemedText type="default" style={[styles.certification, { marginBottom: Spacing.sm }]}>
                 {data.certification}
             </ThemedText>
 
-            <ThemedText type='defaultSemiBold' style={styles.courseworkHeader}>
+            <ThemedText type="defaultSemiBold" style={styles.courseworkHeader}>
                 RELEVANT COURSEWORK
             </ThemedText>
 
             {data.coursework.map((item: any, idx: number) => (
                 <ThemedView key={idx} style={styles.courseworkItem}>
-                    <ThemedText type='defaultSemiBold' style={styles.courseworkCategory}>
+                    <ThemedText type="defaultSemiBold" style={styles.courseworkCategory}>
                         {item.category}
                     </ThemedText>
-                    <ThemedText type='default' style={styles.courseworkText}>
+                    <ThemedText type="default" style={styles.courseworkText}>
                         {item.courses}
                     </ThemedText>
                 </ThemedView>
@@ -138,30 +41,31 @@ const EducationSection = ({ data, isMobile }: { data: any; isMobile: boolean }) 
 
         {data.image && (
             <ThemedView style={[styles.imageContainer, isMobile && styles.imageContainerMobile]}>
-                <Image
-                    source={{ uri: data.image }}
-                    style={styles.sectionImage}
-                    resizeMode='cover'
-                />
+                <Image source={{ uri: data.image }} style={styles.sectionImage} resizeMode="cover" />
             </ThemedView>
         )}
     </ThemedView>
 );
 
 const ExperienceSection = ({ data, isMobile }: { data: any; isMobile: boolean }) => (
-    <ThemedView style={styles.sectionContent}>
+    <ThemedView style={[styles.sectionContent, isMobile && styles.sectionContentMobile]}>
         <ThemedView style={[styles.textContainer, isMobile && styles.fullWidth]}>
             {data.positions.map((position: any, idx: number) => (
-                <ThemedView key={idx} style={[styles.positionBlock, idx > 0 && styles.positionBlockSpacing]}>
-                    <ThemedView style={isMobile ? {} : styles.positionRow}>
-                        <ThemedView style={isMobile ? {} : styles.positionContent}>
-                            <ThemedText type='defaultSemiBold' style={styles.positionTitle}>
+                <ThemedView
+                    key={idx}
+                    style={[idx > 0 && styles.positionBlockSpacing]}
+                >
+                    <ThemedView
+                        style={[styles.positionRow, isMobile && styles.positionRowMobile]}
+                    >
+                        <ThemedView style={styles.positionContent}>
+                            <ThemedText type="defaultSemiBold" style={styles.positionTitle}>
                                 {position.title} – {position.company}
                             </ThemedText>
-                            <ThemedText type='default' style={styles.period}>
+                            <ThemedText type="default" style={styles.period}>
                                 {position.period}
                             </ThemedText>
-                            <ThemedText type='default' style={styles.description}>
+                            <ThemedText type="default" style={styles.description}>
                                 {position.description}
                             </ThemedText>
 
@@ -169,8 +73,10 @@ const ExperienceSection = ({ data, isMobile }: { data: any; isMobile: boolean })
                                 <ThemedView style={styles.highlightsContainer}>
                                     {position.highlights.map((highlight: string, hIdx: number) => (
                                         <ThemedView key={hIdx} style={styles.highlightItem}>
-                                            <ThemedText type='default' style={styles.bullet}>•</ThemedText>
-                                            <ThemedText type='default' style={styles.highlightText}>
+                                            <ThemedText type="default" style={styles.bullet}>
+                                                •
+                                            </ThemedText>
+                                            <ThemedText type="default" style={styles.highlightText}>
                                                 {highlight}
                                             </ThemedText>
                                         </ThemedView>
@@ -180,11 +86,16 @@ const ExperienceSection = ({ data, isMobile }: { data: any; isMobile: boolean })
                         </ThemedView>
 
                         {position.image && (
-                            <ThemedView style={[styles.positionImageContainer, isMobile && styles.imageContainerMobile]}>
+                            <ThemedView
+                                style={[
+                                    styles.positionImageContainer,
+                                    isMobile && styles.imageContainerMobile
+                                ]}
+                            >
                                 <Image
                                     source={{ uri: position.image }}
                                     style={styles.positionImage}
-                                    resizeMode='cover'
+                                    resizeMode="cover"
                                 />
                             </ThemedView>
                         )}
@@ -196,14 +107,14 @@ const ExperienceSection = ({ data, isMobile }: { data: any; isMobile: boolean })
 );
 
 const TechSection = ({ data, isMobile }: { data: any; isMobile: boolean }) => (
-    <ThemedView style={styles.sectionContent}>
+    <ThemedView style={[styles.sectionContent, isMobile && styles.sectionContentMobile]}>
         <ThemedView style={[styles.textContainer, isMobile && styles.fullWidth]}>
             {data.categories.map((category: any, idx: number) => (
                 <ThemedView key={idx} style={styles.techItem}>
-                    <ThemedText type='defaultSemiBold' style={styles.techTitle}>
+                    <ThemedText type="defaultSemiBold" style={styles.techTitle}>
                         {category.title}
                     </ThemedText>
-                    <ThemedText type='default' style={styles.techText}>
+                    <ThemedText type="default" style={styles.techText}>
                         {category.items}
                     </ThemedText>
                 </ThemedView>
@@ -212,31 +123,23 @@ const TechSection = ({ data, isMobile }: { data: any; isMobile: boolean }) => (
 
         {data.image && (
             <ThemedView style={[styles.imageContainer, isMobile && styles.imageContainerMobile]}>
-                <Image
-                    source={{ uri: data.image }}
-                    style={styles.sectionImage}
-                    resizeMode='cover'
-                />
+                <Image source={{ uri: data.image }} style={styles.sectionImage} resizeMode="cover" />
             </ThemedView>
         )}
     </ThemedView>
 );
 
 const PersonalSection = ({ data, isMobile }: { data: any; isMobile: boolean }) => (
-    <ThemedView style={styles.sectionContent}>
+    <ThemedView style={[styles.sectionContent, isMobile && styles.sectionContentMobile]}>
         <ThemedView style={[styles.textContainer, isMobile && styles.fullWidth]}>
-            <ThemedText type='default' style={styles.sectionText}>
+            <ThemedText type="default" style={styles.sectionText}>
                 {data.text}
             </ThemedText>
         </ThemedView>
 
         {data.image && (
             <ThemedView style={[styles.imageContainer, isMobile && styles.imageContainerMobile]}>
-                <Image
-                    source={{ uri: data.image }}
-                    style={styles.sectionImage}
-                    resizeMode='cover'
-                />
+                <Image source={{ uri: data.image }} style={styles.sectionImage} resizeMode="cover" />
             </ThemedView>
         )}
     </ThemedView>
@@ -244,6 +147,7 @@ const PersonalSection = ({ data, isMobile }: { data: any; isMobile: boolean }) =
 
 export default function About() {
     const { isMobile } = useCutoffs();
+    const tintColor = useThemeColor({}, 'tint');
 
     const renderSection = (sectionData: typeof data[number], index: number) => {
         let content;
@@ -259,9 +163,9 @@ export default function About() {
         }
 
         return (
-            <ThemedView key={index} style={styles.section}>
+            <ThemedView key={index} style={[styles.section, { borderLeftColor: tintColor }]}>
                 <ThemedView style={styles.sectionHeader}>
-                    <ThemedText type='subtitle'>{sectionData.header}</ThemedText>
+                    <ThemedText type="title">{sectionData.header}</ThemedText>
                 </ThemedView>
                 {content}
             </ThemedView>
@@ -272,10 +176,10 @@ export default function About() {
         <ThemedScrollView style={styles.scrollContainer}>
             <ThemedView style={styles.container}>
                 <ThemedView style={styles.hero}>
-                    <ThemedText type='title' style={styles.mainTitle}>
+                    <ThemedText type="title" style={styles.mainTitle}>
                         About Me
                     </ThemedText>
-                    <ThemedText type='default' style={styles.subtitle}>
+                    <ThemedText type="default" style={styles.subtitle}>
                         Full-stack engineer passionate about building elegant, scalable solutions
                     </ThemedText>
                 </ThemedView>
@@ -285,7 +189,7 @@ export default function About() {
                 </ThemedView>
 
                 <ThemedView style={styles.footer}>
-                    <ThemedText type='default' style={styles.footerText}>
+                    <ThemedText type="default" style={styles.footerText}>
                         {'📫 Let\'s connect and build something great together'}
                     </ThemedText>
                 </ThemedView>
@@ -295,12 +199,8 @@ export default function About() {
 }
 
 const styles = StyleSheet.create({
-    scrollContainer: {
-        flex: 1
-    },
-    container: {
-        flex: 1
-    },
+    scrollContainer: { flex: 1 },
+    container: { flex: 1 },
     hero: {
         paddingVertical: Spacing.xl,
         paddingHorizontal: Spacing.md,
@@ -329,16 +229,17 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
         shadowRadius: 4,
-        elevation: 2,
-        borderLeftColor: Colors.paletteColor1
+        elevation: 2
     },
     sectionHeader: {
-        marginBottom: Spacing.md - Spacing.xxxs
+        marginBottom: Spacing.md
     },
     sectionContent: {
         flexDirection: 'row',
-        gap: Spacing.md,
         alignItems: 'flex-start'
+    },
+    sectionContentMobile: {
+        flexDirection: 'column'
     },
     textContainer: {
         flex: 1
@@ -348,11 +249,13 @@ const styles = StyleSheet.create({
     },
     imageContainer: {
         width: 280,
-        flexShrink: 0
+        flexShrink: 0,
+        marginLeft: Spacing.md
     },
     imageContainerMobile: {
         width: '100%',
-        marginTop: Spacing.md - Spacing.xxxs
+        marginLeft: Spacing.none,
+        marginTop: Spacing.md
     },
     sectionImage: {
         width: '100%',
@@ -382,33 +285,32 @@ const styles = StyleSheet.create({
         marginBottom: Spacing.xs
     },
     courseworkCategory: {
-        marginBottom: Spacing.xxxs,
-        opacity: 0.95
+        marginBottom: Spacing.xxxs
     },
     courseworkText: {
         opacity: 0.8,
         lineHeight: 20
     },
-    positionBlock: {
-        marginBottom: Spacing.none
-    },
     positionBlockSpacing: {
         marginTop: Spacing.md,
         paddingTop: Spacing.md,
         borderTopWidth: 1,
-        borderTopColor: 'rgba(128, 128, 128, 0.2)'
+        borderTopColor: 'rgba(128,128,128,0.2)'
     },
     positionRow: {
         flexDirection: 'row',
-        gap: Spacing.md,
         alignItems: 'flex-start'
+    },
+    positionRowMobile: {
+        flexDirection: 'column'
     },
     positionContent: {
         flex: 1
     },
     positionImageContainer: {
         width: 240,
-        flexShrink: 0
+        flexShrink: 0,
+        marginLeft: Spacing.md
     },
     positionImage: {
         width: '100%',
@@ -416,8 +318,7 @@ const styles = StyleSheet.create({
         borderRadius: Spacing.xxs
     },
     positionTitle: {
-        marginBottom: Spacing.xxxs,
-        opacity: 0.95
+        marginBottom: Spacing.xxxs
     },
     period: {
         opacity: 0.7,
@@ -435,13 +336,12 @@ const styles = StyleSheet.create({
     },
     highlightItem: {
         flexDirection: 'row',
-        marginBottom: 6,
-        alignItems: 'flex-start'
+        marginBottom: Spacing.xxxs
     },
     bullet: {
+        width: Spacing.xs,
         marginRight: Spacing.xxs,
-        opacity: 0.7,
-        width: 12
+        opacity: 0.7
     },
     highlightText: {
         flex: 1,
@@ -452,8 +352,7 @@ const styles = StyleSheet.create({
         marginBottom: Spacing.sm
     },
     techTitle: {
-        marginBottom: Spacing.xxxs,
-        opacity: 0.95
+        marginBottom: Spacing.xxxs
     },
     techText: {
         opacity: 0.8,
