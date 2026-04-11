@@ -71,20 +71,32 @@ export const data = [
         header: 'Technical Toolkit',
         categories: [
             {
-                title: 'Languages & Frameworks',
-                items: 'JavaScript, TypeScript, Python, Node.js, React, React Native, Expo'
+                title: 'Languages',
+                items: 'TypeScript, JavaScript, Python, Java'
+            },
+            {
+                title: 'Frontend',
+                items: 'React, React Native, Expo, Socket.io'
+            },
+            {
+                title: 'Backend',
+                items: 'Node.js, REST APIs, Elasticsearch'
             },
             {
                 title: 'Databases',
-                items: 'MongoDB, SQL'
+                items: 'MongoDB, Redis, AWS RDS'
             },
             {
-                title: 'DevOps & Cloud',
-                items: 'AWS (S3, ECS, EC2), GitLab CI/CD, Prometheus, Grafana'
+                title: 'Cloud / Infra',
+                items: 'AWS (ECS, EC2, S3, Lambda, Bedrock, Terraform), Docker, GitLab CI/CD, GitHub Actions'
             },
             {
-                title: 'Other Interests',
-                items: 'Pandas, data analysis, AI integration'
+                title: 'Observability',
+                items: 'Prometheus, Grafana, Kibana'
+            },
+            {
+                title: 'AI / ML',
+                items: 'OpenAI API, Langfuse, AWS Bedrock'
             }
         ],
         image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80'
