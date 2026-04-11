@@ -413,14 +413,5 @@ const styles = StyleSheet.create({
     },
     resumeLinkText: {
         fontWeight: '600'
-    },
-    footer: {
-        paddingVertical: Spacing.xl,
-        paddingHorizontal: Spacing.md,
-        alignItems: 'center'
-    },
-    footerText: {
-        opacity: 0.7,
-        textAlign: 'center'
     }
 });
