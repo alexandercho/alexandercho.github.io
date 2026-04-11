@@ -1,4 +1,6 @@
 import { StyleSheet, Image } from 'react-native';
+import { Link, type Href } from 'expo-router';
+import { Asset } from 'expo-asset';
 
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
@@ -9,6 +11,17 @@ import { Spacing } from '@/constants/spacing';
 import { useCutoffs } from '@/hooks/useCutoffs';
 import { data } from '@/constants/AboutData';
 import { useThemeColor } from '@/hooks/useThemeColor';
+
+const normalizeAssetHref = (uri: string) => (
+    uri.startsWith('/') || uri.includes('://')
+        ? uri
+        : `/${uri.replace(/^\.\//, '')}`
+);
+
+// Resolve through Expo's asset pipeline so the PDF stays available after web export.
+const resumeHref = normalizeAssetHref(
+    Asset.fromModule(require('@/assets/alexander_cho_resume.pdf')).uri
+);
 
 const EducationSection = ({ data, isMobile }: { data: any; isMobile: boolean }) => (
     <ThemedView style={[styles.sectionContent, isMobile && styles.sectionContentMobile]}>
@@ -145,6 +158,33 @@ const PersonalSection = ({ data, isMobile }: { data: any; isMobile: boolean }) =
     </ThemedView>
 );
 
+const ResumeSection = ({
+    isMobile,
+    tintColor
+}: {
+    isMobile: boolean;
+    tintColor: string;
+}) => (
+    <ThemedView style={[styles.sectionContent, isMobile && styles.sectionContentMobile]}>
+        <ThemedView style={[styles.textContainer, isMobile && styles.fullWidth]}>
+            <ThemedText type="default" style={styles.resumeText}>
+                Download a PDF copy of my resume for a fuller look at my experience, projects, and technical background.
+            </ThemedText>
+
+            <Link
+                href={resumeHref as Href}
+                target="_blank"
+                download="alexander_cho_resume.pdf"
+                style={[styles.resumeLink, { borderColor: tintColor }]}
+            >
+                <ThemedText type="link" style={styles.resumeLinkText}>
+                    Download Resume PDF
+                </ThemedText>
+            </Link>
+        </ThemedView>
+    </ThemedView>
+);
+
 export default function About() {
     const { isMobile } = useCutoffs();
     const tintColor = useThemeColor({}, 'tint');
@@ -186,12 +226,13 @@ export default function About() {
 
                 <ThemedView style={[styles.content, { maxWidth: isMobile ? '100%' : 1100 }]}>
                     {data.map(renderSection)}
-                </ThemedView>
 
-                <ThemedView style={styles.footer}>
-                    <ThemedText type="default" style={styles.footerText}>
-                        {'📫 Let\'s connect and build something great together'}
-                    </ThemedText>
+                    <ThemedView style={[styles.section, { borderLeftColor: tintColor }]}>
+                        <ThemedView style={styles.sectionHeader}>
+                            <ThemedText type="title">Resume</ThemedText>
+                        </ThemedView>
+                        <ResumeSection isMobile={isMobile} tintColor={tintColor} />
+                    </ThemedView>
                 </ThemedView>
             </ThemedView>
         </ThemedScrollView>
@@ -357,6 +398,21 @@ const styles = StyleSheet.create({
     techText: {
         opacity: 0.8,
         lineHeight: 20
+    },
+    resumeText: {
+        opacity: 0.85,
+        lineHeight: 22
+    },
+    resumeLink: {
+        marginTop: Spacing.sm,
+        alignSelf: 'flex-start',
+        paddingHorizontal: Spacing.sm,
+        paddingVertical: Spacing.xxs,
+        borderRadius: Spacing.xs,
+        borderWidth: 1
+    },
+    resumeLinkText: {
+        fontWeight: '600'
     },
     footer: {
         paddingVertical: Spacing.xl,
