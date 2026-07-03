@@ -8,7 +8,7 @@ Simply visit [alexandercho.github.io](alexandercho.github.io) to visit the most 
 
 ## Running the page on a simulator
 
-This project run on Node >=22.21.0. 
+This project run on Node >=26.4.0. 
 
 ## Try out this site as a mobile app
 
