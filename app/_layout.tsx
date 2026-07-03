@@ -15,17 +15,23 @@ import { useCutoffs } from '@/hooks/useCutoffs';
 
 import { ScrollProvider, useScroll } from '@/contexts/ScrollContext';
 
+type AppColorScheme = 'light' | 'dark';
+
 type DarkModeSwitchProps = {
     isDarkMode: boolean;
     setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
+const getAppColorScheme = (colorScheme: ReturnType<typeof useColorScheme>): AppColorScheme =>
+    colorScheme === 'dark' ? 'dark' : 'light';
+
 function DrawerStack({ isDarkMode, setIsDarkMode }: DarkModeSwitchProps) {
     const { Screen } = Drawer;
     const colorScheme = useColorScheme();
+    const appColorScheme = getAppColorScheme(colorScheme);
 
     return <Drawer screenOptions={{
-        drawerActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        drawerActiveTintColor: Colors[appColorScheme].tint,
         headerTitle: () => <Link href='/'><Image source={require('@/assets/tabIcon.png')} style={styles.logo} /></Link>,
         headerTitleAlign: 'center',
         headerRight: () => <DarkModeSwitch isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
