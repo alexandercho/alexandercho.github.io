@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, Image, View, useWindowDimensions, Animated } from 'react-native';
 import { Stack, Link, usePathname } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
@@ -82,27 +82,17 @@ function HomeStack({ isDarkMode, setIsDarkMode }: DarkModeSwitchProps) {
 
 export default function Layout() {
     const { isMobile } = useCutoffs();
-    const [ready, setReady] = useState(false);
     const colorScheme = useColorScheme();
-    const [isDarkMode, setIsDarkMode] = useState(colorScheme === 'dark');
-    const fadeAnim = useRef(new Animated.Value(0)).current;
+    const [isDarkMode, setIsDarkMode] = useState(() => colorScheme === 'dark');
+    const [fadeAnim] = useState(() => new Animated.Value(0));
 
     useEffect(() => {
-        if (colorScheme) {
-            setReady(true);
-        }
-        setIsDarkMode(colorScheme === 'dark')
-    }, [colorScheme]);
-
-    useEffect(() => {
-        if (ready) {
-            Animated.timing(fadeAnim, {
-                toValue: 1,
-                duration: 800,
-                useNativeDriver: true
-            }).start();
-        }
-    }, [ready, fadeAnim]);
+        Animated.timing(fadeAnim, {
+            toValue: 1,
+            duration: 800,
+            useNativeDriver: true
+        }).start();
+    }, [fadeAnim]);
 
     return <View style={styles.container}>
         <ThemeProvider value={isDarkMode ? DarkTheme : DefaultTheme}>
