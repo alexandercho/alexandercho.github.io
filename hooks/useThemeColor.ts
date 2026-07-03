@@ -1,5 +1,5 @@
 import { Colors } from '@/constants/theme';
-import { useTheme } from '@react-navigation/native';
+import { useTheme } from 'expo-router/react-navigation';
 
 export function useThemeColor(
     props: { light?: string; dark?: string },

@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { StyleSheet, Image, View, useWindowDimensions, Animated } from 'react-native';
 import { Stack, Link, usePathname } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { DarkTheme, DefaultTheme, ThemeProvider } from 'expo-router/react-navigation';
 import { StatusBar } from 'expo-status-bar';
 
 import { Colors } from '@/constants/theme';
