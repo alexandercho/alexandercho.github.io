@@ -1,8 +1,8 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, Image, View, useWindowDimensions, Animated } from 'react-native';
 import { Stack, Link, usePathname } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { DarkTheme, DefaultTheme, ThemeProvider } from 'expo-router/react-navigation';
 import { StatusBar } from 'expo-status-bar';
 
 import { Colors } from '@/constants/theme';
@@ -15,17 +15,23 @@ import { useCutoffs } from '@/hooks/useCutoffs';
 
 import { ScrollProvider, useScroll } from '@/contexts/ScrollContext';
 
+type AppColorScheme = 'light' | 'dark';
+
 type DarkModeSwitchProps = {
     isDarkMode: boolean;
     setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
+const getAppColorScheme = (colorScheme: ReturnType<typeof useColorScheme>): AppColorScheme =>
+    colorScheme === 'dark' ? 'dark' : 'light';
+
 function DrawerStack({ isDarkMode, setIsDarkMode }: DarkModeSwitchProps) {
     const { Screen } = Drawer;
     const colorScheme = useColorScheme();
+    const appColorScheme = getAppColorScheme(colorScheme);
 
     return <Drawer screenOptions={{
-        drawerActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        drawerActiveTintColor: Colors[appColorScheme].tint,
         headerTitle: () => <Link href='/'><Image source={require('@/assets/tabIcon.png')} style={styles.logo} /></Link>,
         headerTitleAlign: 'center',
         headerRight: () => <DarkModeSwitch isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
@@ -76,27 +82,17 @@ function HomeStack({ isDarkMode, setIsDarkMode }: DarkModeSwitchProps) {
 
 export default function Layout() {
     const { isMobile } = useCutoffs();
-    const [ready, setReady] = useState(false);
     const colorScheme = useColorScheme();
-    const [isDarkMode, setIsDarkMode] = useState(colorScheme === 'dark');
-    const fadeAnim = useRef(new Animated.Value(0)).current;
+    const [isDarkMode, setIsDarkMode] = useState(() => colorScheme === 'dark');
+    const [fadeAnim] = useState(() => new Animated.Value(0));
 
     useEffect(() => {
-        if (colorScheme) {
-            setReady(true);
-        }
-        setIsDarkMode(colorScheme === 'dark')
-    }, [colorScheme]);
-
-    useEffect(() => {
-        if (ready) {
-            Animated.timing(fadeAnim, {
-                toValue: 1,
-                duration: 800,
-                useNativeDriver: true
-            }).start();
-        }
-    }, [ready, fadeAnim]);
+        Animated.timing(fadeAnim, {
+            toValue: 1,
+            duration: 800,
+            useNativeDriver: true
+        }).start();
+    }, [fadeAnim]);
 
     return <View style={styles.container}>
         <ThemeProvider value={isDarkMode ? DarkTheme : DefaultTheme}>

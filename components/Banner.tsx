@@ -1,6 +1,6 @@
 import { useWindowDimensions, StyleSheet, View } from 'react-native';
 import { ImageBackground } from 'expo-image';
-import { useTheme } from '@react-navigation/native';
+import { useTheme } from 'expo-router/react-navigation';
 
 import ReflectedText from '@/components/ReflectedText';
 
