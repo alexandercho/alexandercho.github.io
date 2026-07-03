@@ -17,7 +17,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22.21.0
+          node-version: 26.4.0
           cache: 'yarn'  # Cache yarn dependencies for faster runs
 
       - name: Install dependencies
@@ -39,7 +39,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22.21.0
+          node-version: 26.4.0
           cache: 'yarn'
 
       - name: Install dependencies
