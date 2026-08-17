@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Animated, StyleSheet, View } from 'react-native';
-import { Stack } from 'expo-router';
+import { Stack, usePathname } from 'expo-router';
+import Head from 'expo-router/head';
 import { DarkTheme, DefaultTheme, ThemeProvider } from 'expo-router/react-navigation';
 import { StatusBar } from 'expo-status-bar';
 
@@ -9,8 +10,33 @@ import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { useCutoffs } from '@/hooks/useCutoffs';
 
+function getPageTitle(pathname: string) {
+    if (pathname === '/') {
+        return 'Alex Cho';
+    }
+
+    if (pathname.startsWith('/about')) {
+        return 'About';
+    }
+
+    if (pathname.startsWith('/projects')) {
+        return 'Projects';
+    }
+
+    if (pathname.startsWith('/blog')) {
+        return 'Blog';
+    }
+
+    if (pathname.startsWith('/contact')) {
+        return 'Contact';
+    }
+
+    return 'Alex Cho';
+}
+
 export default function Layout() {
     const { isMobile } = useCutoffs();
+    const pathname = usePathname();
     const colorScheme = useColorScheme();
     const [isDarkMode, setIsDarkMode] = useState(() => colorScheme === 'dark');
     const [fadeAnim] = useState(() => new Animated.Value(0));
@@ -24,32 +50,37 @@ export default function Layout() {
     }, [fadeAnim]);
 
     return (
-        <View style={styles.container}>
-            <ThemeProvider value={isDarkMode ? DarkTheme : DefaultTheme}>
-                <Animated.View style={[styles.container, { opacity: fadeAnim }]}>
-                    <StatusBar style={isDarkMode ? 'light' : 'dark'} />
-                    <Stack screenOptions={{ headerShown: false }}>
-                        <Stack.Screen name='index' options={{ title: 'Alex Cho' }} />
-                        <Stack.Screen name='about' options={{ title: 'About' }} />
-                        <Stack.Screen name='projects' options={{ title: 'Projects' }} />
-                        <Stack.Screen name='blog/index' options={{ title: 'Blog' }} />
-                        <Stack.Screen name='blog/[slug]' options={{ title: 'Blog' }} />
-                        <Stack.Screen name='contact' options={{ title: 'Contact' }} />
-                    </Stack>
-                    <View
-                        style={[
-                            styles.navLayer,
-                            isMobile ? styles.mobileNavLayer : styles.webNavLayer
-                        ]}
-                    >
-                        <NavBar
-                            isDarkMode={isDarkMode}
-                            setIsDarkMode={setIsDarkMode}
-                        />
-                    </View>
-                </Animated.View>
-            </ThemeProvider>
-        </View>
+        <>
+            <Head>
+                <title>{getPageTitle(pathname)}</title>
+            </Head>
+            <View style={styles.container}>
+                <ThemeProvider value={isDarkMode ? DarkTheme : DefaultTheme}>
+                    <Animated.View style={[styles.container, { opacity: fadeAnim }]}>
+                        <StatusBar style={isDarkMode ? 'light' : 'dark'} />
+                        <Stack screenOptions={{ headerShown: false }}>
+                            <Stack.Screen name='index' options={{ title: 'Alex Cho' }} />
+                            <Stack.Screen name='about' options={{ title: 'About' }} />
+                            <Stack.Screen name='projects' options={{ title: 'Projects' }} />
+                            <Stack.Screen name='blog/index' options={{ title: 'Blog' }} />
+                            <Stack.Screen name='blog/[slug]' options={{ title: 'Blog' }} />
+                            <Stack.Screen name='contact' options={{ title: 'Contact' }} />
+                        </Stack>
+                        <View
+                            style={[
+                                styles.navLayer,
+                                isMobile ? styles.mobileNavLayer : styles.webNavLayer
+                            ]}
+                        >
+                            <NavBar
+                                isDarkMode={isDarkMode}
+                                setIsDarkMode={setIsDarkMode}
+                            />
+                        </View>
+                    </Animated.View>
+                </ThemeProvider>
+            </View>
+        </>
     );
 }
 
