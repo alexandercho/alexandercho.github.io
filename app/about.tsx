@@ -116,19 +116,28 @@ export default function About() {
                 </AnimatedEntrance>
 
                 <View style={[styles.grid, compact && styles.compactGrid]}>
-                    <AnimatedEntrance delay={80} style={styles.educationSlot}>
+                    <AnimatedEntrance
+                        delay={80}
+                        style={[styles.educationSlot, compact && styles.compactSlot]}
+                    >
                         <EducationCard section={education} />
                     </AnimatedEntrance>
-                    <AnimatedEntrance delay={140} style={styles.experienceSlot}>
+                    <AnimatedEntrance
+                        delay={140}
+                        style={[styles.experienceSlot, compact && styles.compactSlot]}
+                    >
                         <ExperienceCard section={experience} />
                     </AnimatedEntrance>
                 </View>
 
                 <View style={[styles.grid, compact && styles.compactGrid]}>
-                    <AnimatedEntrance delay={200} style={styles.toolkitSlot}>
+                    <AnimatedEntrance
+                        delay={200}
+                        style={[styles.toolkitSlot, compact && styles.compactSlot]}
+                    >
                         <ToolkitCard section={toolkit} />
                     </AnimatedEntrance>
-                    <View style={styles.sideColumn}>
+                    <View style={[styles.sideColumn, compact && styles.compactSlot]}>
                         <AnimatedEntrance delay={260}>
                             <BentoCard>
                                 <Image source={{ uri: personal.image }} style={styles.personalImage} />
@@ -193,7 +202,15 @@ const styles = StyleSheet.create({
         gap: Spacing.md
     },
     compactGrid: {
-        flexDirection: 'column'
+        width: '100%',
+        flexDirection: 'column',
+        alignItems: 'stretch'
+    },
+    compactSlot: {
+        width: '100%',
+        flexGrow: 0,
+        flexShrink: 0,
+        flexBasis: 'auto'
     },
     educationSlot: {
         flex: 0.85,

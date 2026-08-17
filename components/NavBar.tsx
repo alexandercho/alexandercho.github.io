@@ -130,12 +130,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: Spacing.xs,
         gap: Spacing.xxs
     },
-    logoButton: {
-        width: 84,
-        height: 44,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
     logo: {
         width: 68,
         height: 34

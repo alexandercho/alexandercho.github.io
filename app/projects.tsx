@@ -126,7 +126,11 @@ export default function Projects() {
                         <AnimatedEntrance
                             key={repo.htmlUrl}
                             delay={Math.min(index * 45, 360)}
-                            style={[styles.cardSlot, index % 5 === 0 && !compact && styles.wideSlot]}
+                            style={[
+                                styles.cardSlot,
+                                compact && styles.compactCardSlot,
+                                index % 5 === 0 && !compact && styles.wideSlot
+                            ]}
                         >
                             <BentoCard style={styles.projectCard}>
                                 <View style={styles.cardHeader}>
@@ -212,12 +216,19 @@ const styles = StyleSheet.create({
         gap: Spacing.md
     },
     compactGrid: {
-        flexDirection: 'column'
+        width: '100%',
+        flexDirection: 'column',
+        alignItems: 'stretch'
     },
     cardSlot: {
         width: '31%',
         flexGrow: 1,
         minWidth: 290
+    },
+    compactCardSlot: {
+        width: '100%',
+        minWidth: 0,
+        flexGrow: 0
     },
     wideSlot: {
         width: '48%'

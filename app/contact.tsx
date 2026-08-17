@@ -46,7 +46,7 @@ export default function Contact() {
                         <AnimatedEntrance
                             key={link.name}
                             delay={80 + index * 70}
-                            style={styles.cardSlot}
+                            style={[styles.cardSlot, isMobile && styles.mobileCardSlot]}
                         >
                             <HoverPressable
                                 accessibilityRole='link'
@@ -101,12 +101,19 @@ const styles = StyleSheet.create({
         gap: Spacing.md
     },
     mobileGrid: {
-        flexDirection: 'column'
+        width: '100%',
+        flexDirection: 'column',
+        alignItems: 'stretch'
     },
     cardSlot: {
         width: '48%',
         flexGrow: 1,
         minWidth: 280
+    },
+    mobileCardSlot: {
+        width: '100%',
+        minWidth: 0,
+        flexGrow: 0
     },
     contactCard: {
         minHeight: 210

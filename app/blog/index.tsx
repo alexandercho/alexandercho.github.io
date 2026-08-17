@@ -159,7 +159,7 @@ export default function BlogIndex() {
                         <AnimatedEntrance
                             key={post.slug}
                             delay={80 + index * 70}
-                            style={styles.cardSlot}
+                            style={[styles.cardSlot, isMobile && styles.mobileCardSlot]}
                         >
                             <HoverPressable
                                 accessibilityRole='link'
@@ -291,12 +291,19 @@ const styles = StyleSheet.create({
         gap: Spacing.md
     },
     mobileGrid: {
-        flexDirection: 'column'
+        width: '100%',
+        flexDirection: 'column',
+        alignItems: 'stretch'
     },
     cardSlot: {
         width: '31%',
         minWidth: 290,
         flexGrow: 1
+    },
+    mobileCardSlot: {
+        width: '100%',
+        minWidth: 0,
+        flexGrow: 0
     },
     clickableCard: {
         borderRadius: 18

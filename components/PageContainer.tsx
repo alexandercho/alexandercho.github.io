@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
         paddingTop: 108
     },
     mobile: {
+        alignSelf: 'stretch',
         padding: Spacing.sm,
         paddingTop: Spacing.md,
         paddingBottom: 116,
