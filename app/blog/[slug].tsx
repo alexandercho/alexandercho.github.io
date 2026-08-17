@@ -10,6 +10,7 @@ import { MarkdownArticle } from '@/components/MarkdownArticle';
 import { PageContainer } from '@/components/PageContainer';
 import { ThemedText } from '@/components/StandardComponents/ThemedText';
 import { Spacing } from '@/constants/spacing';
+import { useCutoffs } from '@/hooks/useCutoffs';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import {
     BLOG_POST_SLUGS,
@@ -24,6 +25,7 @@ export function generateStaticParams() {
 export default function BlogArticle() {
     const { slug } = useLocalSearchParams<{ slug: string }>();
     const router = useRouter();
+    const { isMobile } = useCutoffs();
     const tintColor = useThemeColor({}, 'tint');
     const [post, setPost] = useState<BlogPost | null>();
 
@@ -84,12 +86,23 @@ export default function BlogArticle() {
                                 {post.readingMinutes} min read
                             </ThemedText>
                         </View>
-                        <ThemedText type='title' style={styles.title}>{post.title}</ThemedText>
+                        <ThemedText
+                            selectable
+                            type='title'
+                            style={[styles.title, isMobile && styles.mobileTitle]}
+                        >
+                            {post.title}
+                        </ThemedText>
                     </View>
                 </AnimatedEntrance>
 
                 <AnimatedEntrance delay={140}>
-                    <BentoCard style={styles.articleCard}>
+                    <BentoCard
+                        style={[
+                            styles.articleCard,
+                            isMobile && styles.mobileArticleCard
+                        ]}
+                    >
                         <MarkdownArticle markdown={post.markdown} />
                     </BentoCard>
                 </AnimatedEntrance>
@@ -120,6 +133,7 @@ const styles = StyleSheet.create({
     },
     meta: {
         flexDirection: 'row',
+        flexWrap: 'wrap',
         alignItems: 'center',
         gap: Spacing.sm
     },
@@ -131,7 +145,14 @@ const styles = StyleSheet.create({
         fontSize: 42,
         lineHeight: 50
     },
+    mobileTitle: {
+        fontSize: 32,
+        lineHeight: 40
+    },
     articleCard: {
         padding: Spacing.lg
+    },
+    mobileArticleCard: {
+        padding: Spacing.sm
     }
 });

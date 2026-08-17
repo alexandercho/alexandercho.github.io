@@ -31,9 +31,17 @@ const routeCards = [
         action: 'Browse projects'
     },
     {
+        href: '/blog' as const,
+        icon: 'book-open' as const,
+        eyebrow: '03 / WRITING',
+        title: 'Ideas worked through in public',
+        copy: 'Read longer notes on software architecture, AI systems, infrastructure, and building useful products.',
+        action: 'Read the blog'
+    },
+    {
         href: '/contact' as const,
         icon: 'send' as const,
-        eyebrow: '03 / CONNECT',
+        eyebrow: '04 / CONNECT',
         title: 'Let’s make something useful',
         copy: 'I’m always glad to talk through interesting products, engineering challenges, and new ideas.',
         action: 'Start a conversation'

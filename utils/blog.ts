@@ -1,14 +1,39 @@
 import { Asset } from 'expo-asset';
 
-import post1 from '../blog/1.md';
-import post2 from '../blog/2.md';
-import post3 from '../blog/3.md';
+type MarkdownSource = number | string;
+type MarkdownModule = MarkdownSource | { default: MarkdownSource };
+type MarkdownContext = {
+    (path: string): MarkdownModule;
+    keys(): string[];
+};
 
-const blogSources = [
-    { slug: '1', source: post1 },
-    { slug: '2', source: post2 },
-    { slug: '3', source: post3 }
-] as const;
+const markdownContext = (
+    require as typeof require & {
+        context(
+            directory: string,
+            useSubdirectories: boolean,
+            pattern: RegExp
+        ): MarkdownContext;
+    }
+).context('../blog', false, /\.md$/);
+
+const blogSources = markdownContext
+    .keys()
+    .map((path) => {
+        const markdownModule = markdownContext(path);
+
+        return {
+            slug: path.replace(/^\.\//, '').replace(/\.md$/, ''),
+            source: typeof markdownModule === 'number' ||
+                typeof markdownModule === 'string'
+                ? markdownModule
+                : markdownModule.default
+        };
+    })
+    .sort((a, b) => a.slug.localeCompare(b.slug, undefined, {
+        numeric: true,
+        sensitivity: 'base'
+    }));
 
 export const BLOG_POST_SLUGS = blogSources.map(({ slug }) => slug);
 
@@ -23,22 +48,30 @@ export type BlogPost = {
 function createBlogPost(slug: string, markdown: string): BlogPost {
     const title = markdown.match(/^#\s+(.+)$/m)?.[1].trim() ?? `Post ${slug}`;
     const plainText = markdown
+        .replace(/```[\s\S]*?```/g, ' ')
+        .replace(/^\|?[\s:|-]+\|?$/gm, ' ')
+        .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
         .replace(/^#+\s+/gm, '')
-        .replace(/[*_>`[\]()-]/g, '')
+        .replace(/[*_>`|[\]()-]/g, '')
         .replace(/\s+/g, ' ')
         .trim();
-    const excerptText = plainText.slice(title.length).trim().slice(0, 180).trim();
+    const excerptText = plainText
+        .slice(title.length)
+        .trim()
+        .slice(0, 180)
+        .trim()
+        .replace(/[.,;:!?-]*$/, '');
 
     return {
         slug,
         title,
-        excerpt: `${excerptText}…`,
+        excerpt: excerptText ? `${excerptText}…` : '',
         readingMinutes: Math.max(1, Math.ceil(plainText.split(/\s+/).length / 220)),
         markdown
     };
 }
 
-async function loadMarkdown(source: number): Promise<string> {
+async function loadMarkdown(source: MarkdownSource): Promise<string> {
     const asset = Asset.fromModule(source);
     await asset.downloadAsync();
     const response = await fetch(asset.localUri ?? asset.uri);
