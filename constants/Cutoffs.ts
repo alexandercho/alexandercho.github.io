@@ -1,3 +1,4 @@
 export const Cutoffs = {
-    mobile: 768
+    mobile: 640,
+    tablet: 1024
 };

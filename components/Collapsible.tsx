@@ -1,11 +1,12 @@
 import { PropsWithChildren, useState } from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import { Colors } from '@/constants/theme';
 
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { IconSymbol } from '@/components/IconSymbol';
+import { ThemedText } from '@/components/StandardComponents/ThemedText';
+import { ThemedView } from '@/components/StandardComponents/ThemedView';
+import { IconSymbol } from '@/components/StandardComponents/IconSymbol';
+import { HoverPressable } from '@/components/HoverPressable';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 
@@ -15,10 +16,12 @@ export function Collapsible({ children, title }: PropsWithChildren & { title: st
 
     return (
         <ThemedView>
-            <TouchableOpacity
+            <HoverPressable
+                containerStyle={styles.headingContainer}
+                lift={2}
                 style={styles.heading}
                 onPress={() => setIsOpen((value) => !value)}
-                activeOpacity={0.8}>
+            >
                 <IconSymbol
                     name='chevron.right'
                     size={18}
@@ -27,7 +30,7 @@ export function Collapsible({ children, title }: PropsWithChildren & { title: st
                     style={{ transform: [{ rotate: isOpen ? '90deg' : '0deg' }] }}
                 />
                 <ThemedText type='defaultSemiBold'>{title}</ThemedText>
-            </TouchableOpacity>
+            </HoverPressable>
             {isOpen && <ThemedView style={styles.content}>{children}</ThemedView>}
         </ThemedView>
     );
@@ -37,7 +40,14 @@ const styles = StyleSheet.create({
     heading: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 6
+        gap: 6,
+        paddingVertical: 6,
+        paddingHorizontal: 8,
+        borderRadius: 8
+    },
+    headingContainer: {
+        alignSelf: 'flex-start',
+        borderRadius: 8
     },
     content: {
         marginTop: 6,

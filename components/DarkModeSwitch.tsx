@@ -1,6 +1,6 @@
-import { Pressable } from 'react-native';
 import Feather from '@expo/vector-icons/Feather';
 import { Colors } from '@/constants/theme';
+import { HoverPressable } from '@/components/HoverPressable';
 
 type DarkModeSwitchProps = {
     isDarkMode: boolean;
@@ -10,7 +10,18 @@ type DarkModeSwitchProps = {
 export function DarkModeSwitch({ isDarkMode, setIsDarkMode }: DarkModeSwitchProps) {
     const color = isDarkMode ? Colors.dark.icon : Colors.light.icon;
     const name = isDarkMode ? 'sun' : 'moon'
-    return <Pressable onPress={() => setIsDarkMode(!isDarkMode)}>
-        <Feather name={name} color={color} size={36} style={{ right: 25 }} />
-    </Pressable>;
+    return <HoverPressable
+        accessibilityLabel={isDarkMode ? 'Use light appearance' : 'Use dark appearance'}
+        accessibilityRole='button'
+        lift={2}
+        onPress={() => setIsDarkMode(!isDarkMode)}
+        style={{
+            width: 44,
+            height: 44,
+            alignItems: 'center',
+            justifyContent: 'center'
+        }}
+    >
+        <Feather name={name} color={color} size={24} />
+    </HoverPressable>;
 }

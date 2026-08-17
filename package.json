@@ -3,10 +3,10 @@
   "main": "expo-router/entry",
   "version": "1.0.0",
   "engines": {
-    "node": ">=26.4.0"
+    "node": ">=24.19.0"
   },
   "homepage": "https://alexandercho.github.io",
-  "packageManager": "pnpm@9.0.0",
+  "packageManager": "pnpm@11.22.0+sha512.1ff870c4c6133dfd88fb2afc46dd13d47f09c9794b438c6fdb47ca98caf3bc16381ee0be93a091b8e3824cf01f889f46d7d9e20910fb0be1ab0fb5baa80dd621",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -22,7 +22,8 @@
     "@react-navigation/drawer": "^7.5.0",
     "@react-navigation/elements": "^2.6.3",
     "@react-navigation/native": "^7.1.8",
-    "expo": "57.0.2",
+    "expo": "57.0.13",
+    "expo-asset": "~57.0.11",
     "expo-constants": "~57.0.3",
     "expo-font": "~57.0.0",
     "expo-haptics": "~57.0.0",
@@ -38,13 +39,13 @@
     "gh-pages": "^6.3.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "react-native": "0.86.0",
+    "react-native": "0.86.2",
     "react-native-gesture-handler": "~2.32.0",
-    "react-native-reanimated": "~4.5.0",
+    "react-native-reanimated": "~4.5.1",
     "react-native-safe-area-context": "~5.7.0",
-    "react-native-screens": "~4.25.2",
+    "react-native-screens": "~4.26.2",
     "react-native-web": "~0.21.0",
-    "react-native-worklets": "0.10.0"
+    "react-native-worklets": "0.10.1"
   },
   "devDependencies": {
     "@types/react": "~19.2.17",

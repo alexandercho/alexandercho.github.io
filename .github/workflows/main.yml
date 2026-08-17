@@ -17,13 +17,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 26.4.0
+          node-version: 24.19.0
 
       - name: Enable Corepack
         run: corepack enable
 
       - name: Install pnpm (from packageManager)
-        run: corepack prepare pnpm@9.0.0 --activate
+        run: corepack prepare pnpm@11.22.0 --activate
 
       - name: Get pnpm store path
         id: pnpm-cache
@@ -59,13 +59,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 26.4.0
+          node-version: 24.19.0
 
       - name: Enable Corepack
         run: corepack enable
 
       - name: Install pnpm (from packageManager)
-        run: corepack prepare pnpm@9.0.0 --activate
+        run: corepack prepare pnpm@11.22.0 --activate
 
       - name: Get pnpm store path
         id: pnpm-cache

@@ -8,5 +8,7 @@ import { useWindowDimensions } from 'react-native';
 export function useCutoffs() {
     const { width } = useWindowDimensions();
     const isMobile = width <= Cutoffs.mobile;
-    return { isMobile };
+    const isTablet = width > Cutoffs.mobile && width <= Cutoffs.tablet;
+    const isDesktop = width > Cutoffs.tablet;
+    return { width, isMobile, isTablet, isDesktop };
 }

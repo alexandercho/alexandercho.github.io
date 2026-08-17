@@ -1,160 +1,280 @@
 import { StyleSheet, View } from 'react-native';
-import { Link } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { Feather } from '@expo/vector-icons';
 
+import { AnimatedEntrance } from '@/components/AnimatedEntrance';
 import Banner from '@/components/Banner';
+import { BentoCard } from '@/components/BentoCard';
+import { HoverPressable } from '@/components/HoverPressable';
+import { PageContainer } from '@/components/PageContainer';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { ThemedText } from '@/components/StandardComponents/ThemedText';
+import { Spacing } from '@/constants/spacing';
+import { useCutoffs } from '@/hooks/useCutoffs';
 import { useThemeColor } from '@/hooks/useThemeColor';
 
+const routeCards = [
+    {
+        href: '/about' as const,
+        icon: 'user' as const,
+        eyebrow: '01 / PROFILE',
+        title: 'Engineer with a product mindset',
+        copy: 'I build thoughtful systems across web, mobile, cloud, and AI-enabled experiences.',
+        action: 'Read my story'
+    },
+    {
+        href: '/projects' as const,
+        icon: 'briefcase' as const,
+        eyebrow: '02 / WORK',
+        title: 'Projects built to be used',
+        copy: 'Explore recent repositories, experiments, and public work, ordered by what I touched most recently.',
+        action: 'Browse projects'
+    },
+    {
+        href: '/contact' as const,
+        icon: 'send' as const,
+        eyebrow: '03 / CONNECT',
+        title: 'Let’s make something useful',
+        copy: 'I’m always glad to talk through interesting products, engineering challenges, and new ideas.',
+        action: 'Start a conversation'
+    }
+];
+
 export default function HomeScreen() {
-    const backgroundColor = useThemeColor({}, 'background');
+    const router = useRouter();
+    const { isMobile, isTablet } = useCutoffs();
     const tintColor = useThemeColor({}, 'tint');
+    const accentSoft = useThemeColor({}, 'accentSoft');
+    const isCompact = isMobile || isTablet;
 
     return (
         <ParallaxScrollView headerImage={<Banner />}>
-            <ThemedView style={styles.container}>
-                <ThemedView style={styles.heroSection}>
-                    <ThemedText type='title' style={styles.heroTitle}>
-                        Welcome to my personal website!
-                    </ThemedText>
-                    <View style={[styles.divider, { backgroundColor: tintColor }]} />
-                </ThemedView>
+            <PageContainer style={styles.page}>
+                <AnimatedEntrance>
+                    <View style={styles.intro}>
+                        <ThemedText type='title' style={styles.title}>
+                            Software built with clarity, curiosity, and care.
+                        </ThemedText>
+                        <ThemedText style={styles.introCopy}>
+                            I’m Alex, a full-stack software engineer in the San Francisco Bay Area
+                            focused on polished multi-platform products, durable systems, and
+                            practical AI.
+                        </ThemedText>
+                    </View>
+                </AnimatedEntrance>
 
-                <ThemedView style={[styles.card, { backgroundColor }]}>
-                    <ThemedText type='subtitle' style={styles.cardTitle}>
-                        A little about me
-                    </ThemedText>
-                    <ThemedText style={styles.cardText}>
-                        I&apos;m a fullstack software engineer based in the San Francisco Bay Area.
-                        My areas of focus are quality multi-platform UI/UX, business efficient
-                        system design, and AI/ML. I built this website with Expo so it works on
-                        web, tablet, and mobile browsers. You can even run it as an iPhone or
-                        Android app.
-                    </ThemedText>
-                    <Link href='/about' style={styles.linkContainer}>
-                        <View style={styles.linkContent}>
-                            <ThemedText type='link' style={styles.linkText}>
-                                More About Me
-                            </ThemedText>
-                            <Feather name='arrow-right' size={18} color={tintColor} />
-                        </View>
-                    </Link>
-                </ThemedView>
+                <View style={[styles.grid, isCompact && styles.compactGrid]}>
+                    <AnimatedEntrance delay={80} style={styles.featureSlot}>
+                        <BentoCard style={styles.featureCard}>
+                            <View style={styles.featureContent}>
+                                <View style={styles.featureHeader}>
+                                    <View style={[styles.iconBadge, { backgroundColor: accentSoft }]}>
+                                        <Feather name='layers' size={22} color={tintColor} />
+                                    </View>
+                                    <View style={styles.featureHeading}>
+                                        <ThemedText type='defaultSemiBold' style={styles.eyebrow}>
+                                            CURRENT FOCUS
+                                        </ThemedText>
+                                        <ThemedText type='subtitle'>Multi-platform product engineering</ThemedText>
+                                    </View>
+                                </View>
 
-                <ThemedView style={[styles.card, { backgroundColor }]}>
-                    <ThemedText type='subtitle' style={styles.cardTitle}>
-                        Current Projects
-                    </ThemedText>
-                    <ThemedText style={styles.cardText}>
-                        This site showcases a selection of my work that I’ve deployed publicly so far, with additional projects to be added over time.
-                    </ThemedText>
-                    <Link href='/projects' style={styles.linkContainer}>
-                        <View style={styles.linkContent}>
-                            <ThemedText type='link' style={styles.linkText}>
-                                See My Projects
-                            </ThemedText>
-                            <Feather name='arrow-right' size={18} color={tintColor} />
-                        </View>
-                    </Link>
-                </ThemedView>
+                                <View style={styles.featureBody}>
+                                    <ThemedText
+                                        type='title'
+                                        style={styles.featureTitle}
+                                    >
+                                        Useful software should feel considered everywhere.
+                                    </ThemedText>
+                                    <ThemedText style={styles.featureCopy}>
+                                        I work across interface, architecture, and delivery to make
+                                        products coherent from the first interaction through the
+                                        systems supporting it.
+                                    </ThemedText>
+                                </View>
 
-                <ThemedView style={styles.ctaCard}>
-                    <ThemedText type='subtitle' style={styles.ctaTitle}>
-                        Reach out — I&apos;d love to connect.
-                    </ThemedText>
-                    <Link href='/contact' style={styles.ctaLinkContainer}>
-                        <View style={styles.ctaLinkContent}>
-                            <ThemedText type='link' style={styles.ctaLinkText}>
-                                Send a message
-                            </ThemedText>
-                            <Feather name='send' size={18} color={tintColor} />
-                        </View>
-                    </Link>
-                </ThemedView>
-            </ThemedView>
+                                <View style={styles.focusGrid}>
+                                    {[
+                                        ['monitor', 'Web & mobile', 'One product language across screens.'],
+                                        ['cloud', 'Platform systems', 'Durable services, tooling, and delivery.'],
+                                        ['cpu', 'Applied AI', 'Practical intelligence with a clear purpose.']
+                                    ].map(([icon, title, copy]) => (
+                                        <View key={title} style={styles.focusItem}>
+                                            <Feather
+                                                name={icon as keyof typeof Feather.glyphMap}
+                                                size={18}
+                                                color={tintColor}
+                                            />
+                                            <View style={styles.focusItemText}>
+                                                <ThemedText type='defaultSemiBold'>{title}</ThemedText>
+                                                <ThemedText style={styles.focusItemCopy}>{copy}</ThemedText>
+                                            </View>
+                                        </View>
+                                    ))}
+                                </View>
+                            </View>
+                        </BentoCard>
+                    </AnimatedEntrance>
+
+                    <View style={styles.routeColumn}>
+                        {routeCards.map((card, index) => (
+                            <AnimatedEntrance key={card.href} delay={140 + index * 70}>
+                                <HoverPressable
+                                    accessibilityRole='link'
+                                    containerStyle={styles.clickableCard}
+                                    onPress={() => router.push(card.href)}
+                                >
+                                    <BentoCard style={styles.routeCard}>
+                                        <View style={styles.routeHeader}>
+                                            <View style={[styles.routeIcon, { backgroundColor: `${tintColor}18` }]}>
+                                                <Feather name={card.icon} size={20} color={tintColor} />
+                                            </View>
+                                            <ThemedText type='defaultSemiBold' style={styles.eyebrow}>
+                                                {card.eyebrow}
+                                            </ThemedText>
+                                        </View>
+                                        <ThemedText type='subtitle'>{card.title}</ThemedText>
+                                        <ThemedText style={styles.cardCopy}>{card.copy}</ThemedText>
+                                        <View style={styles.action}>
+                                            <ThemedText type='link' style={styles.actionText}>
+                                                {card.action}
+                                            </ThemedText>
+                                            <Feather name='arrow-up-right' size={18} color={tintColor} />
+                                        </View>
+                                    </BentoCard>
+                                </HoverPressable>
+                            </AnimatedEntrance>
+                        ))}
+                    </View>
+                </View>
+            </PageContainer>
         </ParallaxScrollView>
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        paddingHorizontal: 16,
-        paddingBottom: 40
+    page: {
+        paddingTop: Spacing.md
     },
-    heroSection: {
-        alignItems: 'center',
-        marginBottom: 40,
-        paddingTop: 8
+    intro: {
+        maxWidth: 820,
+        gap: Spacing.xs
     },
-    heroTitle: {
-        textAlign: 'center',
-        marginBottom: 16
+    title: {
+        fontSize: 38,
+        lineHeight: 46,
+        maxWidth: 760
     },
-    divider: {
-        width: 60,
-        height: 4,
-        borderRadius: 2,
-        opacity: 0.8
+    introCopy: {
+        fontSize: 18,
+        lineHeight: 28,
+        maxWidth: 720
     },
-    card: {
-        marginBottom: 24,
-        padding: 24,
-        borderRadius: 16,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.05,
-        shadowRadius: 8,
-        elevation: 2
+    grid: {
+        flexDirection: 'row',
+        alignItems: 'stretch',
+        gap: Spacing.md
     },
-    cardTitle: {
-        marginBottom: 12
+    compactGrid: {
+        flexDirection: 'column'
     },
-    cardText: {
-        lineHeight: 24,
-        marginBottom: 16,
-        opacity: 0.85
+    featureSlot: {
+        flex: 1.15
     },
-    linkContainer: {
-        marginTop: 8
+    featureCard: {
+        minHeight: 520,
+        padding: Spacing.lg
     },
-    linkContent: {
+    featureContent: {
+        flex: 1,
+        gap: Spacing.lg
+    },
+    featureHeader: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 8
+        gap: Spacing.sm
     },
-    linkText: {
-        fontSize: 16
+    featureHeading: {
+        flex: 1,
+        gap: Spacing.xxxs
     },
-    ctaCard: {
-        marginTop: 16,
-        padding: 32,
-        borderRadius: 16,
+    iconBadge: {
+        width: 48,
+        height: 48,
+        borderRadius: 12,
         alignItems: 'center',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.1,
-        shadowRadius: 12,
-        elevation: 3
+        justifyContent: 'center'
     },
-    ctaTitle: {
-        textAlign: 'center',
-        marginBottom: 20,
-        fontSize: 20
+    featureBody: {
+        gap: Spacing.sm
     },
-    ctaLinkContainer: {
-        marginTop: 4
+    eyebrow: {
+        fontSize: 12,
+        lineHeight: 16,
+        opacity: 0.76
     },
-    ctaLinkContent: {
+    featureTitle: {
+        fontSize: 29,
+        lineHeight: 36,
+        maxWidth: 500
+    },
+    featureCopy: {
+        fontSize: 16,
+        lineHeight: 25,
+        maxWidth: 500
+    },
+    focusGrid: {
+        gap: Spacing.xs,
+        paddingTop: Spacing.sm,
+        borderTopWidth: 1,
+        borderTopColor: 'rgba(128, 145, 175, 0.24)'
+    },
+    focusItem: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        gap: Spacing.xs,
+        paddingVertical: Spacing.xxs
+    },
+    focusItemText: {
+        flex: 1,
+        gap: 2
+    },
+    focusItemCopy: {
+        fontSize: 14,
+        lineHeight: 20
+    },
+    routeColumn: {
+        flex: 1,
+        gap: Spacing.md
+    },
+    clickableCard: {
+        borderRadius: 18
+    },
+    routeCard: {
+        minHeight: 157
+    },
+    routeHeader: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 10,
-        paddingVertical: 8,
-        paddingHorizontal: 4
+        gap: Spacing.xs
     },
-    ctaLinkText: {
-        fontSize: 17,
+    routeIcon: {
+        width: 36,
+        height: 36,
+        borderRadius: 8,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    cardCopy: {
+        lineHeight: 22
+    },
+    action: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: Spacing.xxs,
+        paddingTop: Spacing.xxs
+    },
+    actionText: {
         fontWeight: '600'
     }
 });

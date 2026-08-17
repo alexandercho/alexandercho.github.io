@@ -1,417 +1,304 @@
-import { StyleSheet, Image } from 'react-native';
-import { Link, type Href } from 'expo-router';
+import { Image, Linking, ScrollView, StyleSheet, View } from 'react-native';
 import { Asset } from 'expo-asset';
+import { Feather } from '@expo/vector-icons';
 
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { ThemedScrollView } from '@/components/ThemedScrollView';
-
-import { Spacing } from '@/constants/spacing';
-
-import { useCutoffs } from '@/hooks/useCutoffs';
+import { AnimatedEntrance } from '@/components/AnimatedEntrance';
+import { BentoCard } from '@/components/BentoCard';
+import { HoverPressable } from '@/components/HoverPressable';
+import { PageContainer } from '@/components/PageContainer';
+import { ThemedText } from '@/components/StandardComponents/ThemedText';
 import { data } from '@/constants/AboutData';
+import { Spacing } from '@/constants/spacing';
+import { useCutoffs } from '@/hooks/useCutoffs';
 import { useThemeColor } from '@/hooks/useThemeColor';
 
-const normalizeAssetHref = (uri: string) => (
-    uri.startsWith('/') || uri.includes('://')
-        ? uri
-        : `/${uri.replace(/^\.\//, '')}`
-);
+const resumeUri = Asset.fromModule(require('@/assets/alexander_cho_resume.pdf')).uri;
+const resumeHref = resumeUri.startsWith('/') || resumeUri.includes('://')
+    ? resumeUri
+    : `/${resumeUri.replace(/^\.\//, '')}`;
 
-// Resolve through Expo's asset pipeline so the PDF stays available after web export.
-const resumeHref = normalizeAssetHref(
-    Asset.fromModule(require('@/assets/alexander_cho_resume.pdf')).uri
-);
+function EducationCard({ section }: { section: (typeof data)[0] }) {
+    return (
+        <BentoCard style={styles.tallCard}>
+            <ThemedText type='defaultSemiBold' style={styles.eyebrow}>EDUCATION</ThemedText>
+            <ThemedText type='title' style={styles.cardTitle}>{section.subtitle}</ThemedText>
+            <ThemedText type='defaultSemiBold'>{section.degree}</ThemedText>
+            <ThemedText style={styles.muted}>{section.certification}</ThemedText>
+            <View style={styles.list}>
+                {section.coursework!.map((item) => (
+                    <View key={item.category} style={styles.listItem}>
+                        <ThemedText type='defaultSemiBold'>{item.category}</ThemedText>
+                        <ThemedText style={styles.detailText}>{item.courses}</ThemedText>
+                    </View>
+                ))}
+            </View>
+        </BentoCard>
+    );
+}
 
-const EducationSection = ({ data, isMobile }: { data: any; isMobile: boolean }) => (
-    <ThemedView style={[styles.sectionContent, isMobile && styles.sectionContentMobile]}>
-        <ThemedView style={[styles.textContainer, isMobile && styles.fullWidth]}>
-            <ThemedText type="subtitle" style={styles.positionTitle}>
-                {data.subtitle}
-            </ThemedText>
-            <ThemedText type="default" style={styles.degree}>
-                {data.degree}
-            </ThemedText>
-            <ThemedText type="default" style={[styles.certification, { marginBottom: Spacing.sm }]}>
-                {data.certification}
-            </ThemedText>
+function ExperienceCard({ section }: { section: (typeof data)[1] }) {
+    return (
+        <BentoCard>
+            <ThemedText type='defaultSemiBold' style={styles.eyebrow}>EXPERIENCE</ThemedText>
+            <ThemedText type='title' style={styles.cardTitle}>Building products at scale</ThemedText>
+            <View style={styles.timeline}>
+                {section.positions!.map((position) => (
+                    <View key={`${position.company}-${position.period}`} style={styles.timelineItem}>
+                        <View style={styles.timelineHeading}>
+                            <View style={styles.timelineTitle}>
+                                <ThemedText type='subtitle'>{position.title}</ThemedText>
+                                <ThemedText type='defaultSemiBold'>{position.company}</ThemedText>
+                            </View>
+                            <ThemedText style={styles.period}>{position.period}</ThemedText>
+                        </View>
+                        <ThemedText style={styles.detailText}>{position.description}</ThemedText>
+                        {position.highlights.length ? (
+                            <View style={styles.highlights}>
+                                {position.highlights.map((highlight) => (
+                                    <View key={highlight} style={styles.highlight}>
+                                        <ThemedText style={styles.bullet}>•</ThemedText>
+                                        <ThemedText style={[styles.detailText, styles.highlightText]}>
+                                            {highlight}
+                                        </ThemedText>
+                                    </View>
+                                ))}
+                            </View>
+                        ) : null}
+                    </View>
+                ))}
+            </View>
+        </BentoCard>
+    );
+}
 
-            <ThemedText type="defaultSemiBold" style={styles.courseworkHeader}>
-                RELEVANT COURSEWORK
-            </ThemedText>
-
-            {data.coursework.map((item: any, idx: number) => (
-                <ThemedView key={idx} style={styles.courseworkItem}>
-                    <ThemedText type="defaultSemiBold" style={styles.courseworkCategory}>
-                        {item.category}
-                    </ThemedText>
-                    <ThemedText type="default" style={styles.courseworkText}>
-                        {item.courses}
-                    </ThemedText>
-                </ThemedView>
-            ))}
-        </ThemedView>
-
-        {data.image && (
-            <ThemedView style={[styles.imageContainer, isMobile && styles.imageContainerMobile]}>
-                <Image source={{ uri: data.image }} style={styles.sectionImage} resizeMode="cover" />
-            </ThemedView>
-        )}
-    </ThemedView>
-);
-
-const ExperienceSection = ({ data, isMobile }: { data: any; isMobile: boolean }) => (
-    <ThemedView style={[styles.sectionContent, isMobile && styles.sectionContentMobile]}>
-        <ThemedView style={[styles.textContainer, isMobile && styles.fullWidth]}>
-            {data.positions.map((position: any, idx: number) => (
-                <ThemedView
-                    key={idx}
-                    style={[idx > 0 && styles.positionBlockSpacing]}
-                >
-                    <ThemedView
-                        style={[styles.positionRow, isMobile && styles.positionRowMobile]}
-                    >
-                        <ThemedView style={styles.positionContent}>
-                            <ThemedText type="defaultSemiBold" style={styles.positionTitle}>
-                                {position.title} – {position.company}
-                            </ThemedText>
-                            <ThemedText type="default" style={styles.period}>
-                                {position.period}
-                            </ThemedText>
-                            <ThemedText type="default" style={styles.description}>
-                                {position.description}
-                            </ThemedText>
-
-                            {position.highlights.length > 0 && (
-                                <ThemedView style={styles.highlightsContainer}>
-                                    {position.highlights.map((highlight: string, hIdx: number) => (
-                                        <ThemedView key={hIdx} style={styles.highlightItem}>
-                                            <ThemedText type="default" style={styles.bullet}>
-                                                •
-                                            </ThemedText>
-                                            <ThemedText type="default" style={styles.highlightText}>
-                                                {highlight}
-                                            </ThemedText>
-                                        </ThemedView>
-                                    ))}
-                                </ThemedView>
-                            )}
-                        </ThemedView>
-
-                        {position.image && (
-                            <ThemedView
-                                style={[
-                                    styles.positionImageContainer,
-                                    isMobile && styles.imageContainerMobile
-                                ]}
-                            >
-                                <Image
-                                    source={{ uri: position.image }}
-                                    style={styles.positionImage}
-                                    resizeMode="cover"
-                                />
-                            </ThemedView>
-                        )}
-                    </ThemedView>
-                </ThemedView>
-            ))}
-        </ThemedView>
-    </ThemedView>
-);
-
-const TechSection = ({ data, isMobile }: { data: any; isMobile: boolean }) => (
-    <ThemedView style={[styles.sectionContent, isMobile && styles.sectionContentMobile]}>
-        <ThemedView style={[styles.textContainer, isMobile && styles.fullWidth]}>
-            {data.categories.map((category: any, idx: number) => (
-                <ThemedView key={idx} style={styles.techItem}>
-                    <ThemedText type="defaultSemiBold" style={styles.techTitle}>
-                        {category.title}
-                    </ThemedText>
-                    <ThemedText type="default" style={styles.techText}>
-                        {category.items}
-                    </ThemedText>
-                </ThemedView>
-            ))}
-        </ThemedView>
-
-        {data.image && (
-            <ThemedView style={[styles.imageContainer, isMobile && styles.imageContainerMobile]}>
-                <Image source={{ uri: data.image }} style={styles.sectionImage} resizeMode="cover" />
-            </ThemedView>
-        )}
-    </ThemedView>
-);
-
-const PersonalSection = ({ data, isMobile }: { data: any; isMobile: boolean }) => (
-    <ThemedView style={[styles.sectionContent, isMobile && styles.sectionContentMobile]}>
-        <ThemedView style={[styles.textContainer, isMobile && styles.fullWidth]}>
-            <ThemedText type="default" style={styles.sectionText}>
-                {data.text}
-            </ThemedText>
-        </ThemedView>
-
-        {data.image && (
-            <ThemedView style={[styles.imageContainer, isMobile && styles.imageContainerMobile]}>
-                <Image source={{ uri: data.image }} style={styles.sectionImage} resizeMode="cover" />
-            </ThemedView>
-        )}
-    </ThemedView>
-);
-
-const ResumeSection = ({
-    isMobile,
-    tintColor
-}: {
-    isMobile: boolean;
-    tintColor: string;
-}) => (
-    <ThemedView style={[styles.sectionContent, isMobile && styles.sectionContentMobile]}>
-        <ThemedView style={[styles.textContainer, isMobile && styles.fullWidth]}>
-            <ThemedText type="default" style={styles.resumeText}>
-                Download a PDF copy of my resume for a fuller look at my experience, projects, and technical background.
-            </ThemedText>
-
-            <Link
-                href={resumeHref as Href}
-                target="_blank"
-                download="alexander_cho_resume.pdf"
-                style={[styles.resumeLink, { borderColor: tintColor }]}
-            >
-                <ThemedText type="link" style={styles.resumeLinkText}>
-                    Download Resume PDF
-                </ThemedText>
-            </Link>
-        </ThemedView>
-    </ThemedView>
-);
+function ToolkitCard({ section }: { section: (typeof data)[2] }) {
+    return (
+        <BentoCard>
+            <ThemedText type='defaultSemiBold' style={styles.eyebrow}>TOOLKIT</ThemedText>
+            <ThemedText type='title' style={styles.cardTitle}>Tools I reach for</ThemedText>
+            <View style={styles.skillGrid}>
+                {section.categories!.map((category) => (
+                    <View key={category.title} style={styles.skill}>
+                        <ThemedText type='defaultSemiBold'>{category.title}</ThemedText>
+                        <ThemedText style={styles.detailText}>{category.items}</ThemedText>
+                    </View>
+                ))}
+            </View>
+        </BentoCard>
+    );
+}
 
 export default function About() {
-    const { isMobile } = useCutoffs();
+    const { isMobile, isTablet } = useCutoffs();
     const tintColor = useThemeColor({}, 'tint');
-
-    const renderSection = (sectionData: typeof data[number], index: number) => {
-        let content;
-
-        if (sectionData.header.includes('Education')) {
-            content = <EducationSection data={sectionData} isMobile={isMobile} />;
-        } else if (sectionData.header.includes('Professional')) {
-            content = <ExperienceSection data={sectionData} isMobile={isMobile} />;
-        } else if (sectionData.header.includes('Technical')) {
-            content = <TechSection data={sectionData} isMobile={isMobile} />;
-        } else {
-            content = <PersonalSection data={sectionData} isMobile={isMobile} />;
-        }
-
-        return (
-            <ThemedView key={index} style={[styles.section, { borderLeftColor: tintColor }]}>
-                <ThemedView style={styles.sectionHeader}>
-                    <ThemedText type="title">{sectionData.header}</ThemedText>
-                </ThemedView>
-                {content}
-            </ThemedView>
-        );
-    };
+    const compact = isMobile || isTablet;
+    const education = data[0];
+    const experience = data[1];
+    const toolkit = data[2];
+    const personal = data[3];
 
     return (
-        <ThemedScrollView style={styles.scrollContainer}>
-            <ThemedView style={styles.container}>
-                <ThemedView style={styles.hero}>
-                    <ThemedText type="title" style={styles.mainTitle}>
-                        About Me
-                    </ThemedText>
-                    <ThemedText type="default" style={styles.subtitle}>
-                        Full-stack engineer passionate about building elegant, scalable solutions
-                    </ThemedText>
-                </ThemedView>
+        <ScrollView contentInsetAdjustmentBehavior='automatic'>
+            <PageContainer>
+                <AnimatedEntrance>
+                    <View style={styles.header}>
+                        <ThemedText type='defaultSemiBold' style={[styles.eyebrow, { color: tintColor }]}>
+                            ABOUT
+                        </ThemedText>
+                        <ThemedText type='title' style={styles.pageTitle}>
+                            Full-stack engineer. Systems thinker. Persistent learner.
+                        </ThemedText>
+                        <ThemedText style={styles.lede}>
+                            I care about the complete shape of a product, from architecture and
+                            delivery to the small interface decisions people feel every day.
+                        </ThemedText>
+                    </View>
+                </AnimatedEntrance>
 
-                <ThemedView style={[styles.content, { maxWidth: isMobile ? '100%' : 1100 }]}>
-                    {data.map(renderSection)}
+                <View style={[styles.grid, compact && styles.compactGrid]}>
+                    <AnimatedEntrance delay={80} style={styles.educationSlot}>
+                        <EducationCard section={education} />
+                    </AnimatedEntrance>
+                    <AnimatedEntrance delay={140} style={styles.experienceSlot}>
+                        <ExperienceCard section={experience} />
+                    </AnimatedEntrance>
+                </View>
 
-                    <ThemedView style={[styles.section, { borderLeftColor: tintColor }]}>
-                        <ThemedView style={styles.sectionHeader}>
-                            <ThemedText type="title">Resume</ThemedText>
-                        </ThemedView>
-                        <ResumeSection isMobile={isMobile} tintColor={tintColor} />
-                    </ThemedView>
-                </ThemedView>
-            </ThemedView>
-        </ThemedScrollView>
+                <View style={[styles.grid, compact && styles.compactGrid]}>
+                    <AnimatedEntrance delay={200} style={styles.toolkitSlot}>
+                        <ToolkitCard section={toolkit} />
+                    </AnimatedEntrance>
+                    <View style={styles.sideColumn}>
+                        <AnimatedEntrance delay={260}>
+                            <BentoCard>
+                                <Image source={{ uri: personal.image }} style={styles.personalImage} />
+                                <ThemedText type='defaultSemiBold' style={styles.eyebrow}>
+                                    AWAY FROM THE KEYBOARD
+                                </ThemedText>
+                                <ThemedText style={styles.detailText}>{personal.text}</ThemedText>
+                            </BentoCard>
+                        </AnimatedEntrance>
+                        <AnimatedEntrance delay={320}>
+                            <BentoCard>
+                                <View style={styles.resumeIcon}>
+                                    <Feather name='file-text' size={24} color={tintColor} />
+                                </View>
+                                <ThemedText type='subtitle'>The concise version</ThemedText>
+                                <ThemedText style={styles.detailText}>
+                                    Download my resume for a focused view of my experience,
+                                    projects, and technical background.
+                                </ThemedText>
+                                <HoverPressable
+                                    accessibilityRole='link'
+                                    containerStyle={styles.resumeLinkContainer}
+                                    lift={2}
+                                    onPress={() => Linking.openURL(resumeHref)}
+                                    style={styles.resumeLink}
+                                >
+                                    <ThemedText type='link'>Download resume PDF</ThemedText>
+                                    <Feather name='download' size={17} color={tintColor} />
+                                </HoverPressable>
+                            </BentoCard>
+                        </AnimatedEntrance>
+                    </View>
+                </View>
+            </PageContainer>
+        </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
-    scrollContainer: { flex: 1 },
-    container: { flex: 1 },
-    hero: {
-        paddingVertical: Spacing.xl,
-        paddingHorizontal: Spacing.md,
-        alignItems: 'center'
+    header: {
+        maxWidth: 820,
+        paddingVertical: Spacing.md,
+        gap: Spacing.xs
     },
-    mainTitle: {
-        marginBottom: Spacing.xs,
-        textAlign: 'center'
+    eyebrow: {
+        fontSize: 12,
+        lineHeight: 16,
+        opacity: 0.72
     },
-    subtitle: {
-        opacity: 0.7,
-        textAlign: 'center',
-        maxWidth: 600
+    pageTitle: {
+        fontSize: 38,
+        lineHeight: 46
     },
-    content: {
-        paddingHorizontal: Spacing.md,
-        alignSelf: 'center',
-        width: '100%'
+    lede: {
+        maxWidth: 720,
+        fontSize: 18,
+        lineHeight: 28
     },
-    section: {
-        marginBottom: Spacing.lg,
-        borderRadius: Spacing.xs,
-        padding: Spacing.md,
-        borderLeftWidth: 4,
-        shadowColor: 'black',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        elevation: 2
-    },
-    sectionHeader: {
-        marginBottom: Spacing.md
-    },
-    sectionContent: {
+    grid: {
         flexDirection: 'row',
-        alignItems: 'flex-start'
+        alignItems: 'flex-start',
+        gap: Spacing.md
     },
-    sectionContentMobile: {
+    compactGrid: {
         flexDirection: 'column'
     },
-    textContainer: {
-        flex: 1
-    },
-    fullWidth: {
+    educationSlot: {
+        flex: 0.85,
         width: '100%'
     },
-    imageContainer: {
-        width: 280,
-        flexShrink: 0,
-        marginLeft: Spacing.md
+    experienceSlot: {
+        flex: 1.5,
+        width: '100%'
     },
-    imageContainerMobile: {
+    toolkitSlot: {
+        flex: 1.35,
+        width: '100%'
+    },
+    sideColumn: {
+        flex: 0.85,
         width: '100%',
-        marginLeft: Spacing.none,
-        marginTop: Spacing.md
+        gap: Spacing.md
     },
-    sectionImage: {
-        width: '100%',
-        height: 200,
-        borderRadius: Spacing.xxs
+    tallCard: {
+        minHeight: 520
     },
-    sectionText: {
-        opacity: 0.9,
-        lineHeight: 24
+    cardTitle: {
+        fontSize: 27,
+        lineHeight: 34
     },
-    degree: {
-        opacity: 0.9,
-        marginBottom: Spacing.xxxs
-    },
-    certification: {
-        opacity: 0.85,
+    muted: {
+        opacity: 0.72,
         fontStyle: 'italic'
     },
-    courseworkHeader: {
-        marginTop: Spacing.xxxs,
-        marginBottom: Spacing.xs,
-        opacity: 0.7,
-        fontSize: 12,
-        letterSpacing: 0.5
+    list: {
+        gap: Spacing.sm
     },
-    courseworkItem: {
-        marginBottom: Spacing.xs
+    listItem: {
+        gap: Spacing.xxxs
     },
-    courseworkCategory: {
-        marginBottom: Spacing.xxxs
+    detailText: {
+        lineHeight: 22
     },
-    courseworkText: {
-        opacity: 0.8,
-        lineHeight: 20
+    timeline: {
+        gap: Spacing.md
     },
-    positionBlockSpacing: {
-        marginTop: Spacing.md,
-        paddingTop: Spacing.md,
-        borderTopWidth: 1,
-        borderTopColor: 'rgba(128,128,128,0.2)'
+    timelineItem: {
+        gap: Spacing.xs,
+        paddingBottom: Spacing.md,
+        borderBottomWidth: 1,
+        borderBottomColor: 'rgba(128, 145, 175, 0.24)'
     },
-    positionRow: {
+    timelineHeading: {
         flexDirection: 'row',
-        alignItems: 'flex-start'
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        gap: Spacing.xs
     },
-    positionRowMobile: {
-        flexDirection: 'column'
-    },
-    positionContent: {
-        flex: 1
-    },
-    positionImageContainer: {
-        width: 240,
-        flexShrink: 0,
-        marginLeft: Spacing.md
-    },
-    positionImage: {
-        width: '100%',
-        height: 160,
-        borderRadius: Spacing.xxs
-    },
-    positionTitle: {
-        marginBottom: Spacing.xxxs
+    timelineTitle: {
+        flex: 1,
+        minWidth: 220
     },
     period: {
-        opacity: 0.7,
-        fontStyle: 'italic',
-        marginBottom: Spacing.xxs,
-        fontSize: 13
+        fontVariant: ['tabular-nums'],
+        opacity: 0.72
     },
-    description: {
-        opacity: 0.85,
-        marginBottom: Spacing.xs,
-        lineHeight: 22
+    highlights: {
+        gap: Spacing.xxs
     },
-    highlightsContainer: {
-        marginTop: Spacing.xxs
-    },
-    highlightItem: {
-        flexDirection: 'row',
-        marginBottom: Spacing.xxxs
+    highlight: {
+        flexDirection: 'row'
     },
     bullet: {
-        width: Spacing.xs,
-        marginRight: Spacing.xxs,
-        opacity: 0.7
+        width: Spacing.sm
     },
     highlightText: {
+        flex: 1
+    },
+    skillGrid: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: Spacing.sm
+    },
+    skill: {
+        minWidth: 210,
         flex: 1,
-        opacity: 0.85,
-        lineHeight: 20
+        gap: Spacing.xxxs
     },
-    techItem: {
-        marginBottom: Spacing.sm
+    personalImage: {
+        width: '100%',
+        height: 180,
+        borderRadius: 6
     },
-    techTitle: {
-        marginBottom: Spacing.xxxs
-    },
-    techText: {
-        opacity: 0.8,
-        lineHeight: 20
-    },
-    resumeText: {
-        opacity: 0.85,
-        lineHeight: 22
+    resumeIcon: {
+        width: 44,
+        height: 44,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     resumeLink: {
-        marginTop: Spacing.sm,
-        alignSelf: 'flex-start',
-        paddingHorizontal: Spacing.sm,
         paddingVertical: Spacing.xxs,
-        borderRadius: Spacing.xs,
-        borderWidth: 1
+        paddingHorizontal: Spacing.xs,
+        flexDirection: 'row',
+        alignItems: 'center',
+        alignSelf: 'flex-start',
+        gap: Spacing.xxs,
+        borderRadius: 8
     },
-    resumeLinkText: {
-        fontWeight: '600'
+    resumeLinkContainer: {
+        alignSelf: 'flex-start',
+        borderRadius: 8
     }
 });

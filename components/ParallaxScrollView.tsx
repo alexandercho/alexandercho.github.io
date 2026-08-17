@@ -7,10 +7,8 @@ import Animated, {
     useScrollOffset
 } from 'react-native-reanimated';
 
-import { Spacing } from '@/constants/spacing';
-import { ThemedView } from '@/components/ThemedView';
+import { ThemedView } from '@/components/StandardComponents/ThemedView';
 import { useThemeColor } from '@/hooks/useThemeColor';
-import { useScroll } from '@/contexts/ScrollContext';
 
 type Props = PropsWithChildren<{
     headerImage: ReactElement;
@@ -20,9 +18,8 @@ export default function ParallaxScrollView({
     children,
     headerImage
 }: Props) {
-    const { setScrollY } = useScroll();
     const { width } = useWindowDimensions();
-    const HEADER_HEIGHT = width / 3;
+    const HEADER_HEIGHT = Math.max(220, Math.min(width / 3, 520));
     const backgroundColor = useThemeColor({}, 'background');
     const headerBackgroundColor = useThemeColor({}, 'headerBackground');
     const scrollRef = useAnimatedRef<Animated.ScrollView>();
@@ -46,7 +43,7 @@ export default function ParallaxScrollView({
 
     return (
         <Animated.ScrollView
-            onScroll={(e) => setScrollY(e.nativeEvent.contentOffset.y)}
+            contentInsetAdjustmentBehavior='automatic'
             ref={scrollRef}
             style={{ backgroundColor, flex: 1 }}
             scrollEventThrottle={16}>
@@ -69,8 +66,6 @@ export default function ParallaxScrollView({
 const styles = StyleSheet.create({
     content: {
         flex: 1,
-        padding: Spacing.lg,
-        gap: Spacing.sm,
         overflow: 'hidden'
     }
 });

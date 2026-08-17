@@ -1,108 +1,132 @@
-import { StyleSheet, Pressable, Linking } from 'react-native';
+import { Linking, ScrollView, StyleSheet, View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
-import { ThemedScrollView } from '@/components/ThemedScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-
+import { AnimatedEntrance } from '@/components/AnimatedEntrance';
+import { BentoCard } from '@/components/BentoCard';
+import { HoverPressable } from '@/components/HoverPressable';
+import { PageContainer } from '@/components/PageContainer';
+import { ThemedText } from '@/components/StandardComponents/ThemedText';
 import { Colors } from '@/constants/theme';
 import { Spacing } from '@/constants/spacing';
-
+import { useCutoffs } from '@/hooks/useCutoffs';
 import { useThemeColor } from '@/hooks/useThemeColor';
 
+const socialLinks = [
+    { name: 'Email', detail: 'alexanderswcho@gmail.com', icon: 'mail', url: 'mailto:alexanderswcho@gmail.com', color: Colors.email },
+    { name: 'LinkedIn', detail: 'Professional updates', icon: 'linkedin', url: 'https://www.linkedin.com/in/alexscho/', color: Colors.LinkedIn },
+    { name: 'GitHub', detail: 'Code and experiments', icon: 'github', url: 'https://github.com/alexandercho' },
+    { name: 'Instagram', detail: 'Cooking and life', icon: 'instagram', url: 'https://www.instagram.com/alexcelerator/', color: Colors.Instagram }
+];
+
 export default function Contact() {
-    const backgroundColor = useThemeColor({}, 'primaryText');
-    const borderColor = useThemeColor({}, 'border');
-    const socialLinks = [
-        {
-            name: 'Email',
-            icon: 'mail',
-            url: 'mailto:alexanderswcho@gmail.com',
-            color: Colors.email
-        },
-        {
-            name: 'LinkedIn',
-            icon: 'linkedin',
-            url: 'https://www.linkedin.com/in/alexscho/',
-            color: Colors.LinkedIn
-        },
-        {
-            name: 'GitHub',
-            icon: 'github',
-            url: 'https://github.com/alexandercho',
-            color: backgroundColor
-        },
-        {
-            name: 'Instagram',
-            icon: 'instagram',
-            url: 'https://www.instagram.com/alexcelerator/',
-            color: Colors.Instagram
-        }
-    ];
+    const { isMobile } = useCutoffs();
+    const tintColor = useThemeColor({}, 'tint');
+    const primaryText = useThemeColor({}, 'primaryText');
 
     return (
-        <ThemedScrollView
-            style={styles.container}
-            contentContainerStyle={styles.contentContainer}
-        >
-            <ThemedView style={styles.header}>
-                <ThemedText type='title'>Get In Touch</ThemedText>
-                <ThemedText>
-                    {
-                        'I\'d love to hear from you! Whether you have a question, want to collaborate, or just want to say hi, feel free to reach out.'
-                    }
-                </ThemedText>
-            </ThemedView>
-            <ThemedView style={styles.socialContainer}>
-                <ThemedText type='title'>Connect with me</ThemedText>
-                <ThemedView style={styles.socialLinks}>
-                    {socialLinks.map((link) => (
-                        <Pressable
+        <ScrollView contentInsetAdjustmentBehavior='automatic'>
+            <PageContainer>
+                <AnimatedEntrance>
+                    <View style={styles.header}>
+                        <ThemedText type='defaultSemiBold' style={[styles.eyebrow, { color: tintColor }]}>
+                            CONTACT
+                        </ThemedText>
+                        <ThemedText type='title' style={styles.pageTitle}>
+                            Good conversations are a fine place to start.
+                        </ThemedText>
+                        <ThemedText style={styles.lede}>
+                            Have a product idea, an engineering problem, or something interesting
+                            to compare notes on? Reach out through whichever channel fits.
+                        </ThemedText>
+                    </View>
+                </AnimatedEntrance>
+
+                <View style={[styles.grid, isMobile && styles.mobileGrid]}>
+                    {socialLinks.map((link, index) => (
+                        <AnimatedEntrance
                             key={link.name}
-                            style={[styles.socialButton, { borderColor }]}
-                            onPress={Linking.openURL as any}
+                            delay={80 + index * 70}
+                            style={styles.cardSlot}
                         >
-                            <Feather name={link.icon as any} size={28} color={link.color} />
-                            <ThemedText type='link'>
-                                {link.name}
-                            </ThemedText>
-                        </Pressable>
+                            <HoverPressable
+                                accessibilityRole='link'
+                                containerStyle={styles.clickableCard}
+                                onPress={() => Linking.openURL(link.url)}
+                            >
+                                <BentoCard style={styles.contactCard}>
+                                    <View style={styles.cardHeader}>
+                                        <View style={[styles.icon, { backgroundColor: `${link.color ?? tintColor}18` }]}>
+                                            <Feather
+                                                name={link.icon as keyof typeof Feather.glyphMap}
+                                                size={24}
+                                                color={link.color ?? primaryText}
+                                            />
+                                        </View>
+                                        <Feather name='arrow-up-right' size={20} color={tintColor} />
+                                    </View>
+                                    <ThemedText type='subtitle'>{link.name}</ThemedText>
+                                    <ThemedText style={styles.detail}>{link.detail}</ThemedText>
+                                </BentoCard>
+                            </HoverPressable>
+                        </AnimatedEntrance>
                     ))}
-                </ThemedView>
-            </ThemedView>
-        </ThemedScrollView>
+                </View>
+            </PageContainer>
+        </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1
-    },
-    contentContainer: {
-        padding: Spacing.md,
-        maxWidth: 600,
-        alignSelf: 'center',
-        width: '100%'
-    },
     header: {
-        marginBottom: Spacing.lg
+        maxWidth: 820,
+        paddingVertical: Spacing.md,
+        gap: Spacing.xs
     },
-    socialContainer: {
-        marginBottom: Spacing.lg,
-        gap: Spacing.lg
+    eyebrow: {
+        fontSize: 12,
+        lineHeight: 16
     },
-    socialLinks: {
+    pageTitle: {
+        fontSize: 38,
+        lineHeight: 46
+    },
+    lede: {
+        maxWidth: 700,
+        fontSize: 18,
+        lineHeight: 28
+    },
+    grid: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        justifyContent: 'center',
-        gap: Spacing.sm
+        gap: Spacing.md
     },
-    socialButton: {
+    mobileGrid: {
+        flexDirection: 'column'
+    },
+    cardSlot: {
+        width: '48%',
+        flexGrow: 1,
+        minWidth: 280
+    },
+    contactCard: {
+        minHeight: 210
+    },
+    clickableCard: {
+        borderRadius: 18
+    },
+    cardHeader: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+    },
+    icon: {
+        width: 48,
+        height: 48,
+        borderRadius: 8,
         alignItems: 'center',
-        justifyContent: 'center',
-        padding: Spacing.sm,
-        borderRadius: Spacing.xs,
-        borderWidth: 1,
-        minWidth: 120
+        justifyContent: 'center'
+    },
+    detail: {
+        lineHeight: 22
     }
 });
