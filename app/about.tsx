@@ -1,4 +1,5 @@
-import { Image, Linking, ScrollView, StyleSheet, View } from 'react-native';
+import { useState } from 'react';
+import { Image, Linking, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { Asset } from 'expo-asset';
 import { Feather } from '@expo/vector-icons';
 
@@ -7,7 +8,7 @@ import { BentoCard } from '@/components/BentoCard';
 import { HoverPressable } from '@/components/HoverPressable';
 import { PageContainer } from '@/components/PageContainer';
 import { ThemedText } from '@/components/StandardComponents/ThemedText';
-import { data } from '@/constants/AboutData';
+import { data, type ToolkitCategory } from '@/constants/AboutData';
 import { Spacing } from '@/constants/spacing';
 import { useCutoffs } from '@/hooks/useCutoffs';
 import { useThemeColor } from '@/hooks/useThemeColor';
@@ -72,17 +73,145 @@ function ExperienceCard({ section }: { section: (typeof data)[1] }) {
 }
 
 function ToolkitCard({ section }: { section: (typeof data)[2] }) {
+    const categories = section.categories as ToolkitCategory[];
+    const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
+    const [activeTechnologyIndex, setActiveTechnologyIndex] = useState(0);
+    const tintColor = useThemeColor({}, 'tint');
+    const borderColor = useThemeColor({}, 'subtleBorder');
+    const selectedBackground = useThemeColor({}, 'highlight');
+    const idleBackground = useThemeColor({}, 'elevatedSurface');
+    const detailBackground = useThemeColor({}, 'surface');
+    const activeCategory = categories[activeCategoryIndex] ?? categories[0];
+    const activeTechnology =
+        activeCategory.technologies[activeTechnologyIndex] ?? activeCategory.technologies[0];
+
+    const selectCategory = (index: number) => {
+        setActiveCategoryIndex(index);
+        setActiveTechnologyIndex(0);
+    };
+
     return (
-        <BentoCard>
-            <ThemedText type='defaultSemiBold' style={styles.eyebrow}>TOOLKIT</ThemedText>
-            <ThemedText type='title' style={styles.cardTitle}>Tools I reach for</ThemedText>
-            <View style={styles.skillGrid}>
-                {section.categories!.map((category) => (
-                    <View key={category.title} style={styles.skill}>
-                        <ThemedText type='defaultSemiBold'>{category.title}</ThemedText>
-                        <ThemedText style={styles.detailText}>{category.items}</ThemedText>
+        <BentoCard style={styles.toolkitCard}>
+            <View style={styles.toolkitHeading}>
+                <View style={styles.toolkitTitleGroup}>
+                    <ThemedText type='defaultSemiBold' style={styles.eyebrow}>TOOLKIT</ThemedText>
+                    <ThemedText type='title' style={styles.cardTitle}>Tools, with context</ThemedText>
+                </View>
+                <ThemedText style={[styles.detailText, styles.toolkitIntro]}>
+                    The systems I have operated, migrated, evaluated, and learned well enough to
+                    have an opinion about.
+                </ThemedText>
+            </View>
+
+            <View accessibilityRole='tablist' style={styles.categoryTabs}>
+                {categories.map((category, index) => {
+                    const selected = index === activeCategoryIndex;
+
+                    return (
+                        <Pressable
+                            accessibilityRole='tab'
+                            accessibilityState={{ selected }}
+                            key={category.title}
+                            onPress={() => selectCategory(index)}
+                            style={({ pressed }) => [
+                                styles.categoryTab,
+                                {
+                                    backgroundColor: selected ? selectedBackground : idleBackground,
+                                    borderColor: selected ? tintColor : borderColor,
+                                    opacity: pressed ? 0.72 : 1
+                                }
+                            ]}
+                        >
+                            <Feather
+                                color={selected ? tintColor : undefined}
+                                name={category.icon as keyof typeof Feather.glyphMap}
+                                size={15}
+                            />
+                            <ThemedText
+                                type='defaultSemiBold'
+                                style={[styles.categoryTabText, selected && { color: tintColor }]}
+                            >
+                                {category.title}
+                            </ThemedText>
+                        </Pressable>
+                    );
+                })}
+            </View>
+
+            <View style={styles.technologySection}>
+                <View style={styles.technologyHeader}>
+                    <ThemedText type='subtitle'>{activeCategory.title}</ThemedText>
+                    <ThemedText style={styles.interactionHint}>
+                        Hover, focus, or tap for experience
+                    </ThemedText>
+                </View>
+
+                <View style={styles.technologyGrid}>
+                    {activeCategory.technologies.map((technology, index) => {
+                        const selected = index === activeTechnologyIndex;
+
+                        return (
+                            <Pressable
+                                accessibilityHint={technology.detail}
+                                accessibilityRole='button'
+                                accessibilityState={{ selected }}
+                                key={technology.name}
+                                onFocus={() => setActiveTechnologyIndex(index)}
+                                onHoverIn={() => setActiveTechnologyIndex(index)}
+                                onPress={() => setActiveTechnologyIndex(index)}
+                                style={({ pressed }) => [
+                                    styles.technologyChip,
+                                    {
+                                        backgroundColor: selected
+                                            ? selectedBackground
+                                            : idleBackground,
+                                        borderColor: selected ? tintColor : borderColor,
+                                        opacity: pressed ? 0.74 : 1
+                                    }
+                                ]}
+                            >
+                                <View
+                                    style={[
+                                        styles.technologyDot,
+                                        { backgroundColor: selected ? tintColor : borderColor }
+                                    ]}
+                                />
+                                <ThemedText
+                                    type='defaultSemiBold'
+                                    style={[styles.technologyName, selected && { color: tintColor }]}
+                                >
+                                    {technology.name}
+                                </ThemedText>
+                            </Pressable>
+                        );
+                    })}
+                </View>
+
+                <View
+                    accessibilityLiveRegion='polite'
+                    style={[
+                        styles.technologyDetail,
+                        { backgroundColor: detailBackground, borderColor }
+                    ]}
+                >
+                    <View style={styles.technologyDetailHeading}>
+                        <ThemedText type='subtitle'>{activeTechnology.name}</ThemedText>
+                        <View
+                            style={[
+                                styles.experienceBadge,
+                                { backgroundColor: selectedBackground }
+                            ]}
+                        >
+                            <ThemedText
+                                type='defaultSemiBold'
+                                style={[styles.experienceBadgeText, { color: tintColor }]}
+                            >
+                                {activeTechnology.context}
+                            </ThemedText>
+                        </View>
                     </View>
-                ))}
+                    <ThemedText style={styles.detailText}>{activeTechnology.detail}</ThemedText>
+                </View>
             </View>
         </BentoCard>
     );
@@ -221,7 +350,7 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     toolkitSlot: {
-        flex: 1.35,
+        flex: 1.5,
         width: '100%'
     },
     sideColumn: {
@@ -284,15 +413,106 @@ const styles = StyleSheet.create({
     highlightText: {
         flex: 1
     },
-    skillGrid: {
+    toolkitCard: {
+        minHeight: 590
+    },
+    toolkitHeading: {
         flexDirection: 'row',
         flexWrap: 'wrap',
+        alignItems: 'flex-end',
+        justifyContent: 'space-between',
         gap: Spacing.sm
     },
-    skill: {
-        minWidth: 210,
-        flex: 1,
-        gap: Spacing.xxxs
+    toolkitTitleGroup: {
+        gap: Spacing.xs
+    },
+    toolkitIntro: {
+        maxWidth: 430,
+        flexShrink: 1,
+        opacity: 0.78
+    },
+    categoryTabs: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: Spacing.xxs
+    },
+    categoryTab: {
+        minHeight: 38,
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: Spacing.xxs,
+        borderWidth: 1,
+        borderRadius: 999,
+        paddingHorizontal: Spacing.xs,
+        paddingVertical: Spacing.xxs,
+        cursor: 'pointer'
+    },
+    categoryTabText: {
+        fontSize: 13,
+        lineHeight: 18
+    },
+    technologySection: {
+        gap: Spacing.sm
+    },
+    technologyHeader: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        alignItems: 'baseline',
+        justifyContent: 'space-between',
+        gap: Spacing.xs
+    },
+    interactionHint: {
+        fontSize: 12,
+        opacity: 0.62
+    },
+    technologyGrid: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: Spacing.xxs
+    },
+    technologyChip: {
+        minHeight: 36,
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: Spacing.xxs,
+        borderWidth: 1,
+        borderRadius: 10,
+        paddingHorizontal: Spacing.xs,
+        paddingVertical: Spacing.xxs,
+        cursor: 'pointer'
+    },
+    technologyDot: {
+        width: 6,
+        height: 6,
+        borderRadius: 3
+    },
+    technologyName: {
+        fontSize: 13,
+        lineHeight: 18
+    },
+    technologyDetail: {
+        minHeight: 124,
+        gap: Spacing.xs,
+        borderWidth: 1,
+        borderRadius: 14,
+        padding: Spacing.sm
+    },
+    technologyDetailHeading: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        gap: Spacing.xs
+    },
+    experienceBadge: {
+        borderRadius: 999,
+        paddingHorizontal: Spacing.xs,
+        paddingVertical: Spacing.xxxs
+    },
+    experienceBadgeText: {
+        fontSize: 11,
+        lineHeight: 15,
+        textTransform: 'uppercase',
+        letterSpacing: 0.45
     },
     personalImage: {
         width: '100%',
